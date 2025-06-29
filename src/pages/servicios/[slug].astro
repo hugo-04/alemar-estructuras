@@ -4,8 +4,18 @@
 // Utiliza la función getStaticPaths para pre-renderizar las páginas en tiempo de construcción.
 
 import { services } from '../../data/services'; // Importa los datos de todos los servicios.
-import Layout from '../../layouts/Layout.astro'; // Importa el layout principal de la página.
+import BaseLayout from '../../layouts/BaseLayout.astro'; // Importa el layout principal de la página.
 import { Icon } from 'astro-icon/components'; // Importa el componente Icon para mostrar íconos.
+
+interface Service {
+  title: string;
+  slug: string; // Identificador único y amigable para la URL del servicio (usar guiones en lugar de espacios).
+  description: string; // Descripción detallada del servicio.
+  whatsappLink: string; // Enlace de WhatsApp para cotizar este servicio.
+  imageUrl: string; // URL de la imagen del servicio (debe estar en la carpeta public/images).
+  category: string; // Categoría a la que pertenece el servicio.
+  isMostClicked?: boolean; // Opcional: true si quieres destacarlo como "más clicado" en la página principal de servicios.
+}
 
 // getStaticPaths es una función de Astro que genera las rutas estáticas para esta página dinámica.
 // Por cada servicio, crea un 'params.slug' que se convierte en parte de la URL.
@@ -22,7 +32,7 @@ export async function getStaticPaths() {
 const { service } = Astro.props;
 ---
 
-<Layout title={service.title}>
+<BaseLayout title={service.title}>
   <main class="container mx-auto px-6 py-12">
     <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-start md:space-x-8">
       <div class="md:w-1/2 mb-6 md:mb-0">
@@ -45,4 +55,4 @@ const { service } = Astro.props;
       </div>
     </div>
   </main>
-</Layout>
+</BaseLayout>

@@ -4,21 +4,29 @@
 // Muestra información de la empresa, enlaces rápidos, categorías de servicios y datos de contacto.
 
 import { services } from '../data/services.ts'; // Importa los datos de servicios para generar las categorías.
+import FooterMap from './FooterMap.astro';
+
+
+interface Props {
+  showMap?: boolean;
+}
+
+const { showMap = true } = Astro.props;
 
 // Genera categorías únicas a partir de los servicios para el menú del pie de página.
-const categories = [...new Set(services.map(service => service.category))];
+const categories: string[] = [...new Set(services.map(service => service.category))];
 ---
 
 <footer class="bg-gray-900 text-white py-10 shadow-inner">
-  <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+  <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
     <!-- Columna 1: Logo/Nombre Empresa y Descripción Corta -->
-    <div class="text-center md:text-left">
+    <div class="text-center sm:text-left col-span-2 md:col-span-1 lg:col-span-1">
       <h3 class="text-2xl font-bold mb-4">[Nombre de tu Empresa]</h3>
       <p class="text-gray-400 text-sm">Soluciones integrales en techado y estructuras metálicas.</p>
     </div>
 
     <!-- Columna 2: Enlaces Rápidos de Navegación -->
-    <div>
+    <div class="col-span-1 lg:col-span-1">
       <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
       <ul>
         <li class="mb-2"><a href="/" class="hover:text-gray-300 transition duration-300">Inicio</a></li>
@@ -30,19 +38,19 @@ const categories = [...new Set(services.map(service => service.category))];
     </div>
 
     <!-- Columna 3: Categorías de Servicios Dinámicas -->
-    <div>
+    <div class="col-span-1 lg:col-span-1">
       <h3 class="text-xl font-bold mb-4">Nuestros Servicios</h3>
       <ul>
         {
-          categories.map(category => (
+          categories.map((category: string) => (
             <li class="mb-2"><a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="hover:text-gray-300 transition duration-300">{category}</a></li>
           ))
         }
       </ul>
     </div>
 
-    <!-- Columna 4: Información de Contacto Detallada -->
-    <div>
+    <!-- Columna 4: Información de Contacto Detallada y Mapa -->
+    <div class="flex flex-col col-span-2 md:col-span-2 lg:col-span-3">
       <h3 class="text-xl font-bold mb-4">Contáctanos</h3>
       <p class="mb-2">
         <a href="tel:+51987654321" class="hover:text-gray-300 transition duration-300">
@@ -67,6 +75,11 @@ const categories = [...new Set(services.map(service => service.category))];
         </svg>
         Dirección de la Empresa, Ciudad, País
       </p>
+      {showMap && (
+        <div class="mt-4 w-full">
+          <FooterMap showMap={showMap} />
+        </div>
+      )}
     </div>
   </div>
   <!-- Sección de Copyright: Asegura que el aviso de derechos de autor sea siempre visible. -->

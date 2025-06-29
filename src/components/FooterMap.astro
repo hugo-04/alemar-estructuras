@@ -1,0 +1,48 @@
+---
+interface Props {
+  showMap: boolean;
+}
+
+const { showMap } = Astro.props;
+---
+
+{showMap && (
+  <div class="w-full h-32 rounded-md overflow-hidden shadow-md">
+    <div id="footer-map" class="w-full h-full"></div>
+  </div>
+)}
+
+<script is:inline>
+  function initFooterMap() {
+    const mapElement = document.getElementById('footer-map');
+    if (mapElement) {
+      const location = { lat: -16.409047, lng: -71.537451 }; // Example: Arequipa, Peru coordinates
+      const map = new google.maps.Map(mapElement, {
+        zoom: 12,
+        center: location,
+        disableDefaultUI: true, // Hide controls for a cleaner look
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false
+      });
+      new google.maps.Marker({
+        position: location,
+        map: map,
+      });
+    }
+  }
+
+  // Load Google Maps API script dynamically if not already loaded
+  if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initFooterMap`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    initFooterMap();
+  }
+</script>

@@ -3,7 +3,7 @@
 // Esta página muestra una visión general de los servicios ofrecidos.
 // Incluye una sección de servicios destacados y una llamada a la acción.
 
-import Layout from '../layouts/Layout.astro'; // Importa el layout principal de la página.
+import BaseLayout from '../layouts/BaseLayout.astro'; // Importa el layout principal de la página.
 import ServicePreviewCard from '../components/ServicePreviewCard.astro'; // Importa el componente para la vista previa de servicios.
 import { services } from '../data/services.ts'; // Importa los datos de todos los servicios.
 
@@ -12,7 +12,7 @@ import { services } from '../data/services.ts'; // Importa los datos de todos lo
 const mostClickedServices = services.filter(service => service.isMostClicked);
 ---
 
-<Layout title="Nuestros Servicios - [Nombre de tu Empresa]">
+<BaseLayout title="Nuestros Servicios - [Nombre de tu Empresa]">
   <!-- Sección Hero: Banner principal de la página de servicios. -->
   <section class="relative bg-cover bg-center h-96 flex items-center justify-center text-white shadow-lg"
     style="background-image: url('https://via.placeholder.com/1920x600/1A202C/FFFFFF?text=Nuestros+Servicios');">
@@ -49,4 +49,4 @@ const mostClickedServices = services.filter(service => service.isMostClicked);
       </a>
     </section>
   </main>
-</Layout>
+</BaseLayout>

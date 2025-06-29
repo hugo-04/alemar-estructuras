@@ -2,6 +2,8 @@
 // src/components/SuccessPopup.astro
 // Componente reutilizable para mostrar un mensaje de éxito o confirmación en un pop-up.
 
+
+
 interface Props {
   message: string; // Mensaje a mostrar en el pop-up.
   id?: string; // ID opcional para el componente.
@@ -49,18 +51,4 @@ const buttonId = `close-btn-${id}`;
   }
 </style>
 
-<script>
-  // Seleccionamos el botón usando el ID único
-  const closeButton = document.getElementById("${buttonId}");
-  
-  if (closeButton) {
-    closeButton.addEventListener("click", () => {
-      // Disparamos evento personalizado para cerrar el popup
-      document.dispatchEvent(
-        new CustomEvent("close-success-popup", {
-          detail: { popupId: "${id}" }
-        })
-      );
-    });
-  }
-</script>
+<script type="module" src="../scripts/successPopup.ts" is:client></script>

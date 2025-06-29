@@ -3,7 +3,15 @@
 // Este componente muestra una vista previa compacta de un servicio.
 // Es utilizado en la página principal de servicios para destacar los "más solicitados".
 
-import type { Service } from "../data/services"; // Importa la interfaz Service para tipado.
+interface Service {
+  title: string;
+  slug: string; // Identificador único y amigable para la URL del servicio (usar guiones en lugar de espacios).
+  description: string; // Descripción detallada del servicio.
+  whatsappLink: string; // Enlace de WhatsApp para cotizar este servicio.
+  imageUrl: string; // URL de la imagen del servicio (debe estar en la carpeta public/images).
+  category: string; // Categoría a la que pertenece el servicio.
+  isMostClicked?: boolean; // Opcional: true si quieres destacarlo como "más clicado" en la página principal de servicios.
+}
 
 interface Props {
   service: Service; // Propiedad que recibe un objeto de servicio completo.

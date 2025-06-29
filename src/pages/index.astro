@@ -1,28 +1,31 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Carousel from '../components/Carousel.astro';
+import { mainCarouselImages, clientCarouselImages } from '../data/carousel';
 ---
 
-<html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Página Principal</title>
-		<link href="/src/styles/global.css" rel="stylesheet">
-	</head>
-	<body class="bg-gray-50 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
-		<Header />
+<BaseLayout title="Página Principal">
+	<main class="container mx-auto p-6 mt-8 flex-grow text-center">
+		<h2 class="text-5xl font-extrabold text-gray-800 mb-6">Bienvenido a [Nombre de tu Empresa]</h2>
+		<p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">Nos especializamos en ofrecer soluciones integrales de techado y estructuras metálicas, garantizando la máxima calidad y durabilidad en cada uno de nuestros proyectos.</p>
+		
+    <section class="mb-12">
+      <Carousel id="main-carousel" images={mainCarouselImages} />
+    </section>
 
-		<main class="container mx-auto p-6 mt-8 flex-grow text-center">
-			<h2 class="text-5xl font-extrabold text-gray-800 mb-6">Bienvenido a [Nombre de tu Empresa]</h2>
-			<p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">Nos especializamos en ofrecer soluciones integrales de techado y estructuras metálicas, garantizando la máxima calidad y durabilidad en cada uno de nuestros proyectos.</p>
-			<a href="/servicios" class="inline-block bg-gray-800 text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-900 transition-colors duration-300 shadow-lg">Descubra Nuestros Servicios</a>
-		</main>
+    <section class="text-center my-12 p-6 bg-white rounded-lg shadow-md">
+      <h3 class="text-3xl font-bold text-gray-800 mb-4">Nuestra Experiencia a su Servicio</h3>
+      <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+        Con años de experiencia en el sector, ofrecemos soluciones personalizadas y de alta calidad en techado y estructuras metálicas. Nuestro compromiso es la excelencia y la satisfacción total de nuestros clientes, garantizando durabilidad y seguridad en cada proyecto.
+      </p>
+    </section>
 
-		<Footer />
-		<FloatingWhatsAppButton />
-	</body>
-</html>
+		<a href="/servicios" class="inline-block bg-gray-800 text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-900 transition-colors duration-300 shadow-lg">Descubra Nuestros Servicios</a>
+
+    <section class="mt-12">
+      <h3 class="text-3xl font-bold text-gray-800 mb-6">Nuestros Clientes</h3>
+      <Carousel id="client-carousel" images={clientCarouselImages} showNavigation={false} showPagination={false} interval={3000} />
+    </section>
+
+	</main>
+</BaseLayout>

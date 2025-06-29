@@ -1,10 +1,19 @@
 ---
 // src/components/ServiceCard.astro
+import { Icon } from 'astro-icon/components';
+
 // Este componente representa una tarjeta individual para mostrar un servicio.
 // Incluye la imagen, título, descripción y botones de "Más Información" y "Cotizar".
 
-import type { Service } from "../data/services"; // Importa la interfaz Service para tipado.
-import { Icon } from 'astro-icon/components'; // Importa el componente Icon para los íconos.
+interface Service {
+  title: string;
+  slug: string; // Identificador único y amigable para la URL del servicio (usar guiones en lugar de espacios).
+  description: string; // Descripción detallada del servicio.
+  whatsappLink: string; // Enlace de WhatsApp para cotizar este servicio.
+  imageUrl: string; // URL de la imagen del servicio (debe estar en la carpeta public/images).
+  category: string; // Categoría a la que pertenece el servicio.
+  isMostClicked?: boolean; // Opcional: true si quieres destacarlo como "más clicado" en la página principal de servicios.
+}
 
 interface Props extends Service {} // Define las propiedades del componente extendiendo la interfaz Service.
 

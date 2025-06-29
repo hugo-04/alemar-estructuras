@@ -1,44 +1,27 @@
 ---
-import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 import { testimonials } from '../data/testimonials.ts';
-import Footer from '../components/Footer.astro';
-import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton.astro';
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Proyectos Realizados - [Nombre de tu Empresa]</title>
-    <link href="/src/styles/global.css" rel="stylesheet">
-  </head>
-  <body class="bg-gray-50 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
-    <Header />
+<BaseLayout title="Proyectos Realizados - [Nombre de tu Empresa]">
+  <main class="container mx-auto p-6 mt-8 flex-grow">
+    <section class="text-center mb-16">
+      <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Nuestros Proyectos y Testimonios</h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">La satisfacción de nuestros clientes constituye nuestra principal carta de presentación. A continuación, exponemos una selección de nuestros trabajos más representativos y los testimonios de quienes han depositado su confianza en nosotros.</p>
+    </section>
 
-    <main class="container mx-auto p-6 mt-8 flex-grow">
-      <section class="text-center mb-16">
-        <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Nuestros Proyectos y Testimonios</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto">La satisfacción de nuestros clientes constituye nuestra principal carta de presentación. A continuación, exponemos una selección de nuestros trabajos más representativos y los testimonios de quienes han depositado su confianza en nosotros.</p>
-      </section>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {
-          testimonials.map((testimonial) => (
-            <TestimonialCard
-              imageUrl={testimonial.imageUrl}
-              altText={testimonial.altText}
-              quote={testimonial.quote}
-              clientName={testimonial.clientName}
-            />
-          ))
-        }
-      </div>
-    </main>
-
-    <Footer />
-    <FloatingWhatsAppButton />
-  </body>
-</html>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {
+        testimonials.map((testimonial) => (
+          <TestimonialCard
+            imageUrl={testimonial.imageUrl}
+            altText={testimonial.altText}
+            quote={testimonial.quote}
+            clientName={testimonial.clientName}
+          />
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>
