@@ -1,0 +1,111 @@
+---
+// src/components/Header.astro
+// Este componente define el encabezado principal del sitio web.
+// Incluye la barra de contacto superior, el logo de la empresa y la navegación principal.
+
+import { services } from '../data/services.ts'; // Importa los datos de servicios para el menú desplegable.
+import { Icon } from 'astro-icon/components'; // Importa el componente Icon para los íconos.
+
+// Genera categorías únicas a partir de los servicios para el menú desplegable.
+const categories = [...new Set(services.map(service => service.category))];
+---
+
+<header class="bg-gray-900 text-white shadow-lg">
+  <!-- Barra de Contacto Superior: Muestra información de contacto clave. -->
+  <div class="bg-gray-800 py-2 text-sm">
+    <div class="container mx-auto flex flex-col md:flex-row justify-center items-center px-6">
+      <div class="flex flex-wrap justify-center items-center space-x-4 md:space-x-8 mb-2 md:mb-0">
+        <!-- Teléfono Principal -->
+        <a href="tel:+51915157257" class="flex items-center hover:text-gray-300 transition duration-300">
+          <Icon name="mdi:phone" class="h-4 w-4 mr-1" />
+          +51 915 157 257
+        </a>
+        <!-- Enlace a WhatsApp -->
+        <a href="https://wa.me/+51915157257" target="_blank" class="flex items-center hover:text-gray-300 transition duration-300">
+          <Icon name="mdi:whatsapp" class="h-4 w-4 mr-1" />
+          WhatsApp
+        </a>
+        <!-- Enlace de Correo Electrónico -->
+        <a href="mailto:servicios@multiserviciosprecisur.com" class="flex items-center hover:text-gray-300 transition duration-300">
+          <Icon name="mdi:email" class="h-4 w-4 mr-1" />
+          Correo
+        </a>
+        <!-- Ubicación de la Empresa -->
+        <span class="flex items-center text-gray-300">
+          <Icon name="mdi:map-marker" class="h-4 w-4 mr-1" />
+          Arequipa / Lima
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido Principal del Encabezado: Logo y Navegación. -->
+  <div class="container mx-auto flex justify-between items-center p-6">
+    <!-- Logo o Nombre de la Empresa -->
+    <a href="/" class="text-3xl font-bold text-gray-100 hover:text-gray-300 transition duration-300">[Nombre de tu Empresa]</a>
+
+    <!-- Botón de hamburguesa para móviles: Visible solo en pantallas pequeñas. -->
+    <button id="menu-button" class="md:hidden text-gray-300 hover:text-white focus:outline-none focus:text-white">
+      <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Navegación principal para escritorio: Oculta en móviles por defecto. -->
+    <nav id="main-nav" class="hidden md:flex flex-col md:flex-row md:space-x-4 mt-4 md:mt-0">
+      <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300">Inicio</a>
+      <a href="/nosotros" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300">Nosotros</a>
+      
+      <!-- Menú desplegable de Servicios -->
+      <div class="relative group">
+        <a href="/servicios" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300 flex items-center">
+          Servicios
+          <svg class="ml-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="absolute hidden group-hover:block bg-gray-800 shadow-lg rounded-md py-2 w-48 z-20">
+          {
+            categories.map(category => (
+              <a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="block px-4 py-2 text-sm text-300 hover:bg-gray-700">{category}</a>
+            ))
+          }
+        </div>
+      </div>
+
+      <a href="/proyectos-realizados" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300">Proyectos Realizados</a>
+      <a href="/contacto" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300">Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Menú desplegable para móviles: Oculto en escritorio. -->
+  <nav id="mobile-nav" class="md:hidden hidden flex-col items-center mt-4 space-y-2 p-4">
+    <a href="/" class="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300 w-full text-center">Inicio</a>
+    <a href="/nosotros" class="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300 w-full text-center">Nosotros</a>
+    <a href="/servicios" class="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300 w-full text-center">Servicios</a>
+    <a href="/proyectos-realizados" class="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300 w-full text-center">Proyectos Realizados</a>
+    <a href="/contacto" class="block text-gray-300 hover:text-white px-3 py-2 rounded-md text-lg font-medium transition duration-300 w-full text-center">Contacto</a>
+    
+    <!-- Categorías de Servicios en móvil -->
+    <div class="w-full text-center mt-4 pt-4 border-t border-gray-700">
+      <p class="text-gray-400 text-sm mb-2">Categorías de Servicios:</p>
+      {
+            categories.map(category => (
+              <a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700">{category}</a>
+            ))
+          }
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  // Script para controlar la visibilidad del menú móvil.
+  const menuButton = document.getElementById('menu-button');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  if (menuButton && mobileNav) {
+    menuButton.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
+    });
+  }
+</script>

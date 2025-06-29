@@ -1,0 +1,39 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton.astro';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Nosotros - [Nombre de tu Empresa]</title>
+    <link href="/src/styles/global.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+    <Header />
+
+    <main class="container mx-auto p-6 mt-8 flex-grow">
+      <section class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Nuestra Trayectoria y Compromiso</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">En [Nombre de tu Empresa], nos especializamos en proveer soluciones de excelencia en techado y estructuras metálicas. Con una trayectoria de más de [X] años en el sector, hemos forjado una sólida reputación basada en la calidad de nuestros proyectos y la plena satisfacción de nuestros clientes.</p>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-md p-10 mb-12 border border-gray-200/80">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Nuestra Misión</h3>
+        <p class="text-gray-600 leading-relaxed text-center text-lg">Ofrecer servicios integrales y personalizados en metalurgia y techado, superando consistentemente las expectativas de nuestros clientes mediante la innovación, la calidad superior y un equipo de profesionales altamente cualificados y comprometidos con la seguridad y la sostenibilidad ambiental.</p>
+      </section>
+
+      <section class="bg-white rounded-xl shadow-md p-10 border border-gray-200/80">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Nuestra Visión</h3>
+        <p class="text-gray-600 leading-relaxed text-center text-lg">Consolidarnos como la empresa líder en soluciones metálicas y de techado a nivel nacional, siendo reconocidos por nuestra excelencia operativa, nuestro compromiso con la sostenibilidad y el valor agregado que aportamos a la infraestructura y al desarrollo de los proyectos de nuestros clientes.</p>
+      </section>
+    </main>
+
+    <Footer />
+    <FloatingWhatsAppButton />
+  </body>
+</html>

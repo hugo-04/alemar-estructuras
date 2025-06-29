@@ -1,0 +1,65 @@
+---
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ServicePreviewCard from '../../../components/ServicePreviewCard.astro';
+import { services } from '../../../data/services.ts';
+import FloatingWhatsAppButton from '../../../components/FloatingWhatsAppButton.astro';
+
+export async function getStaticPaths() {
+  const categories = [...new Set(services.map(service => service.category))];
+  return categories.map(category => ({
+    params: { categorySlug: category.toLowerCase().replace(/ /g, '-') },
+    props: { categoryName: category },
+  }));
+}
+
+const { categoryName } = Astro.props;
+const categorySlug = categoryName.toLowerCase().replace(/ /g, '-');
+const filteredServices = services.filter(service => service.category.toLowerCase().replace(/ /g, '-') === categorySlug);
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{categoryName} - Nuestros Servicios - [Nombre de tu Empresa]</title>
+    <link href="/src/styles/global.css" rel="stylesheet">
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal flex flex-col min-h-screen">
+    <Header />
+
+    <!-- Sección Hero de Categoría -->
+    <section class="relative bg-cover bg-center h-72 flex items-center justify-center text-white shadow-lg"
+      style="background-image: url('https://via.placeholder.com/1920x400/334155/FFFFFF?text={categoryName}');">
+      <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
+      <div class="relative z-10 text-center p-4">
+        <h1 class="text-5xl font-extrabold mb-4">{categoryName}</h1>
+        <p class="text-xl max-w-2xl mx-auto">Explora todos nuestros servicios en la categoría de {categoryName}.</p>
+      </div>
+    </section>
+
+    <main class="container mx-auto p-6 mt-8 flex-grow">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          filteredServices.map(service => (
+            <ServicePreviewCard service={service} />
+          ))
+        }
+      </div>
+
+      <!-- Sección de Llamada a la Acción (CTA) -->
+      <section class="bg-gray-800 text-white text-center p-12 rounded-lg shadow-lg mt-16">
+        <h2 class="text-4xl font-extrabold mb-4">¿No encuentras lo que buscas?</h2>
+        <p class="text-xl mb-8">Contáctanos para una solución personalizada.</p>
+        <a href="/contacto" class="inline-block bg-blue-800 text-white px-10 py-5 rounded-md text-xl font-semibold hover:bg-blue-900 transition duration-300">
+          Contactar Ahora
+        </a>
+      </section>
+    </main>
+
+    <Footer />
+    <FloatingWhatsAppButton />
+  </body>
+</html>

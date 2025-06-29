@@ -1,0 +1,66 @@
+---
+// src/components/SuccessPopup.astro
+// Componente reutilizable para mostrar un mensaje de éxito o confirmación en un pop-up.
+
+interface Props {
+  message: string; // Mensaje a mostrar en el pop-up.
+  id?: string; // ID opcional para el componente.
+}
+
+const { 
+  message, 
+  id = "success-popup" 
+} = Astro.props;
+
+// Generamos un ID único para el botón
+const buttonId = `close-btn-${id}`;
+---
+
+<div
+  class="fixed bottom-6 right-6 bg-white border border-green-400 shadow-lg rounded-lg px-6 py-4 flex items-center gap-3 z-50 transition-all duration-300 opacity-0 pointer-events-none min-w-[220px]"
+  id={id}
+  role="status"
+  aria-live="polite"
+>
+  <svg class="w-6 h-6 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+  </svg>
+  <span class="text-green-800 font-medium flex-1">{message}</span>
+  <button
+    id={buttonId}
+    class="ml-2 text-green-700 hover:text-green-900 focus:outline-none"
+    aria-label="Cerrar notificación"
+    title="Cerrar"
+  >
+    ✕
+  </button>
+</div>
+
+<style>
+  /* Estilos para controlar la visibilidad del pop-up */
+  .is-visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+  }
+  #success-popup {
+    transform: translateY(20px) scale(0.98);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+</style>
+
+<script>
+  // Seleccionamos el botón usando el ID único
+  const closeButton = document.getElementById("${buttonId}");
+  
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
+      // Disparamos evento personalizado para cerrar el popup
+      document.dispatchEvent(
+        new CustomEvent("close-success-popup", {
+          detail: { popupId: "${id}" }
+        })
+      );
+    });
+  }
+</script>

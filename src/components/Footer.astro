@@ -1,0 +1,76 @@
+---
+// src/components/Footer.astro
+// Este componente define el pie de página principal del sitio web.
+// Muestra información de la empresa, enlaces rápidos, categorías de servicios y datos de contacto.
+
+import { services } from '../data/services.ts'; // Importa los datos de servicios para generar las categorías.
+
+// Genera categorías únicas a partir de los servicios para el menú del pie de página.
+const categories = [...new Set(services.map(service => service.category))];
+---
+
+<footer class="bg-gray-900 text-white py-10 shadow-inner">
+  <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <!-- Columna 1: Logo/Nombre Empresa y Descripción Corta -->
+    <div class="text-center md:text-left">
+      <h3 class="text-2xl font-bold mb-4">[Nombre de tu Empresa]</h3>
+      <p class="text-gray-400 text-sm">Soluciones integrales en techado y estructuras metálicas.</p>
+    </div>
+
+    <!-- Columna 2: Enlaces Rápidos de Navegación -->
+    <div>
+      <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
+      <ul>
+        <li class="mb-2"><a href="/" class="hover:text-gray-300 transition duration-300">Inicio</a></li>
+        <li class="mb-2"><a href="/nosotros" class="hover:text-gray-300 transition duration-300">Nosotros</a></li>
+        <li class="mb-2"><a href="/servicios" class="hover:text-gray-300 transition duration-300">Servicios</a></li>
+        <li class="mb-2"><a href="/proyectos-realizados" class="hover:text-gray-300 transition duration-300">Proyectos Realizados</a></li>
+        <li class="mb-2"><a href="/contacto" class="hover:text-gray-300 transition duration-300">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3: Categorías de Servicios Dinámicas -->
+    <div>
+      <h3 class="text-xl font-bold mb-4">Nuestros Servicios</h3>
+      <ul>
+        {
+          categories.map(category => (
+            <li class="mb-2"><a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="hover:text-gray-300 transition duration-300">{category}</a></li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Columna 4: Información de Contacto Detallada -->
+    <div>
+      <h3 class="text-xl font-bold mb-4">Contáctanos</h3>
+      <p class="mb-2">
+        <a href="tel:+51987654321" class="hover:text-gray-300 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          +51 987 654 321
+        </a>
+      </p>
+      <p class="mb-2">
+        <a href="mailto:info@tudominio.com" class="hover:text-gray-300 transition duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+          </svg>
+          info@tudominio.com
+        </a>
+      </p>
+      <p class="mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+        </svg>
+        Dirección de la Empresa, Ciudad, País
+      </p>
+    </div>
+  </div>
+  <!-- Sección de Copyright: Asegura que el aviso de derechos de autor sea siempre visible. -->
+  <div class="text-center text-sm text-gray-400 mt-8 w-full flex-shrink-0">
+    <p>&copy; 2025 [Nombre de tu Empresa]. Todos los derechos reservados.</p>
+  </div>
+</footer>

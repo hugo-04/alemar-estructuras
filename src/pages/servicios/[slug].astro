@@ -1,0 +1,48 @@
+---
+// src/pages/servicios/[slug].astro
+// Esta es una página dinámica que genera una URL única para cada servicio.
+// Utiliza la función getStaticPaths para pre-renderizar las páginas en tiempo de construcción.
+
+import { services } from '../../data/services'; // Importa los datos de todos los servicios.
+import Layout from '../../layouts/Layout.astro'; // Importa el layout principal de la página.
+import { Icon } from 'astro-icon/components'; // Importa el componente Icon para mostrar íconos.
+
+// getStaticPaths es una función de Astro que genera las rutas estáticas para esta página dinámica.
+// Por cada servicio, crea un 'params.slug' que se convierte en parte de la URL.
+export async function getStaticPaths() {
+  return services.map(service => ({
+    params: {
+      slug: service.slug, // Utiliza el slug definido en los datos del servicio.
+    },
+    props: { service }, // Pasa el objeto de servicio completo como props a la página.
+  }));
+}
+
+// Obtiene el objeto de servicio de las props pasadas por getStaticPaths.
+const { service } = Astro.props;
+---
+
+<Layout title={service.title}>
+  <main class="container mx-auto px-6 py-12">
+    <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-start md:space-x-8">
+      <div class="md:w-1/2 mb-6 md:mb-0">
+        <img src={service.imageUrl} alt={service.title} class="w-full h-auto object-cover rounded-md" />
+      </div>
+      <div class="md:w-1/2">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">{service.title}</h1>
+        <p class="text-gray-700 text-lg mb-6">{service.description}</p>
+        
+        <div class="flex items-center space-x-4">
+          <a
+            href={service.whatsappLink}
+            target="_blank"
+            class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition duration-300 text-lg font-semibold"
+          >
+            <Icon name="mdi:whatsapp" class="h-6 w-6 mr-2" />
+            Cotizar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
