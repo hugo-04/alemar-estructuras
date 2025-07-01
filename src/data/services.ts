@@ -17,7 +17,7 @@ export const services: Service[] = [
     slug: "instalacion-techos-metalicos",
     description: "Expertos en la instalación de techos de lámina, panel sándwich y cubiertas metálicas para todo tipo de edificaciones, garantizando hermeticidad y resistencia.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20instalación%20de%20techos%20metálicos.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Techo+Metálico",
+    imageUrl: "/images/techo-casa.jpg",
     category: "Techos",
     isMostClicked: true
   },
@@ -26,7 +26,7 @@ export const services: Service[] = [
     slug: "mantenimiento-reparacion-techos",
     description: "Servicios de mantenimiento preventivo y correctivo para prolongar la vida útil de su techo, incluyendo sellado de filtraciones y reemplazo de piezas dañadas.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20mantenimiento%20y%20reparación%20de%20techos.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Mantenimiento",
+    imageUrl: "/images/reparacion-techo-industrial.jpg",
     category: "Techos",
     isMostClicked: true
   },
@@ -35,7 +35,7 @@ export const services: Service[] = [
     slug: "fabricacion-estructuras-metalicas",
     description: "Diseño y fabricación de estructuras metálicas a medida para naves industriales, almacenes, pasarelas y cualquier proyecto que requiera solidez y precisión.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20fabricación%20de%20estructuras%20metálicas.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Estructuras",
+    imageUrl: "/images/estructura-metalica-almacen.jpg",
     category: "Estructuras",
     isMostClicked: true
   },
@@ -44,7 +44,7 @@ export const services: Service[] = [
     slug: "soldadura-especializada",
     description: "Servicios de soldadura TIG, MIG y de arco para diversos metales, asegurando uniones fuertes y duraderas en sus proyectos.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20soldadura%20especializada.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Soldadura",
+    imageUrl: "/images/soldadura-especializada.jpg",
     category: "Estructuras",
     isMostClicked: true
   },
@@ -53,7 +53,7 @@ export const services: Service[] = [
     slug: "impermeabilizacion-techos",
     description: "Aplicación de sistemas impermeabilizantes de alta calidad para proteger su techo de la humedad y las filtraciones, prolongando su vida útil.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20impermeabilización%20de%20techos.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Impermeabilización",
+    imageUrl: "/images/impermeabilizacion-techos.jpg",
     category: "Techos",
     isMostClicked: true
   },
@@ -62,7 +62,7 @@ export const services: Service[] = [
     slug: "diseno-montaje-cubiertas",
     description: "Diseño personalizado y montaje profesional de cubiertas para patios, terrazas y áreas recreativas, combinando funcionalidad y estética.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20diseño%20y%20montaje%20de%20cubiertas.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Cubiertas",
+    imageUrl: "/images/cubiertas.jpg",
     category: "Techos",
     isMostClicked: true
   },
@@ -71,7 +71,7 @@ export const services: Service[] = [
     slug: "instalacion-canaletas-bajantes",
     description: "Sistemas completos de canaletas y bajantes para una correcta gestión del agua de lluvia, protegiendo su propiedad de la erosión y filtraciones.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20instalación%20de%20canaletas%20y%20bajantes.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Canaletas",
+    imageUrl: "/images/instalacion-canaletas.jpg",
     category: "Techos"
   },
   {
@@ -79,7 +79,7 @@ export const services: Service[] = [
     slug: "revestimiento-fachadas-metalicas",
     description: "Embellecimiento y protección de fachadas con revestimientos metálicos, ofreciendo un acabado moderno y de bajo mantenimiento.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20revestimiento%20de%20fachadas%20metálicas.",
-    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Fachadas",
+    imageUrl: "/images/revestimiento-fachada-edificio.jpg",
     category: "Estructuras"
   },
   {

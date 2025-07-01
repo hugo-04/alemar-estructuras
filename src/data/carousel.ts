@@ -6,19 +6,16 @@ interface CarouselImage {
 }
 
 export const mainCarouselImages: CarouselImage[] = [
-  { src: 'https://via.placeholder.com/800x400/1a2238/FFFFFF?text=Proyecto+1', 
-    alt: 'Imagen de Carrusel 1' },
-  { src: 'https://via.placeholder.com/800x400/1a2238/FFFFFF?text=Proyecto+2', 
-    alt: 'Imagen de Carrusel 2' },
-  { src: 'https://via.placeholder.com/800x400/1a2238/FFFFFF?text=Proyecto+3', 
-    alt: 'Imagen de Carrusel 3' },
+  { src: '/images/techo-casa.jpg', alt: 'Techo instalado en casa de cliente' },
+  { src: '/images/estructura-metalica-almacen.jpg', alt: 'Estructura metálica para almacén' },
+  { src: '/images/pergola-jardin.jpg', alt: 'Pérgola metálica en jardín' },
+  { src: '/images/revestimiento-fachada-edificio.jpg', alt: 'Revestimiento de fachada de edificio' },
+  { src: '/images/instalacion-canaletas.jpg', alt: 'Instalación de canaletas' },
+  { src: '/images/reparacion-techo-industrial.jpg', alt: 'Reparación de techo industrial' },
 ];
 
 export const clientCarouselImages: CarouselImage[] = [
-  { src: 'https://via.placeholder.com/200x100/1a2238/FFFFFF?text=Cliente+1', 
-    alt: 'Logo Cliente 1' },
-  { src: 'https://via.placeholder.com/200x100/1a2238/FFFFFF?text=Cliente+2', 
-    alt: 'Logo Cliente 2' },
-  { src: 'https://via.placeholder.com/200x100/1a2238/FFFFFF?text=Cliente+3', 
-    alt: 'Logo Cliente 3' },
+  { src: '/images/cliente1.jpg', alt: 'Logo Cliente 1' },
+  { src: '/images/cliente2.jpg', alt: 'Logo Cliente 2' },
+  { src: '/images/cliente3.jpg', alt: 'Logo Cliente 3' },
 ];
