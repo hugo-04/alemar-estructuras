@@ -6,26 +6,40 @@ import { mainCarouselImages, clientCarouselImages } from '../data/carousel';
 
 <BaseLayout title="Página Principal">
 	<main class="container mx-auto p-6 mt-8 flex-grow text-center">
-		<h2 class="text-5xl font-extrabold text-gray-800 mb-6">Bienvenido a [Nombre de tu Empresa]</h2>
-		<p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">Nos especializamos en ofrecer soluciones integrales de techado y estructuras metálicas, garantizando la máxima calidad y durabilidad en cada uno de nuestros proyectos.</p>
+		<div class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-16 rounded-3xl shadow-2xl mb-16 relative overflow-hidden">
+			<div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/20 to-transparent"></div>
+			<div class="relative z-10">
+				<h2 class="text-6xl font-extrabold mb-8 text-center">
+					Bienvenido a <span class="text-[#c8aa6e]">ALEMAR Estructuras</span>
+				</h2>
+				<p class="text-xl max-w-4xl mx-auto text-center leading-relaxed">Nos especializamos en ofrecer soluciones integrales de techado y estructuras metálicas, garantizando la máxima calidad y durabilidad en cada uno de nuestros proyectos.</p>
+			</div>
+		</div>
 		
-    <section class="mb-12">
-      <Carousel id="main-carousel" images={mainCarouselImages} />
-    </section>
+		<section class="mb-12">
+			<Carousel id="main-carousel" images={mainCarouselImages} />
+		</section>
 
-    <section class="text-center my-12 p-6 bg-white rounded-lg shadow-md">
-      <h3 class="text-3xl font-bold text-gray-800 mb-4">Nuestra Experiencia a su Servicio</h3>
-      <p class="text-lg text-gray-700 max-w-3xl mx-auto">
-        Con años de experiencia en el sector, ofrecemos soluciones personalizadas y de alta calidad en techado y estructuras metálicas. Nuestro compromiso es la excelencia y la satisfacción total de nuestros clientes, garantizando durabilidad y seguridad en cada proyecto.
-      </p>
-    </section>
+		<section class="text-center my-16 p-12 bg-white rounded-3xl shadow-2xl border border-[#c8aa6e]/20">
+			<div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
+			<h3 class="text-4xl font-bold text-[#1e3a5f] mb-8">
+				Nuestra Experiencia a su Servicio
+			</h3>
+			<p class="text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+				Con años de experiencia en el sector, ofrecemos soluciones personalizadas y de alta calidad en techado y estructuras metálicas. Nuestro compromiso es la excelencia y la satisfacción total de nuestros clientes, garantizando durabilidad y seguridad en cada proyecto.
+			</p>
+		</section>
 
-		<a href="/servicios" class="inline-block bg-gray-800 text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-gray-900 transition-colors duration-300 shadow-lg">Descubra Nuestros Servicios</a>
+		<a href="/servicios" class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-16 py-6 rounded-2xl text-xl font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg mb-16 border-2 border-[#c8aa6e]/30">
+			Descubra Nuestros Servicios
+		</a>
 
-    <section class="mt-12">
-      <h3 class="text-3xl font-bold text-gray-800 mb-6">Nuestros Clientes</h3>
-      <Carousel id="client-carousel" images={clientCarouselImages} showNavigation={false} showPagination={false} interval={3000} />
-    </section>
+		<section class="mt-20">
+			<h3 class="text-4xl font-bold text-[#1e3a5f] mb-10 text-center">
+				Nuestros Clientes
+			</h3>
+			<Carousel id="client-carousel" images={clientCarouselImages} showNavigation={false} showPagination={false} interval={3000} />
+		</section>
 
 	</main>
 </BaseLayout>

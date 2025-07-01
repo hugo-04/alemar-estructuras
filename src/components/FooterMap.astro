@@ -7,11 +7,12 @@ const { showMap } = Astro.props;
 ---
 
 {showMap && (
-  <div class="w-full h-32 rounded-md overflow-hidden shadow-md">
-    <div id="footer-map" class="w-full h-full"></div>
+  <div class="w-full h-32 rounded-md overflow-hidden shadow-md bg-gray-200 flex items-center justify-center">
+    <p class="text-gray-600">Mapa de ubicación</p>
   </div>
 )}
 
+<!-- Script de mapa comentado temporalmente
 <script is:inline>
   function initFooterMap() {
     const mapElement = document.getElementById('footer-map');
@@ -38,7 +39,9 @@ const { showMap } = Astro.props;
   // Load Google Maps API script dynamically if not already loaded
   if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initFooterMap`;
+    // Pega aquí tu API Key de Google Maps entre las comillas
+    const API_KEY = "AQUI_TU_API_KEY";
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initFooterMap`;
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
@@ -46,3 +49,4 @@ const { showMap } = Astro.props;
     initFooterMap();
   }
 </script>
+-->

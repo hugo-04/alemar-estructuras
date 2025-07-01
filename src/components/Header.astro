@@ -1,11 +1,14 @@
 ---
 // src/components/Header.astro
-import { services } from '../data/services.ts';
-import { Icon } from 'astro-icon/components';
+import { services } from "../data/services.ts";
+import { Icon } from "astro-icon/components";
 
+const categories: string[] = [
+  ...new Set(services.map((service) => service.category)),
+];
 
-
-const categories: string[] = [...new Set(services.map(service => service.category))];
+const { url } = Astro;
+const currentPath = url.pathname;
 ---
 
 <style is:global>
@@ -20,25 +23,39 @@ const categories: string[] = [...new Set(services.map(service => service.categor
   }
 </style>
 
-<header class="bg-gray-900 text-white shadow-lg sticky top-0 z-30">
+<header class="bg-[#1e3a5f] text-white shadow-lg sticky top-0 z-30">
   <!-- Barra de Contacto Superior -->
-  <div class="bg-gray-800 text-sm py-2">
+  <div class="bg-[#2d2d2d] text-sm py-2">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap justify-center md:justify-center items-center">
-        <div class="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-x-8">
-          <a href="tel:+51915157257" class="flex items-center text-base sm:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-2 rounded-md">
+        <div
+          class="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-x-8"
+        >
+          <a
+            href="tel:+51915157257"
+            class="flex items-center text-base sm:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-2 rounded-md"
+          >
             <Icon name="mdi:phone" class="h-5 w-5 mr-2" />
             +51 915 157 257
           </a>
-          <a href="https://wa.me/+51915157257" target="_blank" class="flex items-center text-base sm:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-2 rounded-md">
+          <a
+            href="https://wa.me/+51915157257"
+            target="_blank"
+            class="flex items-center text-base sm:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-2 rounded-md"
+          >
             <Icon name="mdi:whatsapp" class="h-5 w-5 mr-2" />
             WhatsApp
           </a>
-          <a href="mailto:servicios@multiserviciosprecisur.com" class="flex items-center text-base sm:text-lg font-bold hover:text-gray-300 transition duration-300">
+          <a
+            href="mailto:servicios@multiserviciosprecisur.com"
+            class="flex items-center text-base sm:text-lg font-bold hover:text-gray-300 transition duration-300"
+          >
             <Icon name="mdi:email" class="h-4 w-4 mr-1.5" />
             <span>Correo</span>
           </a>
-          <div class="flex items-center text-base sm:text-lg font-bold text-white mt-2 md:mt-0">
+          <div
+            class="flex items-center text-base sm:text-lg font-bold text-white mt-2 md:mt-0"
+          >
             <Icon name="mdi:map-marker" class="h-5 w-5 mr-2" />
             <span>Arequipa / Lima</span>
           </div>
@@ -48,72 +65,163 @@ const categories: string[] = [...new Set(services.map(service => service.categor
   </div>
 
   <!-- Contenido Principal del Encabezado -->
-  <div class="container mx-auto flex justify-between items-center p-4 sm:px-6 lg:px-8">
-    <div class="flex items-center">
-      <a href="/" class="text-2xl sm:text-3xl font-bold text-white hover:text-gray-300 transition duration-300">[Mi Empresa]</a>
+  <div
+    class="container mx-auto flex justify-between items-center p-4 sm:px-6 lg:px-8"
+  >
+    <div class="flex items-center flex-col items-start">
+      <a
+        href="/"
+        class="text-2xl sm:text-3xl font-bold text-white hover:text-gray-300 transition duration-300"
+      >ALEMAR Estructuras</a>
+      <span class="text-sm sm:text-base text-[#c8aa6e] font-medium mt-1">Soluciones en estructuras metálicas y techados</span>
     </div>
 
     <!-- Navegación de Escritorio -->
     <nav class="hidden lg:flex items-center space-x-4">
-      <a href="/" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium transition duration-300">Inicio</a>
+      <a
+        href="/"
+        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-[#eaeaea] hover:text-white'}`}
+      >Inicio</a>
       <div class="relative group">
-        <a href="/servicios" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium transition duration-300 flex items-center">
+        <a
+          href="/servicios"
+          class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 flex items-center ${currentPath.startsWith('/servicios') ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-[#eaeaea] hover:text-white'}`}
+        >
           Servicios
           <Icon name="mdi:chevron-down" class="ml-1 h-5 w-5" />
         </a>
-        <div class="absolute hidden group-hover:block bg-gray-800 shadow-lg rounded-md mt-1 py-2 w-56 z-20">
-          {categories.map((category: string) => (
-            <a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition duration-300">{category}</a>
-          ))}
+        <div
+          class="absolute left-0 mt-1 w-56 z-20 bg-[#1a2238] shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+        >
+          {
+            categories.map((category: string) => (
+              <a
+                href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
+              >
+                {category}
+              </a>
+            ))
+          }
         </div>
       </div>
-      <a href="/proyectos-realizados" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium transition duration-300">Proyectos</a>
-      <a href="/nosotros" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-base font-medium transition duration-300">Nosotros</a>
-      <a href="/contacto" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-base font-medium transition duration-300">Contacto</a>
+      <a
+        href="/proyectos-realizados"
+        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/proyectos-realizados' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
+      >Proyectos</a>
+      <a
+        href="/nosotros"
+        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/nosotros' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
+      >Nosotros</a>
+      <a
+        href="/contacto"
+        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/contacto' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
+      >Contacto</a>
     </nav>
 
     <!-- Botón de Menú para Móvil y Tablet -->
     <div class="block lg:hidden">
-      <button id="menu-button" class="text-gray-300 hover:text-white focus:outline-none z-50">
+      <button
+        id="menu-button"
+        class="text-gray-300 hover:text-white focus:outline-none z-50"
+      >
         <div class="w-6 h-6 relative" id="hamburger-icon-wrapper">
-          <span class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out top-0.5"></span>
-          <span class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out top-1/2 -translate-y-1/2"></span>
-          <span class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out bottom-0.5"></span>
+          <span
+            class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out top-0.5"
+          ></span>
+          <span
+            class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out top-1/2 -translate-y-1/2"
+          ></span>
+          <span
+            class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out bottom-0.5"
+          ></span>
         </div>
       </button>
     </div>
   </div>
 
   <!-- Sidebar para Móvil y Tablet -->
-  <div id="mobile-sidebar" class="fixed top-0 left-0 w-72 h-full bg-blue-800 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden">
+  <div
+    id="mobile-sidebar"
+    class="fixed top-0 left-0 w-60 h-full bg-[#1e3a5f] shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden rounded-r-2xl"
+    style="display: block;"
+  >
     <div class="p-5 border-b border-gray-700 flex justify-between items-center">
       <h2 class="text-2xl font-bold text-white">Menú</h2>
-      <button id="close-sidebar-button" class="text-gray-300 hover:text-white focus:outline-none">
-        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <button
+        id="close-sidebar-button"
+        class="text-gray-300 hover:text-white focus:outline-none"
+      >
+        <svg
+          class="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
     </div>
     <nav class="py-5 px-2 space-y-1">
-      <a href="/" class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Inicio</a>
+      <a
+        href="/"
+        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+        >Inicio</a
+      >
       <div>
-        <button id="services-toggle" class="w-full flex justify-between items-center text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+        <button
+          id="services-toggle"
+          class="w-full flex justify-between items-center text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+        >
           <span>Servicios</span>
-          <Icon name="mdi:chevron-down" class="h-6 w-6 transition-transform duration-300" />
+          <Icon
+            name="mdi:chevron-down"
+            class="h-6 w-6 transition-transform duration-300"
+          />
         </button>
         <div id="services-menu" class="hidden pl-4 mt-1 space-y-1">
-          <a href="/servicios" class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md">Todos</a>
-          {categories.map((category: string) => (
-            <a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md">{category}</a>
-          ))}
+          <a
+            href="/servicios"
+            class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
+            >Todos</a
+          >
+          {
+            categories.map((category: string) => (
+              <a
+                href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
+              >
+                {category}
+              </a>
+            ))
+          }
         </div>
       </div>
-      <a href="/proyectos-realizados" class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Proyectos</a>
-      <a href="/nosotros" class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Nosotros</a>
-      <a href="/contacto" class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300">Contacto</a>
+      <a
+        href="/proyectos-realizados"
+        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+        >Proyectos</a
+      >
+      <a
+        href="/nosotros"
+        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+        >Nosotros</a
+      >
+      <a
+        href="/contacto"
+        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+        >Contacto</a
+      >
     </nav>
   </div>
-  <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"></div>
+  <div
+    id="sidebar-overlay"
+    class="fixed inset-0 z-30 lg:hidden backdrop-blur-sm bg-transparent"
+    style="display: none;"
+  >
+  </div>
 </header>
-
-<script type="module" src="../scripts/header.ts" is:client></script>

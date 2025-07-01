@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Make initMap available globally for the Google Maps API callback
   (window as any).initMap = initMap;
 
-  // Load Google Maps API script dynamically
-  const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
+  // Load Google Maps API script dynamically - comentado temporalmente
+  // const script = document.createElement('script');
+  // script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
+  // script.async = true;
+  // script.defer = true;
+  // document.head.appendChild(script);
 });

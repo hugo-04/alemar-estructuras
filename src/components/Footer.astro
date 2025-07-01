@@ -5,6 +5,7 @@
 
 import { services } from '../data/services.ts'; // Importa los datos de servicios para generar las categorías.
 import FooterMap from './FooterMap.astro';
+import { Icon } from 'astro-icon/components';
 
 
 interface Props {
@@ -17,73 +18,57 @@ const { showMap = true } = Astro.props;
 const categories: string[] = [...new Set(services.map(service => service.category))];
 ---
 
-<footer class="bg-gray-900 text-white py-10 shadow-inner">
-  <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-    <!-- Columna 1: Logo/Nombre Empresa y Descripción Corta -->
-    <div class="text-center sm:text-left col-span-2 md:col-span-1 lg:col-span-1">
-      <h3 class="text-2xl font-bold mb-4">[Nombre de tu Empresa]</h3>
-      <p class="text-gray-400 text-sm">Soluciones integrales en techado y estructuras metálicas.</p>
-    </div>
-
-    <!-- Columna 2: Enlaces Rápidos de Navegación -->
-    <div class="col-span-1 lg:col-span-1">
-      <h3 class="text-xl font-bold mb-4">Enlaces Rápidos</h3>
-      <ul>
-        <li class="mb-2"><a href="/" class="hover:text-gray-300 transition duration-300">Inicio</a></li>
-        <li class="mb-2"><a href="/nosotros" class="hover:text-gray-300 transition duration-300">Nosotros</a></li>
-        <li class="mb-2"><a href="/servicios" class="hover:text-gray-300 transition duration-300">Servicios</a></li>
-        <li class="mb-2"><a href="/proyectos-realizados" class="hover:text-gray-300 transition duration-300">Proyectos Realizados</a></li>
-        <li class="mb-2"><a href="/contacto" class="hover:text-gray-300 transition duration-300">Contacto</a></li>
-      </ul>
-    </div>
-
-    <!-- Columna 3: Categorías de Servicios Dinámicas -->
-    <div class="col-span-1 lg:col-span-1">
-      <h3 class="text-xl font-bold mb-4">Nuestros Servicios</h3>
-      <ul>
-        {
-          categories.map((category: string) => (
-            <li class="mb-2"><a href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="hover:text-gray-300 transition duration-300">{category}</a></li>
-          ))
-        }
-      </ul>
-    </div>
-
-    <!-- Columna 4: Información de Contacto Detallada y Mapa -->
-    <div class="flex flex-col col-span-2 md:col-span-2 lg:col-span-3">
-      <h3 class="text-xl font-bold mb-4">Contáctanos</h3>
-      <p class="mb-2">
-        <a href="tel:+51987654321" class="hover:text-gray-300 transition duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-          </svg>
-          +51 987 654 321
-        </a>
-      </p>
-      <p class="mb-2">
-        <a href="mailto:info@tudominio.com" class="hover:text-gray-300 transition duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-          </svg>
-          info@tudominio.com
-        </a>
-      </p>
-      <p class="mb-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-        </svg>
-        Dirección de la Empresa, Ciudad, País
-      </p>
-      {showMap && (
-        <div class="mt-4 w-full">
-          <FooterMap showMap={showMap} />
+<footer class="bg-[#1e3a5f] text-white pt-12 pb-6">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-8 border-b border-[#c8aa6e]/30">
+      <!-- Columna 1: Logo y descripción (móvil: col 1) -->
+      <div class="flex flex-col items-start md:items-start gap-2">
+        <div class="flex items-center mb-2">
+          <Icon name="mdi:office-building" class="w-7 h-7 text-[#c8aa6e] mr-2" />
+          <span class="text-2xl font-bold text-white">ALEMAR <span class="font-normal">Estructuras</span></span>
         </div>
-      )}
+        <p class="text-[#f4e7d1] text-base">Construyendo el futuro con estructuras sólidas, innovadoras y confiables.</p>
+      </div>
+      <!-- Columna 2: Servicios (móvil: col 1) -->
+      <div>
+        <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Servicios</h4>
+        <ul class="space-y-1">
+          {Array.from(new Set(services.map(s => s.category))).map(category => (
+            <li>{category}</li>
+          ))}
+        </ul>
+      </div>
+      <!-- Columna 3: Empresa (móvil: col 2) -->
+      <div>
+        <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Empresa</h4>
+        <ul class="space-y-1">
+          <li><a href="#" class="hover:text-[#c8aa6e] transition">Acerca de Nosotros</a></li>
+          <li><a href="#" class="hover:text-[#c8aa6e] transition">Nuestro Equipo</a></li>
+          <li><a href="#" class="hover:text-[#c8aa6e] transition">Proyectos</a></li>
+          <li><a href="#" class="hover:text-[#c8aa6e] transition">Certificaciones</a></li>
+        </ul>
+      </div>
+      <!-- Columna 4: Contacto (móvil: col 2) -->
+      <div>
+        <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Contacto</h4>
+        <ul class="space-y-2 text-[#f4e7d1]">
+          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:phone" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">+1 (555) 123-4567</span></li>
+          <li class="flex flex-row flex-wrap items-start gap-3 break-words">
+            <Icon name="mdi:email" class="w-5 h-5 min-w-[20px] text-[#c8aa6e] mt-1" />
+            <span class="flex-1 break-all text-sm md:text-base">info@alemarestructuras.com</span>
+          </li>
+          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:map-marker" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Av. Construcción 123</span></li>
+          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:city" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Ciudad Industrial, CP 12345</span></li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <!-- Sección de Copyright: Asegura que el aviso de derechos de autor sea siempre visible. -->
-  <div class="text-center text-sm text-gray-400 mt-8 w-full flex-shrink-0">
-    <p>&copy; 2025 [Nombre de tu Empresa]. Todos los derechos reservados.</p>
+    {showMap !== false && (
+      <div class="mt-8">
+        <FooterMap showMap={true} />
+      </div>
+    )}
+    <div class="text-center text-sm text-[#f4e7d1] mt-8">
+      <p>&copy; 2024 ALEMAR Estructuras. Todos los derechos reservados.</p>
+    </div>
   </div>
 </footer>

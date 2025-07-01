@@ -14,39 +14,48 @@ const mostClickedServices = services.filter(service => service.isMostClicked);
 
 <BaseLayout title="Nuestros Servicios - [Nombre de tu Empresa]">
   <!-- Sección Hero: Banner principal de la página de servicios. -->
-  <section class="relative bg-cover bg-center h-96 flex items-center justify-center text-white shadow-lg"
-    style="background-image: url('https://via.placeholder.com/1920x600/1A202C/FFFFFF?text=Nuestros+Servicios');">
-    <div class="absolute inset-0 bg-gray-900 opacity-80"></div>
-    <div class="relative z-10 text-center p-4">
-      <h1 class="text-5xl font-extrabold mb-4">Nuestros Servicios Integrales</h1>
-      <p class="text-xl max-w-2xl mx-auto">Explore nuestra gama de servicios especializados y encuentre la solución óptima para sus requerimientos.</p>
+  <section class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-20 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+    <div class="relative z-10">
+      <h1 class="text-6xl font-extrabold mb-6">
+        Nuestros Servicios <span class="text-[#c8aa6e]">Integrales</span>
+      </h1>
+      <p class="text-xl max-w-3xl mx-auto leading-relaxed">Explore nuestra gama de servicios especializados y encuentre la solución óptima para sus requerimientos.</p>
     </div>
   </section>
 
   <main class="container mx-auto p-6 mt-8 flex-grow">
     <!-- Sección de Servicios Más Solicitados: Muestra los servicios marcados como destacados. -->
-    <section class="text-center mb-16">
-      <h2 class="text-4xl font-extrabold text-gray-800 mb-6">Servicios Destacados</h2>
-      <p class="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+    <section class="text-center mb-20">
+      <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
+      <h2 class="text-5xl font-extrabold text-[#1e3a5f] mb-8">
+        Servicios <span class="text-[#c8aa6e]">Destacados</span>
+      </h2>
+      <p class="text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
         A continuación, presentamos los servicios más valorados y solicitados por nuestros clientes. Le invitamos a hacer clic en cada uno para obtener información detallada.
       </p>
     </section>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {
-        mostClickedServices.map(service => (
-          <ServicePreviewCard service={service} />
+        mostClickedServices.map((service, idx) => (
+          <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
+            <ServicePreviewCard service={service} />
+          </div>
         ))
       }
     </div>
 
     <!-- Sección de Llamada a la Acción (CTA): Invita a los usuarios a contactar. -->
-    <section class="bg-gray-800 text-white text-center p-12 rounded-lg shadow-lg mt-20">
-      <h2 class="text-4xl font-extrabold mb-4">¿Preparado para iniciar su proyecto?</h2>
-      <p class="text-xl mb-8">Contáctenos hoy mismo para recibir una asesoría sin compromiso y descubrir cómo podemos contribuir al éxito de su proyecto.</p>
-      <a href="/contacto" class="inline-block bg-gray-900 text-white px-10 py-5 rounded-lg text-xl font-semibold hover:bg-black transition-colors duration-300 shadow-md">
-        Contactar Ahora
-      </a>
+    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-16 rounded-3xl shadow-2xl mt-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+      <div class="relative z-10">
+        <h2 class="text-5xl font-extrabold mb-6">
+          ¿Preparado para iniciar su <span class="text-[#c8aa6e]">proyecto</span>?
+        </h2>
+        <p class="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">Contáctenos hoy mismo para recibir una asesoría sin compromiso y descubrir cómo podemos contribuir al éxito de su proyecto.</p>
+        <a href="/contacto" class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-12 py-6 rounded-2xl text-xl font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-[#1e3a5f]/20 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95">Contactar Ahora</a>
+      </div>
     </section>
   </main>
 </BaseLayout>

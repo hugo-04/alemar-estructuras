@@ -2,96 +2,106 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SuccessPopup from '../components/SuccessPopup.astro';
 
-
 ---
 
 <BaseLayout title="Contacto - [Nombre de tu Empresa]" showFooterMap={false}>
-  <!-- Sección Hero Contacto -->
-  <section class="relative bg-cover bg-center h-72 flex items-center justify-center text-white shadow-lg"
-    style="background-image: url('https://via.placeholder.com/1920x400/1A202C/FFFFFF?text=Contáctenos');">
-    <div class="absolute inset-0 bg-gray-900 opacity-80"></div>
-    <div class="relative z-10 text-center p-4">
-      <h1 class="text-5xl font-extrabold mb-4">Contáctenos</h1>
-      <p class="text-xl max-w-2xl mx-auto">Estamos a su disposición para atender sus consultas y requerimientos.</p>
+  <section class="bg-[#f4e7d1] min-h-screen py-0">
+    <div class="max-w-6xl mx-auto pt-10">
+      <h2 class="text-center text-[#2d2d2d] text-xl mb-6 font-normal">Estamos listos para hacer realidad tu próximo proyecto estructural</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Información de Contacto -->
+        <div class="bg-[#f4e7d1] rounded-2xl p-10 flex flex-col justify-center">
+          <h3 class="text-2xl font-bold text-[#1e3a5f] mb-8">Información de Contacto</h3>
+          <ul class="space-y-8">
+            <li class="flex items-start gap-5">
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 01-2 2A18 18 0 013 5a2 2 0 012-2h2.09a2 2 0 012 1.72c.13 1.13.37 2.24.72 3.32a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.6 6.6l1.27-1.27a2 2 0 012.11-.45c1.08.35 2.19.59 3.32.72A2 2 0 0122 16.92z"/></svg>
+              </span>
+              <div>
+                <span class="block font-bold text-[#1e3a5f]">Teléfono</span>
+                <span class="block text-[#2d2d2d]">+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-5">
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v1a4 4 0 01-4 4H8a4 4 0 01-4-4v-1"/></svg>
+              </span>
+              <div>
+                <span class="block font-bold text-[#1e3a5f]">Email</span>
+                <span class="block text-[#2d2d2d]">info@alemarestructuras.com<br>proyectos@alemarestructuras.com</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-5">
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 12.414a8 8 0 111.414-1.414l4.243 4.243a1 1 0 01-1.414 1.414z"/></svg>
+              </span>
+              <div>
+                <span class="block font-bold text-[#1e3a5f]">Dirección</span>
+                <span class="block text-[#2d2d2d]">Av. Construcción 123<br>Ciudad Industrial, CP 12345</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-5">
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg>
+              </span>
+              <div>
+                <span class="block font-bold text-[#1e3a5f]">Horarios</span>
+                <span class="block text-[#2d2d2d]">Lunes - Viernes: 8:00 AM - 6:00 PM<br>Sábados: 9:00 AM - 2:00 PM</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- Formulario de Contacto -->
+        <div class="bg-white rounded-xl shadow-2xl p-10 border border-[#c8aa6e]/20 flex flex-col justify-center">
+          <h3 class="text-2xl font-bold text-[#1e3a5f] mb-2">Solicita una Cotización</h3>
+          <p class="text-[#2d2d2d] mb-6">Cuéntanos sobre tu proyecto y te contactaremos pronto</p>
+          <form id="contact-form" action="https://formspree.io/f/xvgrdwyl" method="POST" class="space-y-5">
+            <div>
+              <label for="nombre" class="block text-[#1e3a5f] text-sm font-bold mb-2">Nombre Completo</label>
+              <input type="text" id="nombre" name="nombre" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2]" placeholder="Tu nombre completo" required>
+            </div>
+            <div>
+              <label for="email" class="block text-[#1e3a5f] text-sm font-bold mb-2">Email</label>
+              <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2]" placeholder="tu@email.com" required>
+            </div>
+            <div>
+              <label for="tipo" class="block text-[#1e3a5f] text-sm font-bold mb-2">Tipo de Proyecto</label>
+              <select id="tipo" name="tipo" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2]">
+                <option value="">Selecciona una opción</option>
+                <option value="comercial">Comercial</option>
+                <option value="residencial">Residencial</option>
+                <option value="industrial">Industrial</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label for="mensaje" class="block text-[#1e3a5f] text-sm font-bold mb-2">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="4" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2]" placeholder="Describe tu proyecto..."></textarea>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-[#1e3a5f] text-white py-3 px-8 rounded-lg text-base font-bold hover:bg-[#4a90e2] transition-all duration-300 shadow-lg">Enviar Solicitud</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
-  <main class="container mx-auto p-6 mt-8 flex-grow">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-      <!-- Información de Contacto -->
-      <div class="bg-white rounded-xl shadow-md p-8 border border-gray-200/80">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6">Nuestra Información</h3>
-        <div class="space-y-6 text-gray-600 text-lg">
-          <p class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-            </svg>
-            <a href="tel:+51987654321" class="hover:text-gray-900">+51 987 654 321</a>
-          </p>
-          <p class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-            </svg>
-            <a href="mailto:info@tudominio.com" class="hover:text-gray-900">info@tudominio.com</a>
-          </p>
-          <p class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-            </svg>
-            Dirección de la Empresa, Ciudad, País
-          </p>
-          <p class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-4 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" />
-            </svg>
-            Horario de Atención: Lunes a Viernes, 9:00 AM - 6:00 PM
-          </p>
-        </div>
-      </div>
-
-      <!-- Formulario de Contacto -->
-      <div class="bg-white rounded-xl shadow-md p-8 border border-gray-200/80">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6">Envíenos un Mensaje</h3>
-        <form id="contact-form" action="https://formspree.io/f/xvgrdwyl" method="POST" class="space-y-5">
-          <div>
-            <label for="ruc" class="block text-gray-600 text-sm font-bold mb-2">RUC (Opcional)</label>
-            <input type="text" id="ruc" name="ruc" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Ej: 20123456789">
-          </div>
-          <div>
-            <label for="email" class="block text-gray-600 text-sm font-bold mb-2">Correo Electrónico</label>
-            <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="su@ejemplo.com" required>
-          </div>
-          <div>
-            <label for="phone" class="block text-gray-600 text-sm font-bold mb-2">Número de Teléfono</label>
-            <input type="tel" id="phone" name="phone" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Ej: +51 987 654 321" required>
-          </div>
-          <div>
-            <label for="message" class="block text-gray-600 text-sm font-bold mb-2">¿En qué podemos asistirle?</label>
-            <textarea id="message" name="message" rows="5" class="shadow-sm appearance-none border rounded w-full py-3 px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-700" placeholder="Describa su proyecto o consulta aquí..."></textarea>
-          </div>
-          <input type="hidden" name="_subject" value="Nueva Consulta desde el Sitio Web">
-          <input type="hidden" name="_gotcha" style="display:none" />
-          <div class="text-center">
-            <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-lg focus:outline-none focus:shadow-outline transition-colors duration-300 shadow-lg">
-              Enviar Consulta
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </main>
-
   <!-- Google Map -->
-  <div class="container mx-auto p-6 mt-8">
-    <div class="bg-white rounded-xl shadow-md p-8 border border-gray-200/80">
-      <h3 class="text-2xl font-bold text-gray-800 mb-6">Nuestra Ubicación</h3>
-      <div id="map" class="w-full h-80 rounded-md"></div>
+  <div class="container mx-auto p-6 mt-12">
+    <div class="bg-white rounded-3xl shadow-2xl p-10 border border-[#c8aa6e]/20">
+      <div class="w-16 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mb-6 rounded-full"></div>
+      <h3 class="text-3xl font-bold text-[#1e3a5f] mb-8">
+        Nuestra Ubicación
+      </h3>
+      <div id="map" class="w-full h-80 rounded-md bg-gray-200 flex items-center justify-center">
+        <p class="text-gray-600">Mapa de ubicación</p>
+      </div>
     </div>
   </div>
 
   <!-- Pop-up de éxito -->
   <SuccessPopup id="success-popup" message="¡Gracias por su envío! Nos comunicaremos con usted a la brevedad para cotizar el servicio que desea." />
 
-  <script type="module" src="../scripts/contact.ts"></script>
+  <script type="module" src="/scripts/contact.ts"></script>
 </BaseLayout>

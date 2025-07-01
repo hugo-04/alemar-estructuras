@@ -6,19 +6,19 @@ interface CarouselImage {
 }
 
 export const mainCarouselImages: CarouselImage[] = [
-  { src: '/images/carousel-1.jpg', 
+  { src: 'https://via.placeholder.com/800x400/1a2238/FFFFFF?text=Proyecto+1', 
     alt: 'Imagen de Carrusel 1' },
-  { src: '/images/carousel-2.jpg', 
+  { src: 'https://via.placeholder.com/800x400/1a2238/FFFFFF?text=Proyecto+2', 
     alt: 'Imagen de Carrusel 2' },
-  { src: '/images/carousel-3.jpg', 
+  { src: 'https://via.placeholder.com/800x400/1a2238/FFFFFF?text=Proyecto+3', 
     alt: 'Imagen de Carrusel 3' },
 ];
 
 export const clientCarouselImages: CarouselImage[] = [
-  { src: '/images/client-1.png', 
+  { src: 'https://via.placeholder.com/200x100/1a2238/FFFFFF?text=Cliente+1', 
     alt: 'Logo Cliente 1' },
-  { src: '/images/client-2.png', 
+  { src: 'https://via.placeholder.com/200x100/1a2238/FFFFFF?text=Cliente+2', 
     alt: 'Logo Cliente 2' },
-  { src: '/images/client-3.png', 
+  { src: 'https://via.placeholder.com/200x100/1a2238/FFFFFF?text=Cliente+3', 
     alt: 'Logo Cliente 3' },
 ];

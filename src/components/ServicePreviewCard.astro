@@ -14,17 +14,18 @@ interface Service {
 }
 
 interface Props {
-  service: Service; // Propiedad que recibe un objeto de servicio completo.
+  service: Service;
+  className?: string;
 }
 
-const { service } = Astro.props; // Desestructura el objeto de servicio.
+const { service, className = "" } = Astro.props; // Desestructura el objeto de servicio.
 ---
 
-<div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-shadow duration-300 hover:shadow-xl border border-gray-200">
-  <img src={service.imageUrl} alt={service.title} class="w-full h-48 object-cover rounded-md mb-6">
-  <h3 class="text-lg font-bold text-gray-800 mb-3">{service.title}</h3>
-  <p class="text-gray-600 text-sm mb-6 line-clamp-3 flex-grow">{service.description}</p>
-  <a href={`/servicios/${service.slug}`} class="inline-block bg-gray-800 text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-gray-900 transition-colors duration-300 mt-auto">
+<div class={`bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-3xl hover:scale-105 border border-[#c8aa6e]/20 ${className}`}>
+  <img src={service.imageUrl} alt={service.title} class="w-full h-56 object-cover rounded-2xl mb-8 shadow-lg">
+  <h3 class="text-2xl font-bold text-[#1e3a5f] mb-4">{service.title}</h3>
+  <p class="text-[#2d2d2d] text-lg mb-8 line-clamp-3 flex-grow leading-relaxed">{service.description}</p>
+  <a href={`/servicios/${service.slug}`} class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 mt-auto shadow-lg border-2 border-[#c8aa6e]/30">
     Más Información
   </a>
 </div>

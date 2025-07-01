@@ -17,7 +17,7 @@ export const services: Service[] = [
     slug: "instalacion-techos-metalicos",
     description: "Expertos en la instalación de techos de lámina, panel sándwich y cubiertas metálicas para todo tipo de edificaciones, garantizando hermeticidad y resistencia.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20instalación%20de%20techos%20metálicos.",
-    imageUrl: "/images/techo-metalico-1.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Techo+Metálico",
     category: "Techos",
     isMostClicked: true
   },
@@ -26,7 +26,7 @@ export const services: Service[] = [
     slug: "mantenimiento-reparacion-techos",
     description: "Servicios de mantenimiento preventivo y correctivo para prolongar la vida útil de su techo, incluyendo sellado de filtraciones y reemplazo de piezas dañadas.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20mantenimiento%20y%20reparación%20de%20techos.",
-    imageUrl: "/images/mantenimiento-techo-2.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Mantenimiento",
     category: "Techos",
     isMostClicked: true
   },
@@ -35,7 +35,7 @@ export const services: Service[] = [
     slug: "fabricacion-estructuras-metalicas",
     description: "Diseño y fabricación de estructuras metálicas a medida para naves industriales, almacenes, pasarelas y cualquier proyecto que requiera solidez y precisión.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20fabricación%20de%20estructuras%20metálicas.",
-    imageUrl: "/images/estructura-metalica-3.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Estructuras",
     category: "Estructuras",
     isMostClicked: true
   },
@@ -44,7 +44,7 @@ export const services: Service[] = [
     slug: "soldadura-especializada",
     description: "Servicios de soldadura TIG, MIG y de arco para diversos metales, asegurando uniones fuertes y duraderas en sus proyectos.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20soldadura%20especializada.",
-    imageUrl: "/images/soldadura-4.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Soldadura",
     category: "Estructuras",
     isMostClicked: true
   },
@@ -53,7 +53,7 @@ export const services: Service[] = [
     slug: "impermeabilizacion-techos",
     description: "Aplicación de sistemas impermeabilizantes de alta calidad para proteger su techo de la humedad y las filtraciones, prolongando su vida útil.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20impermeabilización%20de%20techos.",
-    imageUrl: "/images/impermeabilizacion-5.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Impermeabilización",
     category: "Techos",
     isMostClicked: true
   },
@@ -62,7 +62,7 @@ export const services: Service[] = [
     slug: "diseno-montaje-cubiertas",
     description: "Diseño personalizado y montaje profesional de cubiertas para patios, terrazas y áreas recreativas, combinando funcionalidad y estética.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20diseño%20y%20montaje%20de%20cubiertas.",
-    imageUrl: "/images/cubiertas-6.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Cubiertas",
     category: "Techos",
     isMostClicked: true
   },
@@ -71,7 +71,7 @@ export const services: Service[] = [
     slug: "instalacion-canaletas-bajantes",
     description: "Sistemas completos de canaletas y bajantes para una correcta gestión del agua de lluvia, protegiendo su propiedad de la erosión y filtraciones.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20instalación%20de%20canaletas%20y%20bajantes.",
-    imageUrl: "/images/canaletas-7.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Canaletas",
     category: "Techos"
   },
   {
@@ -79,7 +79,7 @@ export const services: Service[] = [
     slug: "revestimiento-fachadas-metalicas",
     description: "Embellecimiento y protección de fachadas con revestimientos metálicos, ofreciendo un acabado moderno y de bajo mantenimiento.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20revestimiento%20de%20fachadas%20metálicas.",
-    imageUrl: "/images/fachadas-metalicas-8.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Fachadas",
     category: "Estructuras"
   },
   {
@@ -87,7 +87,7 @@ export const services: Service[] = [
     slug: "estructuras-paneles-solares",
     description: "Diseño y montaje de estructuras metálicas robustas y seguras para la instalación de paneles solares en techos y terrenos.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20las%20estructuras%20para%20paneles%20solares.",
-    imageUrl: "/images/paneles-solares-9.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Paneles+Solares",
     category: "Estructuras"
   },
   {
@@ -95,7 +95,7 @@ export const services: Service[] = [
     slug: "pergolas-toldos-metalicos",
     description: "Fabricación e instalación de pérgolas y toldos metálicos para crear espacios de sombra y confort en jardines y terrazas.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20las%20pérgolas%20y%20toldos%20metálicos.",
-    imageUrl: "/images/pergolas-10.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Pérgolas",
     category: "Mobiliario"
   },
   {
@@ -103,7 +103,7 @@ export const services: Service[] = [
     slug: "barandales-pasamanos-metalicos",
     description: "Diseño y fabricación de barandales y pasamanos de metal para escaleras, balcones y terrazas, combinando seguridad y diseño.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20los%20barandales%20y%20pasamanos%20metálicos.",
-    imageUrl: "/images/barandales-11.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Barandales",
     category: "Mobiliario"
   },
   {
@@ -111,7 +111,7 @@ export const services: Service[] = [
     slug: "portones-rejas-metalicas",
     description: "Fabricación e instalación de portones y rejas metálicas personalizadas para entradas, jardines y seguridad perimetral.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20los%20portones%20y%20rejas%20metálicas.",
-    imageUrl: "/images/portones-12.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Portones",
     category: "Mobiliario"
   },
   {
@@ -119,7 +119,7 @@ export const services: Service[] = [
     slug: "refuerzo-estructural-metalico",
     description: "Servicios de refuerzo estructural con elementos metálicos para mejorar la resistencia y estabilidad de edificios existentes.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20refuerzo%20estructural%20metálico.",
-    imageUrl: "/images/refuerzo-estructural-13.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Refuerzo",
     category: "Estructuras"
   },
   {
@@ -127,7 +127,7 @@ export const services: Service[] = [
     slug: "limpieza-pintura-techos",
     description: "Servicios de limpieza profunda y aplicación de pintura protectora para techos, mejorando su apariencia y resistencia a la intemperie.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20limpieza%20y%20pintura%20de%20techos.",
-    imageUrl: "/images/limpieza-techos-14.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Limpieza",
     category: "Techos"
   },
   {
@@ -135,7 +135,7 @@ export const services: Service[] = [
     slug: "instalacion-domos-tragaluces",
     description: "Instalación de domos y tragaluces metálicos para optimizar la entrada de luz natural en sus espacios, reduciendo el consumo energético.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20instalación%20de%20domos%20y%20tragaluces.",
-    imageUrl: "/images/domos-15.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Domos",
     category: "Techos"
   },
   {
@@ -143,7 +143,7 @@ export const services: Service[] = [
     slug: "diseno-fabricacion-escaleras-metalicas",
     description: "Escaleras metálicas a medida, combinando funcionalidad, seguridad y un diseño que se adapte a la estética de su espacio.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20diseño%20y%20fabricación%20de%20escaleras%20metálicas.",
-    imageUrl: "/images/escaleras-16.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Escaleras",
     category: "Mobiliario"
   },
   {
@@ -151,7 +151,7 @@ export const services: Service[] = [
     slug: "mobiliario-urbano-metalico",
     description: "Fabricación de mobiliario urbano como bancas, papeleras y señalética en metal, resistentes y duraderos para espacios públicos y privados.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20mobiliario%20urbano%20metálico.",
-    imageUrl: "/images/mobiliario-urbano-17.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Mobiliario+Urbano",
     category: "Mobiliario"
   },
   {
@@ -159,7 +159,7 @@ export const services: Service[] = [
     slug: "corte-doblez-lamina",
     description: "Servicios de corte y doblez de lámina metálica con maquinaria de precisión para proyectos que requieren piezas a medida.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20el%20corte%20y%20doblez%20de%20lámina.",
-    imageUrl: "/images/corte-lamina-18.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Corte+y+Doblez",
     category: "Procesos"
   },
   {
@@ -167,7 +167,7 @@ export const services: Service[] = [
     slug: "asesoria-consultoria-proyectos-metalicos",
     description: "Asesoramiento experto en la planificación y ejecución de proyectos que involucren estructuras y elementos metálicos.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20asesoría%20y%20consultoría%20en%20proyectos%20metálicos.",
-    imageUrl: "/images/asesoria-19.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Asesoría",
     category: "Consultoría"
   },
   {
@@ -175,7 +175,7 @@ export const services: Service[] = [
     slug: "proyectos-especiales-metal",
     description: "Desarrollo y ejecución de proyectos metálicos personalizados y complejos, adaptados a sus necesidades específicas y desafíos únicos.",
     whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20los%20proyectos%20especiales%20en%20metal.",
-    imageUrl: "/images/proyectos-especiales-20.jpg",
+    imageUrl: "https://via.placeholder.com/400x300/1a2238/FFFFFF?text=Proyectos+Especiales",
     category: "Proyectos Especiales"
   },
 ];
