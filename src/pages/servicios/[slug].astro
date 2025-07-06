@@ -6,6 +6,7 @@
 import { services } from '../../data/services'; // Importa los datos de todos los servicios.
 import BaseLayout from '../../layouts/BaseLayout.astro'; // Importa el layout principal de la página.
 import { Icon } from 'astro-icon/components'; // Importa el componente Icon para mostrar íconos.
+import ServiceCarousel from '../../components/ServiceCarousel.astro'; // Importa el carrusel especial para servicios
 
 interface Service {
   title: string;
@@ -15,6 +16,7 @@ interface Service {
   imageUrl: string; // URL de la imagen del servicio (debe estar en la carpeta public/images).
   category: string; // Categoría a la que pertenece el servicio.
   isMostClicked?: boolean; // Opcional: true si quieres destacarlo como "más clicado" en la página principal de servicios.
+  imageUrls: string[]; // Nueva propiedad para almacenar múltiples URLs de imagen
 }
 
 // getStaticPaths es una función de Astro que genera las rutas estáticas para esta página dinámica.
@@ -35,8 +37,15 @@ const { service } = Astro.props;
 <BaseLayout title={service.title}>
   <main class="container mx-auto px-6 py-12">
     <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-start md:space-x-8">
-      <div class="md:w-1/2 mb-6 md:mb-0">
-        <img src={service.imageUrl} alt={service.title} class="w-full h-auto object-cover rounded-md" />
+      <div class="w-full flex justify-center md:w-1/2 mb-6 md:mb-0">
+        <ServiceCarousel
+          id={`carousel-${service.slug}`}
+          images={service.imageUrls.map(url => ({ src: url, alt: service.title }))}
+          autoplay={true}
+          interval={3000}
+          showNavigation={true}
+          showPagination={false}
+        />
       </div>
       <div class="md:w-1/2">
         <h1 class="text-4xl font-bold text-gray-800 mb-4">{service.title}</h1>

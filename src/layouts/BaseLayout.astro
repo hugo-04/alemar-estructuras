@@ -7,19 +7,55 @@ import { ViewTransitions } from "astro:transitions";
 
 interface Props {
 	title: string;
+	description?: string;
+	keywords?: string;
+	image?: string;
 	showFooterMap?: boolean;
 }
 
-const { title, showFooterMap = true } = Astro.props;
+const { 
+	title, 
+	description = "ALEMAR Estructuras - Soluciones integrales en techado y estructuras metálicas. Expertos en instalación, mantenimiento y fabricación de estructuras metálicas en Arequipa y Lima.",
+	keywords = "estructuras metálicas, techos metálicos, soldadura, impermeabilización, Arequipa, Lima, construcción",
+	image = "/images/estructura-metalica-almacen.jpg",
+	showFooterMap = true 
+} = Astro.props;
 ---
 
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content="ALEMAR Estructuras" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		
+		<!-- Preconnect to external domains -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		
+		<!-- Load Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+		
 		<ViewTransitions />
 	</head>
 	<body
@@ -32,236 +68,15 @@ const { title, showFooterMap = true } = Astro.props;
 		<Footer showMap={showFooterMap} />
 		<FloatingWhatsAppButton />
 
-		<script is:inline>
-			// Script robusto para menú móvil, funciona siempre incluso tras navegación SPA
-			function toggleSidebar(show) {
-				const mobileSidebar = document.getElementById("mobile-sidebar");
-				const sidebarOverlay =
-					document.getElementById("sidebar-overlay");
-				const hamburgerIconWrapper = document.getElementById(
-					"hamburger-icon-wrapper",
-				);
-				if (mobileSidebar) {
-					if (show) {
-						mobileSidebar.classList.remove("-translate-x-full");
-						mobileSidebar.style.display = "block";
-					} else {
-						mobileSidebar.classList.add("-translate-x-full");
-						mobileSidebar.style.display = "block";
-					}
-				}
-				if (sidebarOverlay) {
-					sidebarOverlay.style.display = show ? "block" : "none";
-				}
-				document.body.style.overflow = show ? "hidden" : "";
-				if (hamburgerIconWrapper) {
-					hamburgerIconWrapper.classList.toggle("open", show);
-				}
-			}
-
-			function closeSidebar() {
-				toggleSidebar(false);
-			}
-			function openSidebar() {
-				toggleSidebar(true);
-			}
-
-			// Delegación de eventos para máxima robustez
-			document.addEventListener("click", (e) => {
-				const target = e.target;
-				// Botón menú hamburguesa
-				if (
-					target &&
-					target.closest &&
-					target.closest("#menu-button")
-				) {
-					const mobileSidebar =
-						document.getElementById("mobile-sidebar");
-					const isOpen =
-						mobileSidebar &&
-						!mobileSidebar.classList.contains("-translate-x-full");
-					toggleSidebar(!isOpen);
-				}
-				// Overlay o botón cerrar
-				if (
-					target &&
-					(target.closest("#sidebar-overlay") ||
-						target.closest("#close-sidebar-button"))
-				) {
-					closeSidebar();
-				}
-				// Clic en enlace del sidebar
-				if (
-					target &&
-					target.closest &&
-					target.closest("#mobile-sidebar") &&
-					target.tagName === "A"
-				) {
-					closeSidebar();
-				}
-				// Toggle de servicios
-				if (
-					target &&
-					target.closest &&
-					target.closest("#services-toggle")
-				) {
-					const servicesMenu =
-						document.getElementById("services-menu");
-					const servicesChevron = target
-						.closest("#services-toggle")
-						.querySelector("svg");
-					if (servicesMenu) servicesMenu.classList.toggle("hidden");
-					if (servicesChevron)
-						servicesChevron.classList.toggle("rotate-180");
-				}
-			});
-
-			// Reaplica tras navegación SPA
-			window.addEventListener("astro:after-swap", closeSidebar);
-		</script>
-
-		<script is:inline>
-			function initAOS() {
-				if (typeof window !== "undefined" && window.AOS) {
-					window.AOS.init({
-						duration: 900,
-						once: true,
-						easing: "ease-in-out",
-					});
-				}
-			}
-
-			// Inicializar cuando el DOM esté listo
-			if (document.readyState === "loading") {
-				document.addEventListener("DOMContentLoaded", initAOS);
-			} else {
-				initAOS();
-			}
-
-			// Inicializar después de navegación SPA
-			document.addEventListener("astro:page-load", initAOS);
-			if (typeof window !== "undefined") {
-				window.addEventListener("astro:after-swap", initAOS);
-			}
-		</script>
-
-		<!-- Carrusel JS inline -->
-		<script is:inline>
-			document.addEventListener("DOMContentLoaded", function () {
-				// Get all carousels on the page
-				var carousels = document.querySelectorAll('[id^="carousel-"]');
-				carousels.forEach(function (carousel) {
-					var id = carousel.id.replace("carousel-", "");
-					var autoplay = carousel.dataset.autoplay === "true";
-					var interval = parseInt(
-						carousel.dataset.interval || "5000",
-					);
-					var imagesLength = parseInt(
-						carousel.dataset.imagesLength || "0",
-					);
-					var carouselInner =
-						carousel.querySelector(".carousel-inner");
-					var prevButton = carousel.querySelector(
-						"[data-carousel-prev]",
-					);
-					var nextButton = carousel.querySelector(
-						"[data-carousel-next]",
-					);
-					var indicatorsContainer = carousel.querySelector(
-						".carousel-indicators",
-					);
-					var currentIndex = 0;
-					var autoSlideInterval;
-
-					function updateCarousel() {
-						if (carouselInner) {
-							carouselInner.style.transform =
-								"translateX(-" + currentIndex * 100 + "%)";
-						}
-						if (indicatorsContainer) {
-							indicatorsContainer
-								.querySelectorAll("button")
-								.forEach(function (button, idx) {
-									if (idx === currentIndex) {
-										button.classList.add("opacity-100");
-										button.classList.remove("opacity-50");
-									} else {
-										button.classList.add("opacity-50");
-										button.classList.remove("opacity-100");
-									}
-								});
-						}
-					}
-
-					function goToNext() {
-						currentIndex = (currentIndex + 1) % imagesLength;
-						updateCarousel();
-					}
-
-					function goToPrev() {
-						currentIndex =
-							(currentIndex - 1 + imagesLength) % imagesLength;
-						updateCarousel();
-					}
-
-					function startAutoSlide() {
-						if (autoplay) {
-							clearInterval(autoSlideInterval);
-							autoSlideInterval = window.setInterval(
-								goToNext,
-								interval,
-							);
-						}
-					}
-
-					function stopAutoSlide() {
-						clearInterval(autoSlideInterval);
-					}
-
-					if (prevButton) {
-						prevButton.addEventListener("click", function () {
-							stopAutoSlide();
-							goToPrev();
-							startAutoSlide();
-						});
-					}
-
-					if (nextButton) {
-						nextButton.addEventListener("click", function () {
-							stopAutoSlide();
-							goToNext();
-							startAutoSlide();
-						});
-					}
-
-					if (indicatorsContainer) {
-						indicatorsContainer.addEventListener(
-							"click",
-							function (e) {
-								var target = e.target;
-								if (
-									target.matches("[data-carousel-indicator]")
-								) {
-									stopAutoSlide();
-									currentIndex = parseInt(
-										target.dataset.carouselIndicator || "0",
-									);
-									updateCarousel();
-									startAutoSlide();
-								}
-							},
-						);
-					}
-
-					// Initialize carousel
-					updateCarousel();
-					startAutoSlide();
-
-					// Pause on hover
-					carousel.addEventListener("mouseenter", stopAutoSlide);
-					carousel.addEventListener("mouseleave", startAutoSlide);
-				});
-			});
+		<script>
+			import { initMobileMenu } from '../scripts/menu';
+			import { initAOS } from '../scripts/aos';
+			import { initCarousels } from '../scripts/carousel';
+			
+			// Inicializar todos los scripts
+			initMobileMenu();
+			initAOS();
+			initCarousels();
 		</script>
 	</body>
 </html>

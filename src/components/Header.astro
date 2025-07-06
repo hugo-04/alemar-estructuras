@@ -1,10 +1,15 @@
 ---
 // src/components/Header.astro
 import { services } from "../data/services.ts";
+import { projects } from "../data/projects.ts"; // Importar datos de proyectos
 import { Icon } from "astro-icon/components";
 
-const categories: string[] = [
+const serviceCategories: string[] = [
   ...new Set(services.map((service) => service.category)),
+];
+
+const projectCategories: string[] = [
+  ...new Set(projects.map((project) => project.category)),
 ];
 
 const { url } = Astro;
@@ -94,7 +99,7 @@ const currentPath = url.pathname;
           class="absolute left-0 mt-1 w-56 z-20 bg-[#1a2238] shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
         >
           {
-            categories.map((category: string) => (
+            serviceCategories.map((category: string) => (
               <a
                 href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
                 class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
@@ -105,10 +110,35 @@ const currentPath = url.pathname;
           }
         </div>
       </div>
-      <a
-        href="/proyectos-realizados"
-        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/proyectos-realizados' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
-      >Proyectos</a>
+      <div class="relative group">
+        <a
+          href="/proyectos"
+          class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 flex items-center ${currentPath.startsWith('/proyectos') ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-[#eaeaea] hover:text-white'}`}
+        >
+          Proyectos
+          <Icon name="mdi:chevron-down" class="ml-1 h-5 w-5" />
+        </a>
+        <div
+          class="absolute left-0 mt-1 w-56 z-20 bg-[#1a2238] shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+        >
+          <a
+            href="/proyectos"
+            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
+          >
+            Todos los Proyectos
+          </a>
+          {
+            projectCategories.map((category: string) => (
+              <a
+                href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
+              >
+                {category}
+              </a>
+            ))
+          }
+        </div>
+      </div>
       <a
         href="/nosotros"
         class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/nosotros' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
@@ -124,6 +154,9 @@ const currentPath = url.pathname;
       <button
         id="menu-button"
         class="text-gray-300 hover:text-white focus:outline-none z-50"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="mobile-sidebar"
       >
         <div class="w-6 h-6 relative" id="hamburger-icon-wrapper">
           <span
@@ -151,6 +184,7 @@ const currentPath = url.pathname;
       <button
         id="close-sidebar-button"
         class="text-gray-300 hover:text-white focus:outline-none"
+        aria-label="Cerrar menú de navegación"
       >
         <svg
           class="h-8 w-8"
@@ -190,7 +224,7 @@ const currentPath = url.pathname;
             >Todos</a
           >
           {
-            categories.map((category: string) => (
+            serviceCategories.map((category: string) => (
               <a
                 href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
                 class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
@@ -201,11 +235,35 @@ const currentPath = url.pathname;
           }
         </div>
       </div>
-      <a
-        href="/proyectos-realizados"
-        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
-        >Proyectos</a
-      >
+      <div>
+        <button
+          id="projects-toggle"
+          class="w-full flex justify-between items-center text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
+        >
+          <span>Proyectos</span>
+          <Icon
+            name="mdi:chevron-down"
+            class="h-6 w-6 transition-transform duration-300"
+          />
+        </button>
+        <div id="projects-menu" class="hidden pl-4 mt-1 space-y-1">
+          <a
+            href="/proyectos"
+            class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
+            >Todos los Proyectos</a
+          >
+          {
+            projectCategories.map((category: string) => (
+              <a
+                href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
+              >
+                {category}
+              </a>
+            ))
+          }
+        </div>
+      </div>
       <a
         href="/nosotros"
         class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"

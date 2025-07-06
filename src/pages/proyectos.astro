@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/projects';
+import ClientReviewCard from '../components/ClientReviewCard.astro';
+import { Icon } from 'astro-icon/components';
+
+// Obtener categorías únicas
+const uniqueCategories = [...new Set(projects.map(project => project.category))];
+
+// Agrupar proyectos por categoría
+const projectsByCategory = uniqueCategories.map(category => ({
+  category,
+  projects: projects.filter(project => project.category === category)
+}));
+---
+
+<BaseLayout title="Proyectos - ALEMAR Estructuras">
+  <main class="container mx-auto px-4 py-8 mt-8">
+    <!-- Hero Section -->
+    <section class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#1e3a5f] mb-6">
+        Nuestros Proyectos
+      </h1>
+      <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+        Descubre nuestra cartera de trabajos realizados en techos metálicos, estructuras industriales y proyectos especializados. 
+        Cada proyecto cuenta con la satisfacción de nuestros clientes.
+      </p>
+    </section>
+
+    <!-- Proyectos Destacados -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-[#1e3a5f] mb-8 text-center">
+        Proyectos Destacados
+      </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {projects.map(project => (
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="relative h-64">
+              <img 
+                src={project.imageUrl} 
+                alt={project.title}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4">
+                <span class="bg-[#c8aa6e] text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  {project.category}
+                </span>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">{project.title}</h3>
+              <p class="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
+              <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                <span>{project.location}</span>
+                <span>{project.completionDate}</span>
+              </div>
+              <ClientReviewCard 
+                review={project.clientReview}
+                clientName={project.clientName}
+                location={project.location}
+                completionDate={project.completionDate}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white rounded-2xl p-8 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl font-bold mb-2">{projects.length}+</div>
+          <div class="text-gray-200">Proyectos Completados</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold mb-2">10</div>
+          <div class="text-gray-200">Especialidades</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold mb-2">100%</div>
+          <div class="text-gray-200">Clientes Satisfechos</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold mb-2">5★</div>
+          <div class="text-gray-200">Calificación Promedio</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center">
+      <div class="bg-white rounded-2xl shadow-xl p-8 border border-[#c8aa6e]/20">
+        <h2 class="text-3xl font-bold text-[#1e3a5f] mb-4">
+          ¿Tienes un proyecto en mente?
+        </h2>
+        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+          Nuestro equipo está listo para ayudarte a materializar tu proyecto. 
+          Contáctanos para una consulta gratuita y cotización personalizada.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="/contacto" 
+            class="btn-primary inline-flex items-center"
+          >
+            <Icon name="mdi:phone" class="mr-2 w-5 h-5" />
+            Solicitar Cotización
+          </a>
+          <a 
+            href="/servicios" 
+            class="btn-secondary inline-flex items-center"
+          >
+            <Icon name="mdi:hammer-wrench" class="mr-2 w-5 h-5" />
+            Ver Nuestros Servicios
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

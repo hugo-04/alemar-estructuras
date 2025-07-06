@@ -8,7 +8,7 @@ interface Service {
   slug: string; // Identificador único y amigable para la URL del servicio (usar guiones en lugar de espacios).
   description: string; // Descripción detallada del servicio.
   whatsappLink: string; // Enlace de WhatsApp para cotizar este servicio.
-  imageUrl: string; // URL de la imagen del servicio (debe estar en la carpeta public/images).
+  imageUrls: string[]; // Array de URLs de imágenes del servicio (debe estar en la carpeta public/images).
   category: string; // Categoría a la que pertenece el servicio.
   isMostClicked?: boolean; // Opcional: true si quieres destacarlo como "más clicado" en la página principal de servicios.
 }
@@ -22,7 +22,7 @@ const { service, className = "" } = Astro.props; // Desestructura el objeto de s
 ---
 
 <div class={`bg-white rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-3xl hover:scale-105 border border-[#c8aa6e]/20 ${className}`}>
-  <img src={service.imageUrl} alt={service.title} class="w-full h-56 object-cover rounded-2xl mb-8 shadow-lg">
+  <img src={service.imageUrls[0]} alt={service.title} class="w-full h-56 object-cover rounded-2xl mb-8 shadow-lg">
   <h3 class="text-2xl font-bold text-[#1e3a5f] mb-4">{service.title}</h3>
   <p class="text-[#2d2d2d] text-lg mb-8 line-clamp-3 flex-grow leading-relaxed">{service.description}</p>
   <a href={`/servicios/${service.slug}`} class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 mt-auto shadow-lg border-2 border-[#c8aa6e]/30">

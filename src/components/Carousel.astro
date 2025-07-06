@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-
 interface Props {
   images: { src: string; alt: string }[];
   id: string;
@@ -14,7 +13,13 @@ interface Props {
 const { images, id, autoplay = true, interval = 5000, showNavigation = true, showPagination = true } = Astro.props;
 ---
 
-<div id={`carousel-${id}`} class="relative overflow-hidden rounded-lg shadow-lg max-w-4xl mx-auto" data-autoplay={autoplay} data-interval={interval} data-images-length={images.length}>
+<div
+  id={`carousel-${id}`}
+  class="relative overflow-hidden rounded-lg shadow-lg max-w-4xl mx-auto group"
+  data-autoplay={autoplay}
+  data-interval={interval}
+  data-images-length={images.length}
+>
   <div class="carousel-inner relative w-full flex transition-transform duration-700 ease-in-out">
     {images.map((image, index) => (
       <div class="carousel-item w-full flex-shrink-0" data-index={index}>
