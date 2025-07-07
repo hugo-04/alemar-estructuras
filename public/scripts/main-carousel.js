@@ -42,145 +42,145 @@
 
       log(`Inicializando carousel: ${carouselId}`);
 
-      const autoplay = carousel.getAttribute("data-autoplay") === "true";
+    const autoplay = carousel.getAttribute("data-autoplay") === "true";
       const interval = parseInt(carousel.getAttribute("data-interval") || CAROUSEL_CONFIG.defaultInterval.toString());
-      const imagesLength = parseInt(carousel.getAttribute("data-images-length") || "0");
-      
-      const carouselInner = carousel.querySelector(".carousel-inner");
-      const prevButton = carousel.querySelector("[data-carousel-prev]");
-      const nextButton = carousel.querySelector("[data-carousel-next]");
-      const indicatorsContainer = carousel.querySelector(".carousel-indicators");
+    const imagesLength = parseInt(carousel.getAttribute("data-images-length") || "0");
+    
+    const carouselInner = carousel.querySelector(".carousel-inner");
+    const prevButton = carousel.querySelector("[data-carousel-prev]");
+    const nextButton = carousel.querySelector("[data-carousel-next]");
+    const indicatorsContainer = carousel.querySelector(".carousel-indicators");
       
       if (!carouselInner) {
         log(`No se encontró carousel-inner en ${carouselId}`, 'error');
         return;
       }
-
-      let currentIndex = 1; // Empezar en la primera imagen real (no en el clon)
-      let autoSlideInterval;
-      let isTransitioning = false;
+    
+    let currentIndex = 1; // Empezar en la primera imagen real (no en el clon)
+    let autoSlideInterval;
+    let isTransitioning = false;
 
       /**
        * Actualiza la posición del carousel
        * @param {boolean} instant - Si la transición debe ser instantánea
        */
-      function updateCarousel(instant = false) {
-        if (carouselInner) {
-          if (instant) {
-            carouselInner.style.transition = 'none';
-          } else {
+    function updateCarousel(instant = false) {
+      if (carouselInner) {
+        if (instant) {
+          carouselInner.style.transition = 'none';
+        } else {
             carouselInner.style.transition = `transform ${CAROUSEL_CONFIG.transitionDuration}ms ease-in-out`;
-          }
-          carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-        
-        if (indicatorsContainer) {
-          indicatorsContainer.querySelectorAll("button").forEach(function (button, idx) {
-            // Calcular el índice real (sin contar los clones)
-            const realIndex = (currentIndex - 1 + imagesLength) % imagesLength;
-            if (idx === realIndex) {
-              button.classList.add("opacity-100");
-              button.classList.remove("opacity-50");
-            } else {
-              button.classList.add("opacity-50");
-              button.classList.remove("opacity-100");
-            }
-          });
-        }
+        carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
       }
+      
+      if (indicatorsContainer) {
+        indicatorsContainer.querySelectorAll("button").forEach(function (button, idx) {
+          // Calcular el índice real (sin contar los clones)
+          const realIndex = (currentIndex - 1 + imagesLength) % imagesLength;
+          if (idx === realIndex) {
+            button.classList.add("opacity-100");
+            button.classList.remove("opacity-50");
+          } else {
+            button.classList.add("opacity-50");
+            button.classList.remove("opacity-100");
+          }
+        });
+      }
+    }
 
       /**
        * Navega al siguiente elemento
        */
-      function goToNext() {
-        if (isTransitioning) return;
+    function goToNext() {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      currentIndex++;
+      
+      // Si llegamos al clon de la primera imagen
+      if (currentIndex >= imagesLength + 1) {
+        updateCarousel();
         
-        isTransitioning = true;
-        currentIndex++;
-        
-        // Si llegamos al clon de la primera imagen
-        if (currentIndex >= imagesLength + 1) {
-          updateCarousel();
-          
-          // Después de la transición, saltar instantáneamente al inicio real
-          setTimeout(() => {
-            currentIndex = 1;
-            updateCarousel(true);
-            isTransitioning = false;
+        // Después de la transición, saltar instantáneamente al inicio real
+        setTimeout(() => {
+          currentIndex = 1;
+          updateCarousel(true);
+          isTransitioning = false;
           }, CAROUSEL_CONFIG.transitionDuration);
-        } else {
-          updateCarousel();
-          setTimeout(() => {
-            isTransitioning = false;
+      } else {
+        updateCarousel();
+        setTimeout(() => {
+          isTransitioning = false;
           }, CAROUSEL_CONFIG.transitionDuration);
-        }
       }
+    }
 
       /**
        * Navega al elemento anterior
        */
-      function goToPrev() {
-        if (isTransitioning) return;
+    function goToPrev() {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      currentIndex--;
+      
+      // Si vamos antes del inicio real
+      if (currentIndex < 1) {
+        // Saltar instantáneamente al clon de la última imagen
+        currentIndex = imagesLength;
+        updateCarousel(true);
         
-        isTransitioning = true;
-        currentIndex--;
-        
-        // Si vamos antes del inicio real
-        if (currentIndex < 1) {
-          // Saltar instantáneamente al clon de la última imagen
+        // Luego hacer la transición
+        setTimeout(() => {
           currentIndex = imagesLength;
-          updateCarousel(true);
-          
-          // Luego hacer la transición
-          setTimeout(() => {
-            currentIndex = imagesLength;
-            updateCarousel();
-            setTimeout(() => {
-              isTransitioning = false;
-            }, CAROUSEL_CONFIG.transitionDuration);
-          }, 10);
-        } else {
           updateCarousel();
           setTimeout(() => {
             isTransitioning = false;
+            }, CAROUSEL_CONFIG.transitionDuration);
+        }, 10);
+      } else {
+        updateCarousel();
+        setTimeout(() => {
+          isTransitioning = false;
           }, CAROUSEL_CONFIG.transitionDuration);
-        }
       }
+    }
 
       /**
        * Navega a un índice específico
        * @param {number} index - Índice al que navegar
        */
-      function goToIndex(index) {
-        if (isTransitioning) return;
-        
-        isTransitioning = true;
-        // Ajustar el índice para contar el clon al inicio
-        currentIndex = index + 1;
-        updateCarousel();
-        
-        setTimeout(() => {
-          isTransitioning = false;
+    function goToIndex(index) {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      // Ajustar el índice para contar el clon al inicio
+      currentIndex = index + 1;
+      updateCarousel();
+      
+      setTimeout(() => {
+        isTransitioning = false;
         }, CAROUSEL_CONFIG.transitionDuration);
-      }
+    }
 
       /**
        * Inicia el autoplay
        */
-      function startAutoSlide() {
-        if (autoplay && imagesLength > 1) {
+    function startAutoSlide() {
+      if (autoplay && imagesLength > 1) {
           stopAutoSlide();
-          autoSlideInterval = window.setInterval(goToNext, interval);
+        autoSlideInterval = window.setInterval(goToNext, interval);
           log(`Autoplay iniciado para ${carouselId}`);
-        }
       }
+    }
 
       /**
        * Detiene el autoplay
        */
-      function stopAutoSlide() {
-        if (autoSlideInterval) {
-          clearInterval(autoSlideInterval);
+    function stopAutoSlide() {
+      if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
           autoSlideInterval = null;
           log(`Autoplay detenido para ${carouselId}`);
         }
@@ -209,13 +209,13 @@
         stopAutoSlide();
         goToPrev();
         startAutoSlide();
-      }
+    }
 
       function handleNextClick() {
         stopAutoSlide();
         goToNext();
         startAutoSlide();
-      }
+    }
 
       function handleIndicatorClick(e) {
         const target = e.target;
@@ -234,7 +234,7 @@
 
       if (nextButton) {
         nextButton.addEventListener("click", handleNextClick);
-      }
+    }
 
       // Event listeners para indicadores
       if (indicatorsContainer) {
@@ -246,8 +246,8 @@
       carousel.addEventListener("mouseleave", startAutoSlide);
 
       // Inicializar carousel
-      updateCarousel(true);
-      startAutoSlide();
+    updateCarousel(true);
+    startAutoSlide();
 
       // Guardar instancia para evitar duplicados
       carouselInstances.set(carouselId, {

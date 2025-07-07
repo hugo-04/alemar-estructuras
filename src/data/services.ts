@@ -12,19 +12,109 @@ export interface Service {
 // Para agregar un nuevo servicio, simplemente añade un nuevo objeto a este array.
 // Asegúrate de que el 'slug' sea único y que las 'imageUrls' apunten a imágenes válidas en /public/images.
 export const services: Service[] = [
+  // --- CATEGORÍA: TECHOS METÁLICOS ---
   {
-    title: "Instalación de Techos Metálicos",
-    slug: "instalacion-techos-metalicos",
-    description: "Expertos en la instalación de techos de lámina, panel sándwich y cubiertas metálicas para todo tipo de edificaciones, garantizando hermeticidad y resistencia.",
-    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20la%20instalación%20de%20techos%20metálicos.",
-    imageUrls: [
-      "/images/techo-casa.jpg",
-      "/images/IMG-20250628-WA0057.jpg",
-      "/images/IMG-20250628-WA0058.jpg",
-      "/images/IMG-20250628-WA0059.jpg"
-    ],
-    category: "Techos",
+    title: "Techos Metálicos: Sol y Sombra",
+    slug: "techos-metalicos-sol-y-sombra",
+    description: "Ideales para terrazas, patios y decoraciones comerciales.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20techo%20sol%20y%20sombra.",
+    imageUrls: ["/images/techo-casa.jpg"],
+    category: "Techos Metálicos",
     isMostClicked: true
+  },
+  {
+    title: "Techos Metálicos: Comerciales",
+    slug: "techos-metalicos-comerciales",
+    description: "Techos metálicos planos o a dos aguas cuya estructura es a base de vigas reticuladas o listones de soporte. Siendo el Aluzinc TR4 la cobertura más utilizada.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20techo%20comercial.",
+    imageUrls: ["/images/techo-comercial.jpg"],
+    category: "Techos Metálicos"
+  },
+  {
+    title: "Techos Metálicos: Rectos o Planos",
+    slug: "techos-metalicos-rectos-o-planos",
+    description: "Techos metálicos cuya inclinación no supera los 10° de inclinación, son versátiles y más económicos debido a que se usa menos materiales.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20techo%20recto%20o%20plano.",
+    imageUrls: ["/images/techo-recto.jpg"],
+    category: "Techos Metálicos"
+  },
+  {
+    title: "Techos Metálicos: Parabólicos",
+    slug: "techos-metalicos-parabolicos",
+    description: "Permite cubrir grandes luces sin necesidad de parantes intermedios, ideal para almacenes o colegios.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20techo%20parabolico.",
+    imageUrls: ["/images/techo-parabolico.jpg"],
+    category: "Techos Metálicos"
+  },
+  {
+    title: "Techos Metálicos: Dos Aguas",
+    slug: "techos-metalicos-dos-aguas",
+    description: "Consta de dos caras inclinadas lo que permite evacuar fácilmente el agua, son ideales para zonas con fuertes lluvias.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20techo%20dos%20aguas.",
+    imageUrls: ["/images/techo-dos-aguas.jpg"],
+    category: "Techos Metálicos"
+  },
+  {
+    title: "Techos Metálicos: Naves Industriales",
+    slug: "techos-metalicos-naves-industriales",
+    description: "Construcciones metálicas de gran tamaño ideal para almacenes, plantas de producción y/o cualquier espacio industrial.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20nave%20industrial.",
+    imageUrls: ["/images/nave-industrial.jpg"],
+    category: "Techos Metálicos"
+  },
+  // --- CATEGORÍA: CONSTRUCCIÓN EN SECO ---
+  {
+    title: "Construcción en seco",
+    slug: "construccion-en-seco",
+    description: "Estructura metálica + drywall.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20construcción%20en%20seco.",
+    imageUrls: ["/images/estructura-metalica-almacen.jpg"],
+    category: "Construcción en seco"
+  },
+  // --- CATEGORÍA: MEZANINE Y ENTREPISOS METÁLICOS ---
+  {
+    title: "Mezanine y entrepisos metálicos",
+    slug: "mezanine-entrepisos-metalicos",
+    description: "Estructuras metálicas para crear nuevos niveles o entrepisos en ambientes industriales o comerciales.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20mezanine%20o%20entrepisos%20metálicos.",
+    imageUrls: ["/images/IMG-20250628-WA0057.jpg"],
+    category: "Mezanine y entrepisos metálicos"
+  },
+  // --- CATEGORÍA: ESTRUCTURAS CON ACABADO COLOR MADERA ---
+  {
+    title: "Estructuras con acabado color madera",
+    slug: "estructuras-color-madera",
+    description: "Estructuras metálicas con acabados que simulan la madera, combinando durabilidad y diseño.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20estructura%20con%20acabado%20color%20madera.",
+    imageUrls: ["/images/IMG-20250628-WA0058.jpg"],
+    category: "Estructuras con acabado color madera"
+  },
+  // --- CATEGORÍA: TRABAJOS EN ACERO INOXIDABLE ---
+  {
+    title: "Trabajos en acero inoxidable",
+    slug: "trabajos-acero-inoxidable",
+    description: "Pasamanos, barandas, mobiliario de cocina y hospitalario.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20trabajo%20en%20acero%20inoxidable.",
+    imageUrls: ["/images/IMG-20250628-WA0059.jpg"],
+    category: "Trabajos en acero inoxidable"
+  },
+  // --- CATEGORÍA: CARPINTERÍA METÁLICA ---
+  {
+    title: "Carpintería Metálica",
+    slug: "carpinteria-metalica",
+    description: "Puertas, ventanas, cercos, rejas, escaleras, portones y cerramientos en general.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20carpintería%20metálica.",
+    imageUrls: ["/images/IMG-20250628-WA0060.jpg"],
+    category: "Carpintería Metálica"
+  },
+  // --- CATEGORÍA: MANTENIMIENTO GENERAL DE ESTRUCTURAS METÁLICAS ---
+  {
+    title: "Mantenimiento general de Estructuras Metálicas",
+    slug: "mantenimiento-estructuras-metalicas",
+    description: "Servicios de mantenimiento preventivo y correctivo para prolongar la vida útil de las estructuras metálicas.",
+    whatsappLink: "https://wa.me/XXXXXXXXXXX?text=Hola,%20me%20interesa%20mantenimiento%20de%20estructuras%20metálicas.",
+    imageUrls: ["/images/IMG-20250628-WA0061.jpg"],
+    category: "Mantenimiento general de Estructuras Metálicas"
   },
   {
     title: "Mantenimiento y Reparación de Techos",
@@ -293,5 +383,5 @@ export const services: Service[] = [
   - whatsappLink: El enlace de WhatsApp para cotizar este servicio (string).
   - imageUrls: Un array de URLs de imágenes del servicio (string[]).
   - category: La categoría a la que pertenece el servicio (string).
-  - isMostClicked: (Opcional) true si quieres destacarlo como "más clicado" (boolean).
+  - isMostClicked: (Opcional) true si quieres destacarla como "más clicado" (boolean).
 */
