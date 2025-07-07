@@ -1,0 +1,129 @@
+/* Estilos específicos para móviles */
+
+/* Mejoras para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  /* Ajustar tamaños de fuente para móviles */
+  .text-mobile-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  /* Mejorar espaciado en móviles */
+  .mobile-padding {
+    padding: 1rem;
+  }
+  
+  /* Ajustar botones para móviles */
+  .btn-mobile {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Mejorar navegación móvil */
+  .mobile-nav-item {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Ajustar carruseles en móviles */
+  .carousel-mobile-height {
+    height: 200px;
+  }
+  
+  /* Mejorar cards en móviles */
+  .card-mobile {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+/* Mejoras para tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .tablet-padding {
+    padding: 1.5rem;
+  }
+  
+  .tablet-text {
+    font-size: 1rem;
+  }
+}
+
+/* Mejoras para pantallas medianas */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .desktop-padding {
+    padding: 2rem;
+  }
+}
+
+/* Utilidades para mejorar la experiencia táctil */
+.touch-friendly {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mejorar scroll en móviles */
+.smooth-scroll-mobile {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Mejorar imágenes responsivas */
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Mejorar formularios en móviles */
+.form-mobile {
+  font-size: 16px; /* Evita zoom en iOS */
+}
+
+/* Mejorar botones de navegación */
+.nav-button-mobile {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Mejorar hover states para dispositivos táctiles */
+@media (hover: none) {
+  .hover-only {
+    display: none;
+  }
+  
+  .touch-hover {
+    opacity: 1;
+  }
+}
+
+/* Mejorar accesibilidad en móviles */
+.focus-visible-mobile:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Mejorar loading states */
+.loading-mobile {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mejorar animaciones en móviles */
+@media (prefers-reduced-motion: reduce) {
+  .animate-mobile {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Mejorar contraste en móviles */
+.text-contrast-mobile {
+  color: #1f2937;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+} 

@@ -68,15 +68,15 @@ const {
 		<Footer showMap={showFooterMap} />
 		<FloatingWhatsAppButton />
 
-		<script>
-			import { initMobileMenu } from '../scripts/menu';
-			import { initAOS } from '../scripts/aos';
-			import { initCarousels } from '../scripts/carousel';
-			
-			// Inicializar todos los scripts
-			initMobileMenu();
-			initAOS();
-			initCarousels();
-		</script>
+		<!-- Scripts principales -->
+		<script is:inline src="/scripts/main.js"></script>
+		<script is:inline src="/scripts/menu.js"></script>
+		<script is:inline src="/scripts/aos.js"></script>
+		<script is:inline src="/scripts/contact.js"></script>
+		<script is:inline src="/scripts/successPopup.js"></script>
+		<script is:inline src="/scripts/category.js"></script>
+		<script is:inline src="/scripts/serviceCarousel.js"></script>
+		<script is:inline src="/scripts/main-carousel.js"></script>
+
 	</body>
 </html>

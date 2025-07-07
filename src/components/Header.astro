@@ -16,7 +16,9 @@ const { url } = Astro;
 const currentPath = url.pathname;
 ---
 
-<style is:global>
+<!-- CSS del Header -->
+<style>
+  /* Animación del ícono hamburguesa */
   .hamburger-icon-wrapper.open span:nth-child(1) {
     transform: translateY(10px) rotate(45deg);
   }
@@ -34,35 +36,36 @@ const currentPath = url.pathname;
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap justify-center md:justify-center items-center">
         <div
-          class="flex flex-wrap justify-center items-center space-x-4 sm:space-x-6 md:space-x-8"
+          class="flex flex-wrap justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8"
         >
           <a
             href="tel:+51915157257"
-            class="flex items-center text-base sm:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-2 rounded-md"
+            class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-1 sm:p-2 rounded-md"
           >
-            <Icon name="mdi:phone" class="h-5 w-5 mr-2" />
-            +51 915 157 257
+            <Icon name="mdi:phone" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+            <span class="hidden sm:inline">+51 915 157 257</span>
+            <span class="sm:hidden">+51 915 157 257</span>
           </a>
           <a
             href="https://wa.me/+51915157257"
             target="_blank"
-            class="flex items-center text-base sm:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-2 rounded-md"
+            class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-1 sm:p-2 rounded-md"
           >
-            <Icon name="mdi:whatsapp" class="h-5 w-5 mr-2" />
-            WhatsApp
+            <Icon name="mdi:whatsapp" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+            <span class="hidden sm:inline">WhatsApp</span>
+            <span class="sm:hidden">WhatsApp</span>
           </a>
           <a
             href="mailto:servicios@multiserviciosprecisur.com"
-            class="flex items-center text-base sm:text-lg font-bold hover:text-gray-300 transition duration-300"
+            class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-1 sm:p-2 rounded-md"
           >
-            <Icon name="mdi:email" class="h-4 w-4 mr-1.5" />
-            <span>Correo</span>
+            <Icon name="mdi:email" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
+            <span class="hidden sm:inline">Correo</span>
+            <span class="sm:hidden">Correo</span>
           </a>
-          <div
-            class="flex items-center text-base sm:text-lg font-bold text-white mt-2 md:mt-0"
-          >
-            <Icon name="mdi:map-marker" class="h-5 w-5 mr-2" />
-            <span>Arequipa / Lima</span>
+          <div class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white mt-2 md:mt-0">
+            <Icon name="mdi:map-marker" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 text-white" />
+            <span class="text-sm sm:text-base lg:text-lg font-bold ml-1 sm:ml-2 text-white">Trujillo / La Libertad</span>
           </div>
         </div>
       </div>

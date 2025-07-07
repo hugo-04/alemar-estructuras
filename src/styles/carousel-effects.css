@@ -1,0 +1,256 @@
+/* Efectos visuales mejorados para el carrusel */
+
+/* Transición suave para el carrusel */
+.carousel-inner {
+  display: flex;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Efecto de zoom sutil en hover */
+.carousel-item img {
+  transition: transform 0.3s ease-in-out;
+  filter: brightness(0.95);
+}
+
+.carousel-item:hover img {
+  transform: scale(1.02);
+  filter: brightness(1);
+}
+
+/* Efecto de sombra en las imágenes */
+.carousel-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 70%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Mejorar los botones de navegación */
+.carousel-control-prev,
+.carousel-control-next {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Mejorar los indicadores */
+.carousel-indicators button {
+  transition: all 0.3s ease-in-out;
+  border: 2px solid transparent;
+}
+
+.carousel-indicators button:hover {
+  transform: scale(1.2);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-indicators button.opacity-100 {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Efecto de carga para el carrusel */
+.carousel-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Efecto de fade para transiciones */
+.carousel-fade {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-fade.active {
+  opacity: 1;
+}
+
+/* Mejorar la responsividad del carrusel */
+@media (max-width: 640px) {
+  .carousel-item img {
+    transform: none;
+  }
+  
+  .carousel-item:hover img {
+    transform: none;
+  }
+}
+
+/* Efecto de profundidad para el carrusel */
+.carousel-container {
+  perspective: 1000px;
+}
+
+.carousel-inner {
+  transform-style: preserve-3d;
+}
+
+/* Animación de entrada para el carrusel */
+@keyframes carousel-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.carousel-container {
+  animation: carousel-fade-in 0.8s ease-out;
+}
+
+/* Efecto de parallax sutil */
+.carousel-item img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Mejorar el rendimiento */
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+
+/* Estilos específicos para ServiceCarousel */
+.carousel-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+}
+
+.carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  background: #f3f4f6;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1 !important;
+  background: #f3f4f6;
+}
+
+.service-carousel-container .carousel-item:first-child {
+  opacity: 1 !important;
+  z-index: 2;
+}
+
+/* Thumbnails */
+.thumbnail-btn {
+  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.thumbnail-btn.active {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+  transform: scale(1.1);
+}
+
+/* Ocultar scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    padding: 0.75rem;
+  }
+}
+
+/* Mejoras para pantallas grandes */
+@media (min-width: 1024px) {
+  .group {
+    max-width: 90vw;
+  }
+} 

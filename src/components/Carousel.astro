@@ -21,11 +21,26 @@ const { images, id, autoplay = true, interval = 5000, showNavigation = true, sho
   data-images-length={images.length}
 >
   <div class="carousel-inner relative w-full flex transition-transform duration-700 ease-in-out">
+    {/* Clon de la última imagen al inicio para transición suave */}
+    {images.length > 0 && (
+      <div class="carousel-item w-full flex-shrink-0" data-index="clone-last">
+        <img src={images[images.length - 1].src} alt={images[images.length - 1].alt} class="w-full h-96 object-cover" />
+      </div>
+    )}
+    
+    {/* Imágenes originales */}
     {images.map((image, index) => (
       <div class="carousel-item w-full flex-shrink-0" data-index={index}>
         <img src={image.src} alt={image.alt} class="w-full h-96 object-cover" />
       </div>
     ))}
+    
+    {/* Clon de la primera imagen al final para transición suave */}
+    {images.length > 0 && (
+      <div class="carousel-item w-full flex-shrink-0" data-index="clone-first">
+        <img src={images[0].src} alt={images[0].alt} class="w-full h-96 object-cover" />
+      </div>
+    )}
   </div>
 
   {showNavigation && (
@@ -49,7 +64,7 @@ const { images, id, autoplay = true, interval = 5000, showNavigation = true, sho
     <div class="carousel-indicators absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
       {images.map((_, index) => (
         <button
-          class="w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity duration-300"
+          class="w-3 h-3 bg-white rounded-full opacity-50 hover:opacity-100 transition-opacity duration-300 carousel-indicator"
           data-carousel-indicator={index}
         ></button>
       ))}
@@ -57,7 +72,7 @@ const { images, id, autoplay = true, interval = 5000, showNavigation = true, sho
   )}
 </div>
 
-<script type="module" src="/scripts/carousel.ts"></script>
+<!-- El script del carousel se carga desde BaseLayout -->
 
 <style>
   .carousel-item {

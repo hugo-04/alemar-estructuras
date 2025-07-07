@@ -34,7 +34,14 @@ const categories: string[] = [...new Set(services.map(service => service.categor
         <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Servicios</h4>
         <ul class="space-y-1">
           {Array.from(new Set(services.map(s => s.category))).map(category => (
-            <li>{category}</li>
+            <li>
+              <a 
+                href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                class="hover:text-[#c8aa6e] transition-colors duration-300 cursor-pointer"
+              >
+                {category}
+              </a>
+            </li>
           ))}
         </ul>
       </div>
@@ -57,8 +64,8 @@ const categories: string[] = [...new Set(services.map(service => service.categor
             <Icon name="mdi:email" class="w-5 h-5 min-w-[20px] text-[#c8aa6e] mt-1" />
             <span class="flex-1 break-all text-sm md:text-base">info@alemarestructuras.com</span>
           </li>
-          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:map-marker" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Av. Construcción 123</span></li>
-          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:city" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Ciudad Industrial, CP 12345</span></li>
+          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:map-marker" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Principal: José Galvez 375 Urb. Chicago - Trujillo</span></li>
+          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:map-marker" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</span></li>
         </ul>
       </div>
     </div>

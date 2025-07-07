@@ -15,7 +15,7 @@ export const mainCarouselImages: CarouselImage[] = [
 ];
 
 export const clientCarouselImages: CarouselImage[] = [
-  { src: '/images/cliente1.jpg', alt: 'Logo Cliente 1' },
-  { src: '/images/cliente2.jpg', alt: 'Logo Cliente 2' },
-  { src: '/images/cliente3.jpg', alt: 'Logo Cliente 3' },
+  { src: '/images/IMG-20250628-WA0090.jpg', alt: 'Logo Cliente 1' },
+  { src: '/images/IMG-20250628-WA0093.jpg', alt: 'Logo Cliente 2' },
+  { src: '/images/IMG-20250628-WA0095.jpg', alt: 'Logo Cliente 3' },
 ];

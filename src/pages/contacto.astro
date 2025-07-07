@@ -37,7 +37,10 @@ import SuccessPopup from '../components/SuccessPopup.astro';
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Dirección</span>
-                <span class="block text-[#2d2d2d]">Av. Construcción 123<br>Ciudad Industrial, CP 12345</span>
+                <span class="block text-[#2d2d2d]">
+                  Principal: José Galvez 375 Urb. Chicago - Trujillo<br>
+                  Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche
+                </span>
               </div>
             </li>
             <li class="flex items-start gap-5">
@@ -94,6 +97,10 @@ import SuccessPopup from '../components/SuccessPopup.astro';
       <h3 class="text-3xl font-bold text-[#1e3a5f] mb-8">
         Nuestra Ubicación
       </h3>
+      <div class="mb-6">
+        <p class="text-[#1e3a5f] font-semibold">Principal: José Galvez 375 Urb. Chicago - Trujillo</p>
+        <p class="text-[#1e3a5f] font-semibold">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</p>
+      </div>
       <div id="map" class="w-full h-80 rounded-md bg-gray-200 flex items-center justify-center">
         <p class="text-gray-600">Mapa de ubicación</p>
       </div>
@@ -103,5 +110,5 @@ import SuccessPopup from '../components/SuccessPopup.astro';
   <!-- Pop-up de éxito -->
   <SuccessPopup id="success-popup" message="¡Gracias por su envío! Nos comunicaremos con usted a la brevedad para cotizar el servicio que desea." />
 
-  <script type="module" src="/scripts/contact.ts"></script>
+  <script is:inline src="/scripts/contact.js"></script>
 </BaseLayout>
