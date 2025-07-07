@@ -12,5 +12,8 @@ export default defineConfig({
       include: ['mdi']
     }),
     vue(),
-  ]
+  ],
+  build: {
+    assets: 'assets'
+  }
 });
