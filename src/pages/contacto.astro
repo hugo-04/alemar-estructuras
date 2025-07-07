@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SuccessPopup from '../components/SuccessPopup.astro';
+import { Icon } from 'astro-icon/components';
 
 ---
 
-<BaseLayout title="Contacto - [Nombre de tu Empresa]" showFooterMap={false}>
+<BaseLayout title="Contacto - ALEMAR Estructuras" showFooterMap={false}>
   <section class="bg-[#f4e7d1] min-h-screen py-0">
     <div class="max-w-6xl mx-auto pt-10">
       <h2 class="text-center text-[#2d2d2d] text-xl mb-6 font-normal">Estamos listos para hacer realidad tu próximo proyecto estructural</h2>
@@ -14,26 +15,26 @@ import SuccessPopup from '../components/SuccessPopup.astro';
           <h3 class="text-2xl font-bold text-[#1e3a5f] mb-8">Información de Contacto</h3>
           <ul class="space-y-8">
             <li class="flex items-start gap-5">
-              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 01-2 2A18 18 0 013 5a2 2 0 012-2h2.09a2 2 0 012 1.72c.13 1.13.37 2.24.72 3.32a2 2 0 01-.45 2.11l-1.27 1.27a16 16 0 006.6 6.6l1.27-1.27a2 2 0 012.11-.45c1.08.35 2.19.59 3.32.72A2 2 0 0122 16.92z"/></svg>
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
+                <Icon name="mdi:phone" class="w-7 h-7 text-white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Teléfono</span>
-                <span class="block text-[#2d2d2d]">+1 (555) 123-4567<br>+1 (555) 987-6543</span>
+                <span class="block text-[#2d2d2d]">+51 915 157 257<br>+51 915 157 258</span>
               </div>
             </li>
             <li class="flex items-start gap-5">
-              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm0 0v1a4 4 0 01-4 4H8a4 4 0 01-4-4v-1"/></svg>
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
+                <Icon name="mdi:email" class="w-7 h-7 text-white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Email</span>
-                <span class="block text-[#2d2d2d]">info@alemarestructuras.com<br>proyectos@alemarestructuras.com</span>
+                <span class="block text-[#2d2d2d]">servicios@multiserviciosprecisur.com<br>proyectos@alemarestructuras.com</span>
               </div>
             </li>
             <li class="flex items-start gap-5">
-              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 12.414a8 8 0 111.414-1.414l4.243 4.243a1 1 0 01-1.414 1.414z"/></svg>
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
+                <Icon name="mdi:map-marker" class="w-7 h-7 text-white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Dirección</span>
@@ -44,8 +45,8 @@ import SuccessPopup from '../components/SuccessPopup.astro';
               </div>
             </li>
             <li class="flex items-start gap-5">
-              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center">
-                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/></svg>
+              <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
+                <Icon name="mdi:clock-outline" class="w-7 h-7 text-white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Horarios</span>

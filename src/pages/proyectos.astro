@@ -1,17 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { projects } from '../data/projects';
-import ClientReviewCard from '../components/ClientReviewCard.astro';
 import { Icon } from 'astro-icon/components';
-
-// Obtener categorías únicas
-const uniqueCategories = [...new Set(projects.map(project => project.category))];
-
-// Agrupar proyectos por categoría
-const projectsByCategory = uniqueCategories.map(category => ({
-  category,
-  projects: projects.filter(project => project.category === category)
-}));
 ---
 
 <BaseLayout title="Proyectos - ALEMAR Estructuras">
@@ -27,63 +16,60 @@ const projectsByCategory = uniqueCategories.map(category => ({
       </p>
     </section>
 
-    <!-- Proyectos Destacados -->
+    <!-- Proyectos agrupados por categoría -->
     <section class="mb-16">
       <h2 class="text-3xl font-bold text-[#1e3a5f] mb-8 text-center">
-        Proyectos Destacados
+        Proyectos por Categoría
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {projects.map(project => (
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div class="relative h-64">
-              <img 
-                src={project.imageUrl} 
-                alt={project.title}
-                class="w-full h-full object-cover"
-              />
-              <div class="absolute top-4 left-4">
-                <span class="bg-[#c8aa6e] text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {project.category}
-                </span>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">{project.title}</h3>
-              <p class="text-gray-600 mb-4 line-clamp-3">{project.description}</p>
-              <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
-                <span>{project.location}</span>
-                <span>{project.completionDate}</span>
-              </div>
-              <ClientReviewCard 
-                review={project.clientReview}
-                clientName={project.clientName}
-                location={project.location}
-                completionDate={project.completionDate}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- Estadísticas -->
-    <section class="bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white rounded-2xl p-8 mb-16">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Categoría: Plantaciones El Sol (Olmos) -->
         <div>
-          <div class="text-3xl font-bold mb-2">{projects.length}+</div>
-          <div class="text-gray-200">Proyectos Completados</div>
+          <h3 class="text-xl font-bold text-[#c8aa6e] mb-4">Plantaciones El Sol (Olmos)</h3>
+          <ul class="list-decimal list-inside space-y-2 text-[#1e3a5f]">
+            <li>Nave industrial para despacho – Packing</li>
+            <li>Construcción de vestuarios – Cosecha</li>
+            <li>Mobiliario inox para packing</li>
+          </ul>
         </div>
+        <!-- Categoría: Salud y Hospitales -->
         <div>
-          <div class="text-3xl font-bold mb-2">10</div>
-          <div class="text-gray-200">Especialidades</div>
+          <h3 class="text-xl font-bold text-[#c8aa6e] mb-4">Salud y Hospitales</h3>
+          <ul class="list-decimal list-inside space-y-2 text-[#1e3a5f]">
+            <li>Central de esterilización del IREN – Norte</li>
+            <li>Instalación de cobertura Hospital Regional Docente de Trujillo</li>
+          </ul>
         </div>
+        <!-- Categoría: Industria y Talleres -->
         <div>
-          <div class="text-3xl font-bold mb-2">100%</div>
-          <div class="text-gray-200">Clientes Satisfechos</div>
+          <h3 class="text-xl font-bold text-[#c8aa6e] mb-4">Industria y Talleres</h3>
+          <ul class="list-decimal list-inside space-y-2 text-[#1e3a5f]">
+            <li>Techo metálico plano para taller mecánico EMTRAFESA</li>
+            <li>Techo en voladizo zona de preembarque EMTRAFESA</li>
+            <li>Techo a dos aguas Imprenta Gardel</li>
+            <li>Ampliación salas de espera Clínica Suárez</li>
+            <li>Techo metálico oficina Imprenta Gardel</li>
+            <li>Techos estilo sol y sombra</li>
+            <li>Andamios industriales para tiendas distribuidora Pintel SAC</li>
+            <li>Mezanine y entrepiso – Distribuidora Palesa</li>
+            <li>Pasamanos inox</li>
+            <li>Mantenimiento de cercos con malla olímpica – Sub estación de generadores eléctricos – UPAO</li>
+            <li>Techos, pasamanos, andamios, reja de ingreso, puertas enrollables y divisiones de ambiente "Galería La Promesa de Dios"</li>
+          </ul>
         </div>
+        <!-- Categoría: Restaurantes y Comercio -->
         <div>
-          <div class="text-3xl font-bold mb-2">5★</div>
-          <div class="text-gray-200">Calificación Promedio</div>
+          <h3 class="text-xl font-bold text-[#c8aa6e] mb-4">Restaurantes y Comercio</h3>
+          <ul class="list-decimal list-inside space-y-2 text-[#1e3a5f]">
+            <li>Escenario y almacén Restaurant Turístico El Limonero</li>
+          </ul>
+        </div>
+        <!-- Categoría: Otros Proyectos -->
+        <div>
+          <h3 class="text-xl font-bold text-[#c8aa6e] mb-4">Otros Proyectos</h3>
+          <ul class="list-decimal list-inside space-y-2 text-[#1e3a5f]">
+            <li>Techo metálico oficina "Piedras Castillo"</li>
+            <li>Puertas portones y ventanas</li>
+          </ul>
         </div>
       </div>
     </section>
