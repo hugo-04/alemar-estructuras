@@ -9,7 +9,8 @@
     "astro": "astro",
     "lint": "eslint . --ext .js,.ts,.astro",
     "lint:fix": "eslint . --ext .js,.ts,.astro --fix",
-    "type-check": "astro check"
+    "type-check": "astro check",
+    "vercel-build": "astro build"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
@@ -22,5 +23,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

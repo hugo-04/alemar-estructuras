@@ -2,86 +2,98 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Nosotros - [Nombre de tu Empresa]">
-  <main class="container mx-auto p-6 mt-8 flex-grow">
-    <div class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-8 md:p-20 rounded-3xl shadow-2xl mb-20 text-center relative overflow-hidden">
+<BaseLayout title="Nosotros - ALEMAR Estructuras">
+  <main class="container mx-auto p-4 sm:p-6 lg:p-8 xl:p-12 mt-4 sm:mt-8 flex-grow max-w-7xl">
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 rounded-3xl shadow-2xl mb-12 sm:mb-16 lg:mb-20 text-center relative overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
-      <div class="relative z-10">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 leading-tight">
-          ¿Quiénes Somos?<br class="block md:hidden" />y<br class="block md:hidden" />
+      <div class="relative z-10 max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 md:mb-8 leading-tight">
+          ¿Quiénes Somos?<br class="block md:hidden" />
           <span class="text-[#c8aa6e]">Nuestra Trayectoria</span>
         </h2>
-        <p class="text-base sm:text-lg md:text-xl max-w-2xl md:max-w-5xl mx-auto leading-relaxed">
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto leading-relaxed">
           ALEMAR ESTRUCTURAS es una empresa trujillana dedicada a la fabricación, mantenimiento y montaje de estructuras metálicas. Nos destacamos por ofrecer soluciones integrales y creativas para la construcción en seco, combinando resistencia, rapidez y economía. Con más de 10 años de experiencia, cuidamos tu inversión y te acompañamos en cada proyecto, siendo tu mejor aliado para la industria, negocio o vivienda.
         </p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-16">
-      <section class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-[#c8aa6e]/20 hover:shadow-3xl transition-all duration-300 hover:scale-105 flex flex-col justify-center">
-        <div class="text-center mb-6 md:mb-8">
-          <div class="w-20 h-20 bg-gradient-to-br from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
-            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Misión y Visión -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 mb-12 sm:mb-16 lg:mb-20">
+      <!-- Misión -->
+      <section class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 border border-[#c8aa6e]/20 hover:shadow-3xl transition-all duration-300 hover:scale-105 flex flex-col justify-center">
+        <div class="text-center mb-6 sm:mb-8 md:mb-10">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+            <svg class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-3 md:mb-4">
+          <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1e3a5f] mb-3 sm:mb-4 md:mb-6">
             Nuestra Misión
           </h3>
         </div>
-        <p class="text-[#2d2d2d] leading-relaxed text-base md:text-lg text-center">
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#2d2d2d] leading-relaxed text-center">
           Brindar la solución ideal, en términos metalmecánicos, que te permita plasmar, mejorar y/o ampliar tus objetivos empresariales y familiares. Adaptándonos a las necesidades específicas de cada cliente, asegurando proyectos exitosos para tu desarrollo familiar, comercial e industrial.
         </p>
       </section>
 
-      <section class="bg-gradient-to-br from-[#f4e7d1] to-[#e8d5b5] rounded-3xl shadow-2xl p-8 md:p-12 border border-[#c8aa6e]/30 hover:shadow-3xl transition-all duration-300 hover:scale-105 flex flex-col justify-center">
-        <div class="text-center mb-6 md:mb-8">
-          <div class="w-20 h-20 bg-gradient-to-br from-[#c8aa6e] to-[#b89a5e] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg">
-            <svg class="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Visión -->
+      <section class="bg-gradient-to-br from-[#f4e7d1] to-[#e8d5b5] rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 border border-[#c8aa6e]/30 hover:shadow-3xl transition-all duration-300 hover:scale-105 flex flex-col justify-center">
+        <div class="text-center mb-6 sm:mb-8 md:mb-10">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-[#c8aa6e] to-[#b89a5e] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+            <svg class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl md:text-3xl font-bold text-[#1e3a5f] mb-3 md:mb-4">
+          <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1e3a5f] mb-3 sm:mb-4 md:mb-6">
             Nuestra Visión
           </h3>
         </div>
-        <p class="text-[#2d2d2d] leading-relaxed text-base md:text-lg text-center">
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#2d2d2d] leading-relaxed text-center">
           Ser una de las empresas trujillanas líderes en el sector metalmecánico, a través de soluciones innovadoras y cuyo crecimiento se estructura en base a la implementación de procesos, tecnología de vanguardia e infraestructura. Para con esto poder brindar mayores oportunidades de trabajo, que beneficien a las futuras generaciones y permitan su desarrollo personal y profesional en beneficio de nuestra sociedad.
         </p>
       </section>
     </div>
 
-    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-10 md:p-20 rounded-3xl shadow-2xl">
-      <h3 class="text-3xl md:text-5xl font-bold mb-8">
-        ¿Por qué <span class="text-[#c8aa6e]">elegirnos</span>?
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mt-10 md:mt-16">
-        <div class="text-center group flex flex-col items-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-[#c8aa6e] to-[#b89a5e] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-            </svg>
+    <!-- Por qué elegirnos -->
+    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 rounded-3xl shadow-2xl">
+      <div class="max-w-6xl mx-auto">
+        <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          ¿Por qué <span class="text-[#c8aa6e]">elegirnos</span>?
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 mt-8 sm:mt-10 md:mt-12 lg:mt-16">
+          <!-- Calidad Garantizada -->
+          <div class="text-center group flex flex-col items-center">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-[#c8aa6e] to-[#b89a5e] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 text-[#c8aa6e]">Calidad Garantizada</h4>
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#f4e7d1]">Calidad garantizada en cada proyecto.</p>
           </div>
-          <h4 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#c8aa6e]">Calidad Garantizada</h4>
-          <p class="text-[#f4e7d1] text-base md:text-lg">Calidad garantizada en cada proyecto.</p>
-        </div>
-        <div class="text-center group flex flex-col items-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-[#4a90e2] to-[#357abd] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
+
+          <!-- Experiencia -->
+          <div class="text-center group flex flex-col items-center">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-[#4a90e2] to-[#357abd] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 text-[#4a90e2]">Experiencia</h4>
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#f4e7d1]">Más de 10 años y soluciones innovadoras.</p>
           </div>
-          <h4 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#4a90e2]">Experiencia</h4>
-          <p class="text-[#f4e7d1] text-base md:text-lg">Más de 10 años y soluciones innovadoras.</p>
-        </div>
-        <div class="text-center group flex flex-col items-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-[#c8aa6e] to-[#b89a5e] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-10 h-10 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
+
+          <!-- Atención Personalizada -->
+          <div class="text-center group flex flex-col items-center">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-[#c8aa6e] to-[#b89a5e] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-[#1e3a5f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-3 sm:mb-4 text-[#c8aa6e]">Atención Personalizada</h4>
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-[#f4e7d1]">Compromiso con tus objetivos.</p>
           </div>
-          <h4 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-[#c8aa6e]">Atención Personalizada</h4>
-          <p class="text-[#f4e7d1] text-base md:text-lg">Compromiso con tus objetivos.</p>
         </div>
       </div>
     </section>
