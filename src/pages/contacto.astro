@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SuccessPopup from '../components/SuccessPopup.astro';
-import { Icon } from 'astro-icon/components';
+import IconWrapper from '../components/IconWrapper.astro';
 
 ---
 
@@ -16,7 +16,7 @@ import { Icon } from 'astro-icon/components';
           <ul class="space-y-8">
             <li class="flex items-start gap-5">
               <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
-                <Icon name="mdi:phone" class="w-7 h-7 text-white" />
+                <IconWrapper name="mdi:phone" size="lg" color="white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Teléfono</span>
@@ -25,7 +25,7 @@ import { Icon } from 'astro-icon/components';
             </li>
             <li class="flex items-start gap-5">
               <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
-                <Icon name="mdi:email" class="w-7 h-7 text-white" />
+                <IconWrapper name="mdi:email" size="lg" color="white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Email</span>
@@ -34,7 +34,7 @@ import { Icon } from 'astro-icon/components';
             </li>
             <li class="flex items-start gap-5">
               <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
-                <Icon name="mdi:map-marker" class="w-7 h-7 text-white" />
+                <IconWrapper name="mdi:map-marker" size="lg" color="white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Dirección</span>
@@ -46,7 +46,7 @@ import { Icon } from 'astro-icon/components';
             </li>
             <li class="flex items-start gap-5">
               <span class="flex-shrink-0 w-12 h-12 rounded-full bg-[#4a90e2] flex items-center justify-center shadow-lg">
-                <Icon name="mdi:clock-outline" class="w-7 h-7 text-white" />
+                <IconWrapper name="mdi:clock-outline" size="lg" color="white" />
               </span>
               <div>
                 <span class="block font-bold text-[#1e3a5f]">Horarios</span>
@@ -102,8 +102,27 @@ import { Icon } from 'astro-icon/components';
         <p class="text-[#1e3a5f] font-semibold">Principal: José Galvez 375 Urb. Chicago - Trujillo</p>
         <p class="text-[#1e3a5f] font-semibold">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</p>
       </div>
-      <div id="map" class="w-full h-80 rounded-md bg-gray-200 flex items-center justify-center">
-        <p class="text-gray-600">Mapa de ubicación</p>
+      <div class="w-full rounded-md bg-white p-8 border border-[#c8aa6e]/20">
+        <div class="text-center">
+          <div class="space-y-4">
+            <div class="flex items-center justify-center gap-3">
+              <IconWrapper name="mdi:map-marker" size="md" color="secondary" />
+              <div class="text-left">
+                <p class="text-[#1e3a5f] font-semibold">Principal: José Galvez 375 Urb. Chicago - Trujillo</p>
+                <p class="text-[#1e3a5f] font-semibold">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</p>
+              </div>
+            </div>
+            <a 
+              href="https://maps.google.com/?q=José+Galvez+375+Urb.+Chicago+Trujillo+Peru" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 py-3 rounded-lg text-base font-medium hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <IconWrapper name="mdi:map" size="md" color="white" />
+              Ver en Google Maps
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

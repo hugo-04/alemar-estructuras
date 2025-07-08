@@ -1,0 +1,56 @@
+---
+// src/components/IconWrapper.astro
+// Componente wrapper para iconos que centraliza la configuración del color light
+// como color predeterminado para todos los iconos del sitio
+
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  name: string;
+  class?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  color?: 'light' | 'white' | 'secondary' | 'primary' | 'accent' | 'neutral';
+  hoverColor?: 'light' | 'white' | 'secondary' | 'primary' | 'accent' | 'neutral';
+  [key: string]: any;
+}
+
+const { 
+  name, 
+  class: className = '', 
+  size = 'md',
+  color = 'light',
+  hoverColor,
+  ...props 
+} = Astro.props;
+
+// Mapeo de tamaños a clases de Tailwind
+const sizeClasses = {
+  xs: 'h-3 w-3',
+  sm: 'h-4 w-4',
+  md: 'h-5 w-5',
+  lg: 'h-6 w-6',
+  xl: 'h-8 w-8',
+  '2xl': 'h-10 w-10'
+};
+
+// Mapeo de colores a clases de Tailwind
+const colorClasses = {
+  light: 'text-light',
+  white: 'text-white',
+  secondary: 'text-secondary',
+  primary: 'text-primary',
+  accent: 'text-accent',
+  neutral: 'text-neutral'
+};
+
+// Construir clases base
+const baseClasses = `${sizeClasses[size]} ${colorClasses[color]} flex-shrink-0`;
+
+// Agregar clases de hover si se especifican
+const hoverClasses = hoverColor ? ` hover:${colorClasses[hoverColor]}` : '';
+
+// Combinar todas las clases
+const finalClasses = `${baseClasses}${hoverClasses} ${className}`.trim();
+---
+
+<Icon name={name} class={finalClasses} {...props} /> 

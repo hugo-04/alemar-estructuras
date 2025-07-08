@@ -5,7 +5,7 @@
 
 import { services } from '../data/services.ts'; // Importa los datos de servicios para generar las categorías.
 import FooterMap from './FooterMap.astro';
-import { Icon } from 'astro-icon/components';
+import IconWrapper from './IconWrapper.astro';
 
 
 interface Props {
@@ -18,26 +18,33 @@ const { showMap = true } = Astro.props;
 const categories: string[] = [...new Set(services.map(service => service.category))];
 ---
 
-<footer class="bg-[#1e3a5f] text-white pt-12 pb-6">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 pb-8 border-b border-[#c8aa6e]/30">
-      <!-- Columna 1: Logo y descripción (móvil: col 1) -->
-      <div class="flex flex-col items-start md:items-start gap-2">
-        <div class="flex items-center mb-2">
-          <Icon name="mdi:office-building" class="w-7 h-7 text-[#c8aa6e] mr-2" />
-          <span class="text-2xl font-bold text-white">ALEMAR <span class="font-normal">Estructuras</span></span>
+<footer class="bg-accent text-white pt-8 sm:pt-12 pb-4 sm:pb-6">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Grid principal del footer -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 pb-6 sm:pb-8 border-b border-primary/30">
+      
+      <!-- Columna 1: Logo y descripción -->
+      <div class="flex flex-col items-start gap-3 sm:gap-4">
+        <div class="flex items-center mb-2 sm:mb-3">
+          <IconWrapper name="mdi:office-building" size="lg" color="light" class="mr-2" />
+          <span class="text-xl sm:text-2xl font-bold text-white">
+            ALEMAR <span class="font-normal">Estructuras</span>
+          </span>
         </div>
-        <p class="text-[#f4e7d1] text-base">Construyendo el futuro con estructuras sólidas, innovadoras y confiables.</p>
+        <p class="text-sm sm:text-base text-white/80 leading-relaxed">
+          Construyendo el futuro con estructuras sólidas, innovadoras y confiables.
+        </p>
       </div>
-      <!-- Columna 2: Servicios (móvil: col 1) -->
+      
+      <!-- Columna 2: Servicios -->
       <div>
-        <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Servicios</h4>
-        <ul class="space-y-1">
+        <h4 class="text-secondary font-bold text-base sm:text-lg mb-3 sm:mb-4">Servicios</h4>
+        <ul class="space-y-1 sm:space-y-2">
           {Array.from(new Set(services.map(s => s.category))).map(category => (
             <li>
               <a 
                 href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                class="hover:text-[#c8aa6e] transition-colors duration-300 cursor-pointer"
+                class="text-sm sm:text-base text-white/80 hover:text-secondary transition-colors duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1"
               >
                 {category}
               </a>
@@ -45,36 +52,79 @@ const categories: string[] = [...new Set(services.map(service => service.categor
           ))}
         </ul>
       </div>
-      <!-- Columna 3: Empresa (móvil: col 2) -->
+      
+      <!-- Columna 3: Empresa -->
       <div>
-        <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Empresa</h4>
-        <ul class="space-y-1">
-          <li><a href="#" class="hover:text-[#c8aa6e] transition">Acerca de Nosotros</a></li>
-          <li><a href="#" class="hover:text-[#c8aa6e] transition">Nuestro Equipo</a></li>
-          <li><a href="#" class="hover:text-[#c8aa6e] transition">Proyectos</a></li>
-          <li><a href="#" class="hover:text-[#c8aa6e] transition">Certificaciones</a></li>
+        <h4 class="text-secondary font-bold text-base sm:text-lg mb-3 sm:mb-4">Empresa</h4>
+        <ul class="space-y-1 sm:space-y-2">
+          <li>
+            <a href="/nosotros" class="text-sm sm:text-base text-white/80 hover:text-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1">
+              Acerca de Nosotros
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm sm:text-base text-white/80 hover:text-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1">
+              Nuestro Equipo
+            </a>
+          </li>
+          <li>
+            <a href="/proyectos" class="text-sm sm:text-base text-white/80 hover:text-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1">
+              Proyectos
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-sm sm:text-base text-white/80 hover:text-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1">
+              Certificaciones
+            </a>
+          </li>
         </ul>
       </div>
-      <!-- Columna 4: Contacto (móvil: col 2) -->
+      
+      <!-- Columna 4: Contacto -->
       <div>
-        <h4 class="text-[#c8aa6e] font-bold text-lg mb-3">Contacto</h4>
-        <ul class="space-y-2 text-[#f4e7d1]">
-          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:phone" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">+1 (555) 123-4567</span></li>
-          <li class="flex flex-row flex-wrap items-start gap-3 break-words">
-            <Icon name="mdi:email" class="w-5 h-5 min-w-[20px] text-[#c8aa6e] mt-1" />
-            <span class="flex-1 break-all text-sm md:text-base">info@alemarestructuras.com</span>
+        <h4 class="text-secondary font-bold text-base sm:text-lg mb-3 sm:mb-4">Contacto</h4>
+        <ul class="space-y-2 sm:space-y-3 text-white/80">
+          <li class="flex items-start gap-2 sm:gap-3">
+            <IconWrapper name="mdi:phone" size="sm" color="light" class="mt-0.5" />
+            <span class="text-sm sm:text-base flex-1">
+              <a href="tel:+51915157257" class="hover:text-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1">
+                +51 915 157 257
+              </a>
+            </span>
           </li>
-          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:map-marker" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Principal: José Galvez 375 Urb. Chicago - Trujillo</span></li>
-          <li class="flex flex-row flex-wrap items-start gap-3 break-words"><Icon name="mdi:map-marker" class="w-5 h-5 min-w-[20px] text-[#c8aa6e]" /><span class="flex-1">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</span></li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <IconWrapper name="mdi:email" size="sm" color="light" class="mt-0.5" />
+            <span class="text-sm sm:text-base flex-1">
+              <a href="mailto:info@alemarestructuras.com" class="hover:text-secondary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md px-1 py-1 break-all">
+                info@alemarestructuras.com
+              </a>
+            </span>
+          </li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <IconWrapper name="mdi:map-marker" size="sm" color="light" class="mt-0.5" />
+            <span class="text-sm sm:text-base flex-1">
+              Principal: José Galvez 375 Urb. Chicago - Trujillo
+            </span>
+          </li>
+          <li class="flex items-start gap-2 sm:gap-3">
+            <IconWrapper name="mdi:map-marker" size="sm" color="light" class="mt-0.5" />
+            <span class="text-sm sm:text-base flex-1">
+              Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche
+            </span>
+          </li>
         </ul>
       </div>
     </div>
+    
+    <!-- Mapa del footer -->
     {showMap !== false && (
-      <div class="mt-8">
+      <div class="mt-6 sm:mt-8">
         <FooterMap showMap={true} />
       </div>
     )}
-    <div class="text-center text-sm text-[#f4e7d1] mt-8">
+    
+    <!-- Copyright -->
+    <div class="text-center text-xs sm:text-sm text-white/60 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-primary/20">
       <p>&copy; 2024 ALEMAR Estructuras. Todos los derechos reservados.</p>
     </div>
   </div>

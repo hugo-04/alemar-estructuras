@@ -5,43 +5,63 @@ import { mainCarouselImages, clientCarouselImages } from '../data/carousel';
 ---
 
 <BaseLayout title="Página Principal">
-	<main class="container mx-auto p-3 sm:p-6 mt-4 sm:mt-8 flex-grow text-center">
-		<div class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white px-2 py-8 sm:p-10 md:p-16 rounded-3xl shadow-2xl mb-8 sm:mb-16 relative overflow-hidden">
-			<div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/20 to-transparent"></div>
-			<div class="relative z-10">
-				<h2 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 sm:mb-8 text-center break-words max-w-full">
-					Bienvenido a <span class="text-[#c8aa6e]">ALEMAR Estructuras</span>
-				</h2>
-				<p class="text-base sm:text-xl max-w-full sm:max-w-3xl md:max-w-4xl mx-auto text-center leading-relaxed break-words">
-					Nos especializamos en ofrecer soluciones integrales de techado y estructuras metálicas, garantizando la máxima calidad y durabilidad en cada uno de nuestros proyectos.
-				</p>
+	<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 flex-grow">
+		<!-- Hero Section - Mobile First -->
+		<section class="mb-8 sm:mb-12 lg:mb-16">
+			<div class="bg-gradient-to-br from-accent via-primary to-secondary text-white px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 rounded-2xl sm:rounded-3xl shadow-2xl relative overflow-hidden">
+				<div class="absolute inset-0 bg-gradient-to-r from-secondary/20 to-transparent"></div>
+				<div class="relative z-10 text-center">
+					<h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 lg:mb-8 leading-tight">
+						Bienvenido a <span class="text-white">ALEMAR Estructuras</span>
+					</h1>
+					<p class="text-sm sm:text-base lg:text-lg xl:text-xl max-w-4xl mx-auto leading-relaxed text-white/90">
+						Nos especializamos en ofrecer soluciones integrales de techado y estructuras metálicas, garantizando la máxima calidad y durabilidad en cada uno de nuestros proyectos.
+					</p>
+				</div>
 			</div>
-		</div>
+		</section>
 		
-		<section class="mb-8 sm:mb-12">
+		<!-- Carousel Principal -->
+		<section class="mb-8 sm:mb-12 lg:mb-16">
 			<Carousel id="main-carousel" images={mainCarouselImages} />
 		</section>
 
-		<section class="text-center my-8 sm:my-16 p-4 sm:p-8 md:p-12 bg-white rounded-3xl shadow-2xl border border-[#c8aa6e]/20">
-			<div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-4 sm:mb-8 rounded-full"></div>
-			<h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-4 sm:mb-8">
+		<!-- Sección de Experiencia -->
+		<section class="text-center mb-8 sm:mb-12 lg:mb-16 p-4 sm:p-6 lg:p-8 xl:p-12 bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-light">
+			<div class="w-12 sm:w-16 lg:w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto mb-4 sm:mb-6 lg:mb-8 rounded-full"></div>
+			<h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-4 sm:mb-6 lg:mb-8">
 				Nuestra Experiencia a su Servicio
-			</h3>
-			<p class="text-base sm:text-lg text-[#2d2d2d] max-w-full sm:max-w-3xl md:max-w-4xl mx-auto leading-relaxed break-words">
+			</h2>
+			<p class="text-sm sm:text-base lg:text-lg text-text-secondary max-w-4xl mx-auto leading-relaxed">
 				Con años de experiencia en el sector, ofrecemos soluciones personalizadas y de alta calidad en techado y estructuras metálicas. Nuestro compromiso es la excelencia y la satisfacción total de nuestros clientes, garantizando durabilidad y seguridad en cada proyecto.
 			</p>
 		</section>
 
-		<a href="/servicios" class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 sm:px-12 md:px-16 py-3 sm:py-4 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg mb-8 sm:mb-16 border-2 border-[#c8aa6e]/30">
-			Descubra Nuestros Servicios
-		</a>
 
-		<section class="mt-10 sm:mt-20">
-			<h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-6 sm:mb-10 text-center break-words">
-				Nuestros Clientes
-			</h3>
-			<Carousel id="client-carousel" images={clientCarouselImages} showNavigation={false} showPagination={false} interval={3000} />
+
+		<!-- Botón CTA -->
+		<section class="text-center mb-8 sm:mb-12 lg:mb-16">
+			<a 
+				href="/servicios-populares" 
+				class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 sm:px-8 lg:px-12 xl:px-16 py-3 sm:py-4 lg:py-6 rounded-xl sm:rounded-2xl text-sm sm:text-base lg:text-lg xl:text-xl font-bold hover:from-secondary hover:to-primary hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-light/30 focus:outline-none focus:ring-4 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-neutral"
+				aria-label="Descubrir nuestros servicios"
+			>
+				Descubra Nuestros Servicios
+			</a>
 		</section>
 
+		<!-- Sección de Clientes -->
+		<section class="mb-8 sm:mb-12 lg:mb-16">
+			<h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-6 sm:mb-8 lg:mb-10 text-center">
+				Nuestros Clientes
+			</h2>
+			<Carousel 
+				id="client-carousel" 
+				images={clientCarouselImages} 
+				showNavigation={false} 
+				showPagination={false} 
+				interval={3000} 
+			/>
+		</section>
 	</main>
 </BaseLayout>

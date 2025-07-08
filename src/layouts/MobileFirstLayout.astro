@@ -1,4 +1,7 @@
 ---
+// src/layouts/MobileFirstLayout.astro
+// Layout optimizado para mobile-first con todas las mejores prácticas de responsive design
+
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton.astro";
@@ -11,6 +14,7 @@ interface Props {
 	keywords?: string;
 	image?: string;
 	showFooterMap?: boolean;
+	canonical?: string;
 }
 
 const { 
@@ -18,8 +22,11 @@ const {
 	description = "ALEMAR Estructuras - Soluciones integrales en techado y estructuras metálicas. Expertos en instalación, mantenimiento y fabricación de estructuras metálicas en Arequipa y Lima.",
 	keywords = "estructuras metálicas, techos metálicos, soldadura, impermeabilización, Arequipa, Lima, construcción",
 	image = "/images/estructura-metalica-almacen.jpg",
-	showFooterMap = true 
+	showFooterMap = true,
+	canonical
 } = Astro.props;
+
+const canonicalUrl = canonical || Astro.url.href;
 ---
 
 <html lang="es" class="scroll-smooth">
@@ -34,6 +41,7 @@ const {
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content="ALEMAR Estructuras" />
+		<link rel="canonical" href={canonicalUrl} />
 		
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
@@ -43,6 +51,8 @@ const {
 		<meta property="og:image" content={new URL(image, Astro.url)} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="ALEMAR Estructuras" />
+		<meta property="og:locale" content="es_PE" />
 		
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
@@ -58,13 +68,23 @@ const {
 		<!-- Load Google Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 		
+		<!-- PWA Meta Tags -->
+		<meta name="theme-color" content="#1e3a5f" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="ALEMAR Estructuras" />
+		
+		<!-- Performance optimizations -->
+		<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="//fonts.gstatic.com" />
+		
 		<ViewTransitions />
 	</head>
 	<body
-		class="bg-neutral font-sans leading-normal tracking-normal flex flex-col min-h-screen text-base antialiased"
+		class="bg-[#f4e7d1] font-sans leading-normal tracking-normal flex flex-col min-h-screen text-base antialiased"
 	>
 		<!-- Skip to main content link for accessibility -->
-		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent text-white px-4 py-2 rounded-md z-50">
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[#1e3a5f] text-white px-4 py-2 rounded-md z-50">
 			Saltar al contenido principal
 		</a>
 
@@ -87,5 +107,15 @@ const {
 		<script is:inline src="/scripts/serviceCarousel.js"></script>
 		<script is:inline src="/scripts/main-carousel.js"></script>
 
+		<!-- Performance monitoring -->
+		<script>
+			// Performance monitoring
+			window.addEventListener('load', () => {
+				if ('performance' in window) {
+					const perfData = performance.getEntriesByType('navigation')[0];
+					
+				}
+			});
+		</script>
 	</body>
-</html>
+</html> 

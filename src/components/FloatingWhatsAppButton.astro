@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import IconWrapper from './IconWrapper.astro';
 ---
 
 <a
@@ -9,7 +9,7 @@ import { Icon } from 'astro-icon/components';
   style="border: 2px solid #128C7E; min-width:56px; min-height:56px;"
 >
   <span class="flex items-center justify-center">
-    <Icon name="mdi:whatsapp" class="h-8 w-8" />
+    <IconWrapper name="mdi:whatsapp" size="xl" color="white" />
     <span class="hidden md:inline font-bold text-base ml-2 align-middle">Cotiza aquí</span>
   </span>
 </a>

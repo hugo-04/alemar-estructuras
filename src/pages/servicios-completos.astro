@@ -1,0 +1,159 @@
+---
+// src/pages/servicios-completos.astro
+// Esta página muestra todos los servicios organizados por categorías
+// Es la vista completa cuando se hace clic en "Ver Todos los Servicios"
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServicePreviewCard from '../components/ServicePreviewCard.astro';
+import { services } from '../data/services.ts';
+
+// Organizar servicios por categorías y subcategorías
+const servicesByCategory: Record<string, Record<string, typeof services>> = services.reduce((acc, service) => {
+  const category = service.category || 'Sin categoría';
+  const subcategory = service.subcategory || 'Sin subcategoría';
+  
+  if (!acc[category]) {
+    acc[category] = {};
+  }
+  if (!acc[category][subcategory]) {
+    acc[category][subcategory] = [];
+  }
+  acc[category][subcategory].push(service);
+  return acc;
+}, {} as Record<string, Record<string, typeof services>>);
+
+// Obtener categorías únicas
+const categories = Object.keys(servicesByCategory);
+---
+
+<BaseLayout title="Todos los Servicios - ALEMAR Estructuras">
+  <!-- Sección Hero -->
+  <section class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-20 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+    <div class="relative z-10">
+      <h1 class="text-6xl font-extrabold mb-6">
+        Todos Nuestros <span class="text-[#c8aa6e]">Servicios</span>
+      </h1>
+      <p class="text-xl max-w-3xl mx-auto leading-relaxed">
+        Explore nuestra completa gama de servicios especializados en techos metálicos, estructuras y construcción en seco.
+      </p>
+    </div>
+  </section>
+
+  <main class="container mx-auto p-6 mt-8 flex-grow">
+    <!-- Navegación por categorías -->
+    <section class="mb-16">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-[#1e3a5f] mb-4">
+          Nuestras <span class="text-[#c8aa6e]">Categorías</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto rounded-full"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          categories.map((category) => (
+            <a 
+              href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
+              class="bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white p-6 rounded-2xl text-center hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105"
+            >
+              <h3 class="text-xl font-bold mb-2">{category}</h3>
+              <p class="text-sm opacity-90">
+                {Object.keys(servicesByCategory[category]).length} subcategorías
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Servicios organizados por categorías -->
+    {
+      categories.map((category) => (
+        <section id={category.toLowerCase().replace(/\s+/g, '-')} class="mb-20">
+          <div class="text-center mb-12">
+            <h2 class="text-5xl font-extrabold text-[#1e3a5f] mb-4">
+              {category}
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto rounded-full mb-8"></div>
+          </div>
+
+          {
+            Object.entries(servicesByCategory[category]).map(([subcategory, servicesList]) => (
+              <div class="mb-16">
+                <h3 class="text-3xl font-bold text-[#2d2d2d] mb-8 text-center">
+                  {subcategory}
+                </h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {
+                    servicesList.map((service) => (
+                      <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
+                        <ServicePreviewCard service={service} />
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            ))
+          }
+        </section>
+      ))
+    }
+
+    <!-- Sección de información adicional -->
+    <section class="bg-neutral py-16 mt-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-[#1e3a5f] mb-6">
+            ¿Necesita ayuda para elegir?
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">Asesoría Gratuita</h3>
+            <p class="text-[#2d2d2d]">Nuestros expertos le ayudarán a elegir la mejor solución para su proyecto.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">Presupuesto Detallado</h3>
+            <p class="text-[#2d2d2d]">Reciba un presupuesto completo y transparente sin compromiso.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">Respuesta Rápida</h3>
+            <p class="text-[#2d2d2d]">Le contactamos en menos de 24 horas con una propuesta personalizada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Llamada a la Acción (CTA) -->
+    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-16 rounded-3xl shadow-2xl mt-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+      <div class="relative z-10">
+        <h2 class="text-5xl font-extrabold mb-6">
+          ¿Listo para <span class="text-[#c8aa6e]">comenzar</span>?
+        </h2>
+        <p class="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">Contáctenos hoy mismo para recibir una asesoría personalizada y descubrir la mejor solución para su proyecto.</p>
+        <a href="/contacto" class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-12 py-6 rounded-2xl text-xl font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-[#1e3a5f]/20 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95">Solicitar Asesoría</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout> 

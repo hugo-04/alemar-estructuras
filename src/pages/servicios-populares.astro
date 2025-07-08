@@ -1,0 +1,124 @@
+---
+// src/pages/servicios-populares.astro
+// Esta página muestra los servicios más adquiridos (active: true)
+// Es la vista principal cuando se hace clic en "Servicios" desde el header
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServicePreviewCard from '../components/ServicePreviewCard.astro';
+import { services } from '../data/services.ts';
+
+// Filtra solo los servicios marcados como más adquiridos
+const popularServices = services.filter(service => service.active);
+---
+
+<BaseLayout title="Servicios - ALEMAR Estructuras">
+  <!-- Sección Hero -->
+  <section class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-20 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+    <div class="relative z-10">
+      <h1 class="text-6xl font-extrabold mb-6">
+        Nuestros <span class="text-[#c8aa6e]">Servicios</span>
+      </h1>
+      <p class="text-xl max-w-3xl mx-auto leading-relaxed">
+        Descubre nuestros servicios más solicitados. Soluciones probadas y confiables para sus proyectos de construcción y mantenimiento.
+      </p>
+    </div>
+  </section>
+
+  <main class="container mx-auto p-6 mt-8 flex-grow">
+    <!-- Sección de Servicios Más Adquiridos -->
+    <section class="text-center mb-20">
+      <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
+      <h2 class="text-5xl font-extrabold text-[#1e3a5f] mb-8">
+        Servicios <span class="text-[#c8aa6e]">Más Adquiridos</span>
+      </h2>
+      <p class="text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+        Estos son los servicios que nuestros clientes eligen con más frecuencia. Cada uno representa una solución probada y confiable para diferentes necesidades de construcción y mantenimiento.
+      </p>
+    </section>
+
+    <!-- Grid de servicios populares -->
+    {popularServices.length > 0 ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          popularServices.map((service) => (
+            <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
+              <ServicePreviewCard service={service} />
+            </div>
+          ))
+        }
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-lg text-[#2d2d2d]">No hay servicios destacados disponibles en este momento.</p>
+      </div>
+    )}
+
+    <!-- Enlace para ver todos los servicios -->
+    {popularServices.length > 0 && (
+      <div class="text-center mt-16">
+        <a 
+          href="/servicios-completos" 
+          class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95"
+        >
+          Ver Todos los Servicios
+        </a>
+      </div>
+    )}
+
+    <!-- Sección de información adicional -->
+    <section class="bg-neutral py-16 mt-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-[#1e3a5f] mb-6">
+            ¿Por qué elegir nuestros servicios más populares?
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">Calidad Comprobada</h3>
+            <p class="text-[#2d2d2d]">Servicios que han sido probados por cientos de clientes satisfechos.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">Rendimiento Óptimo</h3>
+            <p class="text-[#2d2d2d]">Soluciones que ofrecen el mejor balance entre calidad y costo.</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">Soporte Experto</h3>
+            <p class="text-[#2d2d2d]">Equipo especializado con años de experiencia en cada servicio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Llamada a la Acción (CTA) -->
+    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-16 rounded-3xl shadow-2xl mt-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+      <div class="relative z-10">
+        <h2 class="text-5xl font-extrabold mb-6">
+          ¿Preparado para iniciar su <span class="text-[#c8aa6e]">proyecto</span>?
+        </h2>
+        <p class="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">Contáctenos hoy mismo para recibir una asesoría sin compromiso y descubrir cómo podemos contribuir al éxito de su proyecto.</p>
+        <a href="/contacto" class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-12 py-6 rounded-2xl text-xl font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-[#1e3a5f]/20 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95">Contactar Ahora</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout> 

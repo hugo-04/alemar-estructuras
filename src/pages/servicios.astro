@@ -10,9 +10,50 @@ import { services } from '../data/services.ts'; // Importa los datos de todos lo
 // Filtra los servicios que tienen la propiedad 'isMostClicked' establecida en true.
 // Estos servicios se mostrarán en la sección "Servicios Más Solicitados".
 const mostClickedServices = services.filter(service => service.isMostClicked);
+
+// Agrupa los servicios por categoría y subcategoría
+const servicesByCategory = services.reduce((acc, service) => {
+  if (!acc[service.category]) {
+    acc[service.category] = {};
+  }
+  
+  if (service.subcategory) {
+    if (!acc[service.category][service.subcategory]) {
+      acc[service.category][service.subcategory] = [];
+    }
+    acc[service.category][service.subcategory].push(service);
+  } else {
+    if (!acc[service.category]['general']) {
+      acc[service.category]['general'] = [];
+    }
+    acc[service.category]['general'].push(service);
+  }
+  
+  return acc;
+}, {} as Record<string, Record<string, typeof services>>);
+
+// Define el orden de las categorías y subcategorías
+const categoryStructure = {
+  "Techos Metálicos": {
+    "Domiciliarios": ["Sol y Sombra", "Techos Comerciales"],
+    "Industriales": ["Techos Rectos o Planos", "Techos Parabólicos", "Techos a Dos Aguas", "Naves Industriales"]
+  },
+  "Construcción en Seco": {
+    "general": ["Construcción en Seco"]
+  },
+  "Estructuras Especiales": {
+    "Mezanine y entrepisos metálicos": ["Mezanine y Entre pisos Metálicos"],
+    "Estructuras con acabado color madera": ["Estructuras con Acabado Color Madera"],
+    "Carpintería Metálica": ["Carpintería Metálica"],
+    "Trabajos en acero inoxidable": ["Trabajos en Acero Inoxidable"]
+  },
+  "Mantenimiento": {
+    "general": ["Mantenimiento de Estructuras Metálicas"]
+  }
+};
 ---
 
-<BaseLayout title="Nuestros Servicios - [Nombre de tu Empresa]">
+<BaseLayout title="Nuestros Servicios - ALEMAR Estructuras">
   <!-- Sección Hero: Banner principal de la página de servicios. -->
   <section class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-20 text-center relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
@@ -45,6 +86,65 @@ const mostClickedServices = services.filter(service => service.isMostClicked);
         ))
       }
     </div>
+
+    <!-- Sección de Todos los Servicios por Categoría -->
+    <section class="mt-20">
+      <div class="text-center mb-16">
+        <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
+        <h2 class="text-5xl font-extrabold text-[#1e3a5f] mb-8">
+          Todos Nuestros <span class="text-[#c8aa6e]">Servicios</span>
+        </h2>
+        <p class="text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+          Explore nuestra completa gama de servicios organizados por categorías para encontrar la solución perfecta para su proyecto.
+        </p>
+      </div>
+
+      {
+        Object.entries(categoryStructure).map(([category, subcategories]) => {
+          const categoryServices = servicesByCategory[category];
+          if (!categoryServices) return null;
+          
+          return (
+            <div class="mb-16">
+              <h3 class="text-3xl font-bold text-[#1e3a5f] mb-8 text-center">
+                {category}
+              </h3>
+              
+              {
+                Object.entries(subcategories).map(([subcategory, serviceNames]) => {
+                  // Encontrar los servicios que coinciden con esta subcategoría
+                  const subcategoryServices = services.filter(service => 
+                    service.category === category && 
+                    (subcategory === 'general' ? !service.subcategory : service.subcategory === subcategory)
+                  );
+                  
+                  if (subcategoryServices.length === 0) return null;
+                  
+                  return (
+                    <div class="mb-12">
+                      {subcategory !== 'general' && (
+                        <h4 class="text-xl font-semibold text-[#31487a] mb-6 text-center">
+                          {subcategory}
+                        </h4>
+                      )}
+                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {
+                          subcategoryServices.map((service) => (
+                            <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
+                              <ServicePreviewCard service={service} />
+                            </div>
+                          ))
+                        }
+                      </div>
+                    </div>
+                  );
+                })
+              }
+            </div>
+          );
+        })
+      }
+    </section>
 
     <!-- Sección de Llamada a la Acción (CTA): Invita a los usuarios a contactar. -->
     <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-16 rounded-3xl shadow-2xl mt-24 relative overflow-hidden">

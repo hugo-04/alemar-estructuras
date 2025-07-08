@@ -1,8 +1,8 @@
 ---
 // src/components/Header.astro
 import { services } from "../data/services.ts";
-import { projects } from "../data/projects.ts"; // Importar datos de proyectos
-import { Icon } from "astro-icon/components";
+import { projects } from "../data/projects.ts";
+import IconWrapper from "./IconWrapper.astro";
 
 const serviceCategories: string[] = [
   ...new Set(services.map((service) => service.category)),
@@ -15,6 +15,205 @@ const projectCategories: string[] = [
 const { url } = Astro;
 const currentPath = url.pathname;
 ---
+
+<header class="bg-accent text-white shadow-lg sticky top-0 z-50">
+  <!-- Barra de Contacto Superior - Mobile First -->
+  <div class="bg-primary text-xs sm:text-sm py-2">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
+        <a
+          href="tel:+51915157257"
+          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
+          aria-label="Llamar al +51 915 157 257"
+        >
+          <IconWrapper name="mdi:phone" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
+          <span class="hidden xs:inline">+51 915 157 257</span>
+          <span class="xs:hidden">+51 915 157 257</span>
+        </a>
+        <a
+          href="https://wa.me/+51915157257"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
+          aria-label="Contactar por WhatsApp"
+        >
+          <IconWrapper name="mdi:whatsapp" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
+          <span class="hidden xs:inline">WhatsApp</span>
+          <span class="xs:hidden">WhatsApp</span>
+        </a>
+        <a
+          href="mailto:servicios@multiserviciosprecisur.com"
+          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
+          aria-label="Enviar correo electrónico"
+        >
+          <IconWrapper name="mdi:email" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
+          <span class="hidden xs:inline">Correo</span>
+          <span class="xs:hidden">Correo</span>
+        </a>
+        <div class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white">
+          <IconWrapper name="mdi:map-marker" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
+          <span class="hidden sm:inline">Trujillo / La Libertad</span>
+          <span class="sm:hidden">Trujillo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido Principal del Encabezado - Mobile First -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-3 sm:py-4 lg:py-6">
+      <!-- Logo y Nombre -->
+      <div class="flex items-center">
+        <a
+          href="/"
+          class="flex flex-col sm:flex-row sm:items-center text-white hover:text-white/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md p-1"
+          aria-label="Ir a página principal"
+        >
+          <span class="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold">ALEMAR Estructuras</span>
+          <span class="text-xs sm:text-sm lg:text-base text-white/80 font-medium mt-0.5 sm:mt-0 sm:ml-2">Soluciones en estructuras metálicas y techados</span>
+        </a>
+      </div>
+
+      <!-- Navegación de Escritorio -->
+      <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2" role="navigation" aria-label="Navegación principal">
+        <a
+          href="/"
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath === '/' ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
+          aria-current={currentPath === '/' ? 'page' : undefined}
+        >
+          Inicio
+        </a>
+        
+        <!-- Enlace Servicios -->
+        <a
+          href="/servicios-populares"
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/servicios') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
+          aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
+        >
+          Servicios
+        </a>
+
+        <!-- Enlace Proyectos -->
+        <a
+          href="/proyectos"
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/proyectos') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
+          aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
+        >
+          Proyectos
+        </a>
+
+        <a
+          href="/nosotros"
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath === '/nosotros' ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20'}`}
+          aria-current={currentPath === '/nosotros' ? 'page' : undefined}
+        >
+          Nosotros
+        </a>
+        <a
+          href="/contacto"
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath === '/contacto' ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20'}`}
+          aria-current={currentPath === '/contacto' ? 'page' : undefined}
+        >
+          Contacto
+        </a>
+      </nav>
+
+      <!-- Botón de Menú para Móvil y Tablet -->
+      <div class="lg:hidden">
+        <button
+          id="menu-button"
+          class="text-white/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md p-2 transition-colors duration-200"
+          aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+          aria-controls="mobile-sidebar"
+        >
+          <div class="w-6 h-6 relative" id="hamburger-icon-wrapper">
+            <span class="block w-full h-0.5 bg-current absolute left-0 transform transition-all duration-300 ease-in-out top-0.5"></span>
+            <span class="block w-full h-0.5 bg-current absolute left-0 transform transition-all duration-300 ease-in-out top-1/2 -translate-y-1/2"></span>
+            <span class="block w-full h-0.5 bg-current absolute left-0 transform transition-all duration-300 ease-in-out bottom-0.5"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar para Móvil y Tablet - Mobile First -->
+  <div
+    id="mobile-sidebar"
+    class="fixed top-0 left-0 w-full sm:w-80 h-full bg-accent shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menú de navegación móvil"
+  >
+    <div class="flex flex-col h-full">
+      <!-- Header del Sidebar -->
+      <div class="p-4 sm:p-6 border-b border-primary flex justify-between items-center">
+        <h2 class="text-xl sm:text-2xl font-bold text-white">Menú</h2>
+        <button
+          id="close-sidebar-button"
+          class="text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md p-1 transition-colors duration-200"
+          aria-label="Cerrar menú de navegación"
+        >
+          <svg class="h-6 w-6 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navegación del Sidebar -->
+      <nav class="flex-1 py-4 px-2 space-y-1 overflow-y-auto" role="navigation" aria-label="Navegación móvil">
+        <a
+          href="/"
+          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+          aria-current={currentPath === '/' ? 'page' : undefined}
+        >
+          Inicio
+        </a>
+
+        <!-- Enlace Servicios -->
+        <a
+          href="/servicios-populares"
+          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+          aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
+        >
+          Servicios
+        </a>
+
+        <!-- Enlace Proyectos -->
+        <a
+          href="/proyectos"
+          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+          aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
+        >
+          Proyectos
+        </a>
+
+        <a
+          href="/nosotros"
+          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+          aria-current={currentPath === '/nosotros' ? 'page' : undefined}
+        >
+          Nosotros
+        </a>
+        <a
+          href="/contacto"
+          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+          aria-current={currentPath === '/contacto' ? 'page' : undefined}
+        >
+          Contacto
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Overlay para cerrar el sidebar -->
+  <div
+    id="sidebar-overlay"
+    class="fixed inset-0 z-30 lg:hidden bg-black bg-opacity-50 backdrop-blur-sm opacity-0 invisible transition-all duration-300"
+    aria-hidden="true"
+  >
+  </div>
+</header>
 
 <!-- CSS del Header -->
 <style>
@@ -29,260 +228,3 @@ const currentPath = url.pathname;
     transform: translateY(-10px) rotate(-45deg);
   }
 </style>
-
-<header class="bg-[#1e3a5f] text-white shadow-lg sticky top-0 z-30">
-  <!-- Barra de Contacto Superior -->
-  <div class="bg-[#2d2d2d] text-sm py-2">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap justify-center md:justify-center items-center">
-        <div
-          class="flex flex-wrap justify-center items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8"
-        >
-          <a
-            href="tel:+51915157257"
-            class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-1 sm:p-2 rounded-md"
-          >
-            <Icon name="mdi:phone" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
-            <span class="hidden sm:inline">+51 915 157 257</span>
-            <span class="sm:hidden">+51 915 157 257</span>
-          </a>
-          <a
-            href="https://wa.me/+51915157257"
-            target="_blank"
-            class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-1 sm:p-2 rounded-md"
-          >
-            <Icon name="mdi:whatsapp" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
-            <span class="hidden sm:inline">WhatsApp</span>
-            <span class="sm:hidden">WhatsApp</span>
-          </a>
-          <a
-            href="mailto:servicios@multiserviciosprecisur.com"
-            class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white hover:text-gray-300 transition duration-300 p-1 sm:p-2 rounded-md"
-          >
-            <Icon name="mdi:email" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
-            <span class="hidden sm:inline">Correo</span>
-            <span class="sm:hidden">Correo</span>
-          </a>
-          <div class="flex items-center text-sm sm:text-base lg:text-lg font-bold text-white mt-2 md:mt-0">
-            <Icon name="mdi:map-marker" class="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 text-white" />
-            <span class="text-sm sm:text-base lg:text-lg font-bold ml-1 sm:ml-2 text-white">Trujillo / La Libertad</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contenido Principal del Encabezado -->
-  <div
-    class="container mx-auto flex justify-between items-center p-4 sm:px-6 lg:px-8"
-  >
-    <div class="flex items-center flex-col">
-      <a
-        href="/"
-        class="text-2xl sm:text-3xl font-bold text-white hover:text-gray-300 transition duration-300"
-      >ALEMAR Estructuras</a>
-      <span class="text-sm sm:text-base text-[#c8aa6e] font-medium mt-1">Soluciones en estructuras metálicas y techados</span>
-    </div>
-
-    <!-- Navegación de Escritorio -->
-    <nav class="hidden lg:flex items-center space-x-4">
-      <a
-        href="/"
-        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-[#eaeaea] hover:text-white'}`}
-      >Inicio</a>
-      <div class="relative group">
-        <a
-          href="/servicios"
-          class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 flex items-center ${currentPath.startsWith('/servicios') ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-[#eaeaea] hover:text-white'}`}
-        >
-          Servicios
-          <Icon name="mdi:chevron-down" class="ml-1 h-5 w-5" />
-        </a>
-        <div
-          class="absolute left-0 mt-1 w-56 z-20 bg-[#1a2238] shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
-        >
-          {
-            serviceCategories.map((category: string) => (
-              <a
-                href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
-              >
-                {category}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-      <div class="relative group">
-        <a
-          href="/proyectos"
-          class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 flex items-center ${currentPath.startsWith('/proyectos') ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-[#eaeaea] hover:text-white'}`}
-        >
-          Proyectos
-          <Icon name="mdi:chevron-down" class="ml-1 h-5 w-5" />
-        </a>
-        <div
-          class="absolute left-0 mt-1 w-56 z-20 bg-[#1a2238] shadow-lg rounded-md py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
-        >
-          <a
-            href="/proyectos"
-            class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
-          >
-            Todos los Proyectos
-          </a>
-          {
-            projectCategories.map((category: string) => (
-              <a
-                href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200"
-              >
-                {category}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-      <a
-        href="/nosotros"
-        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/nosotros' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
-      >Nosotros</a>
-      <a
-        href="/contacto"
-        class={`px-3 py-2 rounded-md text-base font-medium transition duration-300 ${currentPath === '/contacto' ? 'bg-[#c8aa6e] text-[#1e3a5f] font-bold' : 'text-gray-300 hover:text-white'}`}
-      >Contacto</a>
-    </nav>
-
-    <!-- Botón de Menú para Móvil y Tablet -->
-    <div class="block lg:hidden">
-      <button
-        id="menu-button"
-        class="text-gray-300 hover:text-white focus:outline-none z-50"
-        aria-label="Abrir menú de navegación"
-        aria-expanded="false"
-        aria-controls="mobile-sidebar"
-      >
-        <div class="w-6 h-6 relative" id="hamburger-icon-wrapper">
-          <span
-            class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out top-0.5"
-          ></span>
-          <span
-            class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out top-1/2 -translate-y-1/2"
-          ></span>
-          <span
-            class="block w-full h-0.5 bg-current absolute left-0 transform transition duration-300 ease-in-out bottom-0.5"
-          ></span>
-        </div>
-      </button>
-    </div>
-  </div>
-
-  <!-- Sidebar para Móvil y Tablet -->
-  <div
-    id="mobile-sidebar"
-    class="fixed top-0 left-0 w-60 h-full bg-[#1e3a5f] shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden rounded-r-2xl"
-    style="display: block;"
-  >
-    <div class="p-5 border-b border-gray-700 flex justify-between items-center">
-      <h2 class="text-2xl font-bold text-white">Menú</h2>
-      <button
-        id="close-sidebar-button"
-        class="text-gray-300 hover:text-white focus:outline-none"
-        aria-label="Cerrar menú de navegación"
-      >
-        <svg
-          class="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-    <nav class="py-5 px-2 space-y-1">
-      <a
-        href="/"
-        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
-        >Inicio</a
-      >
-      <div>
-        <button
-          id="services-toggle"
-          class="w-full flex justify-between items-center text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
-        >
-          <span>Servicios</span>
-          <Icon
-            name="mdi:chevron-down"
-            class="h-6 w-6 transition-transform duration-300"
-          />
-        </button>
-        <div id="services-menu" class="hidden pl-4 mt-1 space-y-1">
-          <a
-            href="/servicios"
-            class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
-            >Todos</a
-          >
-          {
-            serviceCategories.map((category: string) => (
-              <a
-                href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
-              >
-                {category}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-      <div>
-        <button
-          id="projects-toggle"
-          class="w-full flex justify-between items-center text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
-        >
-          <span>Proyectos</span>
-          <Icon
-            name="mdi:chevron-down"
-            class="h-6 w-6 transition-transform duration-300"
-          />
-        </button>
-        <div id="projects-menu" class="hidden pl-4 mt-1 space-y-1">
-          <a
-            href="/proyectos"
-            class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
-            >Todos los Proyectos</a
-          >
-          {
-            projectCategories.map((category: string) => (
-              <a
-                href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                class="block px-3 py-2 text-base text-gray-400 hover:text-white hover:bg-gray-700 rounded-md"
-              >
-                {category}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-      <a
-        href="/nosotros"
-        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
-        >Nosotros</a
-      >
-      <a
-        href="/contacto"
-        class="block text-gray-300 hover:text-white hover:bg-gray-700 px-3 py-2 rounded-md text-lg font-medium transition duration-300"
-        >Contacto</a
-      >
-    </nav>
-  </div>
-  <div
-    id="sidebar-overlay"
-    class="fixed inset-0 z-30 lg:hidden backdrop-blur-sm bg-transparent"
-    style="display: none;"
-  >
-  </div>
-</header>

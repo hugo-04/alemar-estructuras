@@ -1,6 +1,6 @@
 ---
 // src/components/ServiceCard.astro
-import { Icon } from 'astro-icon/components';
+import IconWrapper from './IconWrapper.astro';
 
 // Este componente representa una tarjeta individual para mostrar un servicio.
 // Incluye la imagen, título, descripción y botones de "Más Información" y "Cotizar".
@@ -24,15 +24,45 @@ const { title, description, whatsappLink, imageUrl, slug } = Astro.props;
 const serviceSlug = slug;
 ---
 
-<div class="bg-white rounded-3xl shadow-2xl p-8 transition-all duration-300 hover:shadow-3xl hover:scale-105 border border-[#c8aa6e]/20 flex flex-col items-center text-center min-h-[540px] max-h-[540px] h-[540px] w-full">
-  <img src={imageUrl} alt={title} class="w-full h-56 object-cover rounded-2xl mb-8 shadow-lg">
-  <h3 class="text-2xl font-bold text-[#1e3a5f] mb-4">{title}</h3>
-  <p class="text-[#2d2d2d] mb-8 text-lg leading-relaxed flex-grow">{description}</p>
-  <div class="flex flex-col sm:flex-row justify-between items-center mt-auto space-y-4 sm:space-y-0 sm:space-x-4 w-full">
-    <a href={`/servicios/${serviceSlug}`} class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-8 py-4 rounded-xl hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 w-full sm:w-auto text-center font-bold shadow-lg border-2 border-[#c8aa6e]/30">Más Información</a>
-    <a href={whatsappLink} target="_blank" class="inline-flex items-center justify-center bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-8 py-4 rounded-xl hover:from-[#b89a5e] hover:to-[#c8aa6e] transition-all duration-300 w-full sm:w-auto text-center font-bold shadow-lg">
-      <Icon name="mdi:whatsapp" class="h-5 w-5 mr-2" />
-      Cotizar
-    </a>
+<div class="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-lg sm:shadow-xl lg:shadow-2xl p-4 sm:p-6 lg:p-8 transition-all duration-300 hover:shadow-2xl sm:hover:shadow-3xl hover:scale-105 border border-light flex flex-col h-full">
+  <!-- Imagen del servicio -->
+  <div class="relative mb-4 sm:mb-6 lg:mb-8">
+    <img 
+      src={imageUrl} 
+      alt={title} 
+      class="w-full h-40 sm:h-48 md:h-56 object-cover rounded-lg sm:rounded-xl shadow-md"
+      loading="lazy"
+    />
+  </div>
+  
+  <!-- Contenido de la tarjeta -->
+  <div class="flex-1 flex flex-col">
+    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-accent mb-2 sm:mb-3 lg:mb-4 leading-tight">
+      {title}
+    </h3>
+    <p class="text-sm sm:text-base lg:text-lg text-text-secondary mb-4 sm:mb-6 lg:mb-8 leading-relaxed flex-grow">
+      {description}
+    </p>
+    
+    <!-- Botones de acción -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-auto">
+      <a 
+        href={`/servicios/${serviceSlug}`} 
+        class="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-all duration-300 text-sm sm:text-base lg:text-lg font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-white"
+        aria-label={`Más información sobre ${title}`}
+      >
+        Más Información
+      </a>
+      <a 
+        href={whatsappLink} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center bg-secondary hover:bg-secondary-hover text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-all duration-300 text-sm sm:text-base lg:text-lg font-bold shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-white"
+        aria-label={`Cotizar ${title} por WhatsApp`}
+      >
+        <IconWrapper name="mdi:whatsapp" size="sm" color="white" class="mr-1 sm:mr-2" />
+        Cotizar
+      </a>
+    </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
 
 import { services } from '../../data/services'; // Importa los datos de todos los servicios.
 import BaseLayout from '../../layouts/BaseLayout.astro'; // Importa el layout principal de la página.
-import { Icon } from 'astro-icon/components'; // Importa el componente Icon para mostrar íconos.
+import IconWrapper from '../../components/IconWrapper.astro';
 import ServiceCarousel from '../../components/ServiceCarousel.astro'; // Importa el carrusel especial para servicios
 
 interface Service {
@@ -57,7 +57,7 @@ const { service } = Astro.props;
             target="_blank"
             class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 transition duration-300 text-lg font-semibold"
           >
-            <Icon name="mdi:whatsapp" class="h-6 w-6 mr-2" />
+            <IconWrapper name="mdi:whatsapp" size="md" color="white" class="mr-2" />
             Cotizar por WhatsApp
           </a>
         </div>

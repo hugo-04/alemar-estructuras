@@ -9,6 +9,7 @@ export interface Project {
   clientName: string;
   location: string;
   completionDate: string;
+  featured: boolean;
 }
 
 export const projects: Project[] = [
@@ -26,7 +27,8 @@ export const projects: Project[] = [
     clientReview: "Excelente trabajo en nuestro almacén. El techo quedó perfecto y resistió las lluvias del invierno sin problemas. Muy profesionales y puntuales.",
     clientName: "Carlos Mendoza",
     location: "Arequipa",
-    completionDate: "Enero 2024"
+    completionDate: "Enero 2024",
+    featured: true
   },
   {
     title: "Cubierta Metálica para Restaurante",
@@ -42,7 +44,8 @@ export const projects: Project[] = [
     clientReview: "La cubierta transformó completamente nuestro restaurante. Los clientes adoran el ambiente y el diseño es exactamente lo que queríamos.",
     clientName: "María González",
     location: "Lima",
-    completionDate: "Marzo 2024"
+    completionDate: "Marzo 2024",
+    featured: true
   },
   {
     title: "Estructura Metálica para Taller Mecánico",
@@ -58,7 +61,8 @@ export const projects: Project[] = [
     clientReview: "La estructura es muy sólida y nos permite trabajar con toda la maquinaria pesada sin problemas. El equipo fue muy profesional desde el diseño hasta la instalación.",
     clientName: "Roberto Silva",
     location: "Arequipa",
-    completionDate: "Febrero 2024"
+    completionDate: "Febrero 2024",
+    featured: false
   },
   {
     title: "Techo Residencial con Panel Sándwich",
@@ -74,7 +78,8 @@ export const projects: Project[] = [
     clientReview: "El techo quedó espectacular. La casa está mucho más fresca en verano y cálida en invierno. La instalación fue muy limpia y profesional.",
     clientName: "Ana Torres",
     location: "Lima",
-    completionDate: "Diciembre 2023"
+    completionDate: "Diciembre 2023",
+    featured: true
   },
   {
     title: "Pérgola Metálica para Jardín",
@@ -90,7 +95,8 @@ export const projects: Project[] = [
     clientReview: "La pérgola es el punto focal de nuestro jardín. El diseño es elegante y funcional. Los materiales son de excelente calidad.",
     clientName: "Luis Ramírez",
     location: "Arequipa",
-    completionDate: "Noviembre 2023"
+    completionDate: "Noviembre 2023",
+    featured: false
   },
   {
     title: "Impermeabilización de Techo Comercial",
@@ -106,7 +112,8 @@ export const projects: Project[] = [
     clientReview: "Solucionaron completamente nuestros problemas de filtraciones. El trabajo fue impecable y la garantía nos da mucha tranquilidad.",
     clientName: "Comercial San Martín",
     location: "Lima",
-    completionDate: "Octubre 2023"
+    completionDate: "Octubre 2023",
+    featured: true
   },
   {
     title: "Estructura para Paneles Solares",
@@ -122,7 +129,8 @@ export const projects: Project[] = [
     clientReview: "La estructura es perfecta para nuestros paneles solares. Muy resistente y bien calculada para las condiciones climáticas de la zona.",
     clientName: "Energía Solar Perú",
     location: "Arequipa",
-    completionDate: "Septiembre 2023"
+    completionDate: "Septiembre 2023",
+    featured: false
   },
   {
     title: "Barandales Metálicos para Edificio",
@@ -138,7 +146,8 @@ export const projects: Project[] = [
     clientReview: "Los barandales quedaron muy elegantes y seguros. El acabado es de primera calidad y la instalación fue muy profesional.",
     clientName: "Constructora Horizonte",
     location: "Lima",
-    completionDate: "Agosto 2023"
+    completionDate: "Agosto 2023",
+    featured: false
   },
   {
     title: "Portón Metálico Automatizado",
@@ -154,7 +163,8 @@ export const projects: Project[] = [
     clientReview: "El portón funciona perfectamente y es muy seguro. La automatización facilita mucho el acceso y el diseño es muy elegante.",
     clientName: "Familia Rodríguez",
     location: "Arequipa",
-    completionDate: "Julio 2023"
+    completionDate: "Julio 2023",
+    featured: false
   },
   {
     title: "Refuerzo Estructural de Edificio",
@@ -170,6 +180,7 @@ export const projects: Project[] = [
     clientReview: "El refuerzo estructural fue fundamental para la seguridad del edificio. El trabajo técnico fue excelente y cumplieron todos los estándares de seguridad.",
     clientName: "Inmobiliaria Central",
     location: "Lima",
-    completionDate: "Junio 2023"
+    completionDate: "Junio 2023",
+    featured: true
   }
 ];

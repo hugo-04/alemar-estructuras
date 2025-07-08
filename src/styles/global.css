@@ -6,25 +6,127 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Mejoras de accesibilidad para focus */
+  *:focus {
+    outline: 2px solid #c8aa6e;
+    outline-offset: 2px;
+  }
+
+  /* Mejoras para imágenes */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Mejoras para enlaces */
+  a {
+    text-decoration: none;
+  }
+
+  /* Mejoras para botones */
+  button {
+    cursor: pointer;
+  }
+
+  /* Mejoras para listas */
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300;
+    @apply bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2;
   }
   
   .btn-secondary {
-    @apply bg-[#c8aa6e] text-[#1e3a5f] px-6 py-3 rounded-lg font-semibold hover:bg-[#b89a5e] transition-all duration-300;
+    @apply bg-[#c8aa6e] text-[#1e3a5f] px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-[#b89a5e] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl transition-all duration-300 hover:shadow-2xl;
+  }
+
+  .container-fluid {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-responsive {
+    @apply text-sm sm:text-base lg:text-lg xl:text-xl;
+  }
+
+  .heading-responsive {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
   }
 }
 
 @layer utilities {
   .text-gradient {
     @apply bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] bg-clip-text text-transparent;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2;
+  }
+
+  /* Utilidades para responsive spacing */
+  .space-responsive {
+    @apply space-y-4 sm:space-y-6 lg:space-y-8;
+  }
+
+  .gap-responsive {
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  /* Utilidades para responsive padding */
+  .p-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  .px-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .py-responsive {
+    @apply py-4 sm:py-6 lg:py-8;
+  }
+
+  /* Utilidades para responsive margin */
+  .m-responsive {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+
+  .mx-responsive {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+
+  .my-responsive {
+    @apply my-4 sm:my-6 lg:my-8;
   }
 }
