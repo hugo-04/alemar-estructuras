@@ -84,23 +84,59 @@ const currentPath = url.pathname;
           Inicio
         </a>
         
-        <!-- Enlace Servicios -->
-        <a
-          href="/servicios-populares"
-          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/servicios') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
-          aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
-        >
-          Servicios
-        </a>
+        <!-- Dropdown Servicios -->
+        <div class="relative group">
+          <a
+            href="/servicios-populares"
+            class={`flex items-center gap-2 px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/servicios') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:bg-primary/20 hover:text-white group-hover:bg-primary/20 group-hover:text-white'}`}
+            aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="Servicios destacados y menú de categorías"
+          >
+            <span>Servicios</span>
+            <IconWrapper name="mdi:chevron-down" size="sm" color="white" class="transition-transform duration-200 group-hover:rotate-180" />
+          </a>
+          <div class="absolute left-0 mt-1 w-56 z-20 bg-primary shadow-xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-secondary/20">
+            {
+              serviceCategories.map((category: string) => (
+                <a
+                  href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                  class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200 focus:outline-none focus:bg-secondary focus:text-white"
+                >
+                  {category}
+                </a>
+              ))
+            }
+          </div>
+        </div>
 
-        <!-- Enlace Proyectos -->
-        <a
-          href="/proyectos"
-          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/proyectos') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
-          aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
-        >
-          Proyectos
-        </a>
+        <!-- Dropdown Proyectos -->
+        <div class="relative group">
+          <a
+            href="/proyectos"
+            class={`flex items-center gap-2 px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/proyectos') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:bg-primary/20 hover:text-white group-hover:bg-primary/20 group-hover:text-white'}`}
+            aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="Proyectos destacados y menú de categorías"
+          >
+            <span>Proyectos</span>
+            <IconWrapper name="mdi:chevron-down" size="sm" color="white" class="transition-transform duration-200 group-hover:rotate-180" />
+          </a>
+          <div class="absolute left-0 mt-1 w-56 z-20 bg-primary shadow-xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-secondary/20">
+            {
+              projectCategories.map((category: string) => (
+                <a
+                  href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                  class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200 focus:outline-none focus:bg-secondary focus:text-white"
+                >
+                  {category}
+                </a>
+              ))
+            }
+          </div>
+        </div>
 
         <a
           href="/nosotros"
@@ -170,23 +206,71 @@ const currentPath = url.pathname;
           Inicio
         </a>
 
-        <!-- Enlace Servicios -->
-        <a
-          href="/servicios-populares"
-          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
-          aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
-        >
-          Servicios
-        </a>
+        <!-- Servicios con enlace principal y dropdown -->
+        <div>
+          <div class="flex items-center">
+            <a
+              href="/servicios-populares"
+              class="flex-1 text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-l-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+              aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
+            >
+              Servicios
+            </a>
+            <button
+              id="services-toggle"
+              class="text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-r-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent flex items-center justify-center"
+              aria-expanded="false"
+              aria-controls="services-menu"
+            >
+              <IconWrapper name="mdi:chevron-down" size="md" color="white" class="transition-transform duration-300" />
+            </button>
+          </div>
+          <div id="services-menu" class="hidden pl-4 mt-2 space-y-1">
+            {
+              serviceCategories.map((category: string) => (
+                <a
+                  href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                  class="block px-3 py-2 text-sm sm:text-base text-white/60 hover:text-white hover:bg-primary/20 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+                >
+                  {category}
+                </a>
+              ))
+            }
+          </div>
+        </div>
 
-        <!-- Enlace Proyectos -->
-        <a
-          href="/proyectos"
-          class="block text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
-          aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
-        >
-          Proyectos
-        </a>
+        <!-- Proyectos con enlace principal y dropdown -->
+        <div>
+          <div class="flex items-center">
+            <a
+              href="/proyectos"
+              class="flex-1 text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-l-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+              aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
+            >
+              Proyectos
+            </a>
+            <button
+              id="projects-toggle"
+              class="text-white/80 hover:text-white hover:bg-primary/20 px-3 py-3 sm:py-4 rounded-r-lg text-base sm:text-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent flex items-center justify-center"
+              aria-expanded="false"
+              aria-controls="projects-menu"
+            >
+              <IconWrapper name="mdi:chevron-down" size="md" color="white" class="transition-transform duration-300" />
+            </button>
+          </div>
+          <div id="projects-menu" class="hidden pl-4 mt-2 space-y-1">
+            {
+              projectCategories.map((category: string) => (
+                <a
+                  href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                  class="block px-3 py-2 text-sm sm:text-base text-white/60 hover:text-white hover:bg-primary/20 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent"
+                >
+                  {category}
+                </a>
+              ))
+            }
+          </div>
+        </div>
 
         <a
           href="/nosotros"
@@ -226,5 +310,38 @@ const currentPath = url.pathname;
   }
   .hamburger-icon-wrapper.open span:nth-child(3) {
     transform: translateY(-10px) rotate(-45deg);
+  }
+
+  /* Mejoras para las flechas de dropdown */
+  .group:hover .group-hover\\:rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  /* Mejoras para las flechas en móvil */
+  #services-toggle svg,
+  #projects-toggle svg,
+  #services-toggle i,
+  #projects-toggle i,
+  #services-toggle span,
+  #projects-toggle span {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Efecto hover mejorado para los botones de flecha */
+  .group:hover button:hover {
+    background-color: rgba(59, 130, 246, 0.3);
+  }
+
+  /* Mejor contraste para las flechas */
+  .group button svg,
+  .group button i,
+  .group button span {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .group:hover button svg,
+  .group:hover button i,
+  .group:hover button span {
+    color: rgba(255, 255, 255, 1);
   }
 </style>

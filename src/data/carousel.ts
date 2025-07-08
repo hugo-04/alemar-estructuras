@@ -15,7 +15,18 @@ export const mainCarouselImages: CarouselImage[] = [
 ];
 
 export const clientCarouselImages: CarouselImage[] = [
-  { src: '/images/IMG-20250628-WA0090.jpg', alt: 'Logo Cliente 1' },
-  { src: '/images/IMG-20250628-WA0093.jpg', alt: 'Logo Cliente 2' },
-  { src: '/images/IMG-20250628-WA0095.jpg', alt: 'Logo Cliente 3' },
+  { src: '/images/Clientes/alemar-cliente-1.png', alt: 'Cliente 1' },
+  { src: '/images/Clientes/alemar-cliente-2.png', alt: 'Cliente 2' },
+  { src: '/images/Clientes/alemar-cliente-4.png', alt: 'Cliente 4' },
+  { src: '/images/Clientes/alemar-cliente-6.png', alt: 'Cliente 6' },
+  { src: '/images/Clientes/alemar-cliente-7.png', alt: 'Cliente 7' },
+  { src: '/images/Clientes/alemar-cliente-8.png', alt: 'Cliente 8' },
+  { src: '/images/Clientes/alemar-cliente-9.png', alt: 'Cliente 9' },
+  { src: '/images/Clientes/alemar-cliente-10.png', alt: 'Cliente 10' },
+  { src: '/images/Clientes/alemar-cliente-11.png', alt: 'Cliente 11' },
+  { src: '/images/Clientes/alemar-cliente-12.png', alt: 'Cliente 12' },
+  { src: '/images/Clientes/alemar-cliente-13.png', alt: 'Cliente 13' },
+  { src: '/images/Clientes/alemar-cliente-14.png', alt: 'Cliente 14' },
+  { src: '/images/Clientes/alemar-cliente-15.png', alt: 'Cliente 15' },
+  { src: '/images/Clientes/alemar-cliente16.png', alt: 'Cliente 16' },
 ];

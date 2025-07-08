@@ -9,71 +9,138 @@ const { showMap } = Astro.props;
 ---
 
 {showMap && (
-  <div class="w-full rounded-md overflow-hidden shadow-md bg-white p-6">
-    <div class="text-center">
-      <h4 class="text-lg font-bold text-[#1e3a5f] mb-4">Nuestra Ubicación</h4>
-      <div class="space-y-3">
-        <div class="flex items-center justify-center gap-2">
-          <IconWrapper name="mdi:map-marker" size="sm" color="secondary" />
-          <span class="text-[#2d2d2d] text-sm">
-            <strong>Principal:</strong> José Galvez 375 Urb. Chicago - Trujillo
-          </span>
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <IconWrapper name="mdi:map-marker" size="sm" color="secondary" />
-          <span class="text-[#2d2d2d] text-sm">
-            <strong>Sucursal:</strong> Sector Chanquin Alto - Campiña de Moche s/n. - Moche
-          </span>
-        </div>
-        <a 
-          href="https://maps.google.com/?q=José+Galvez+375+Urb.+Chicago+Trujillo+Peru" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-xl"
-        >
-          <IconWrapper name="mdi:map" size="sm" color="white" />
-          Ver en Google Maps
-        </a>
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-6">
+      <h4 class="text-lg font-bold text-[#1e3a5f] mb-3">Nuestra Ubicación</h4>
+      <div class="flex items-center justify-center gap-2 mb-4">
+        <IconWrapper name="mdi:map-marker" size="sm" color="light" />
+        <span class="text-white/80 text-sm">
+          <strong class="text-white">Principal:</strong> José Galvez 375 Urb. Chicago - Trujillo
+        </span>
+      </div>
+    </div>
+    
+    <!-- Mapa con diseño circular/ovalado -->
+    <div class="relative">
+      <div id="footer-map" class="w-full h-48 sm:h-56 md:h-64 rounded-[50px] sm:rounded-[60px] overflow-hidden shadow-2xl border-4 border-white transform rotate-1 hover:rotate-0 transition-all duration-500 hover:scale-105">
+        <!-- El mapa se cargará aquí -->
+      </div>
+      
+      <!-- Controles de zoom flotantes -->
+      <div class="absolute top-4 right-4 flex flex-col gap-2">
+        <button id="zoom-in" class="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#1e3a5f] hover:text-white transition-all duration-300 cursor-pointer">
+          <IconWrapper name="mdi:plus" size="sm" color="secondary" />
+        </button>
+        <button id="zoom-out" class="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#1e3a5f] hover:text-white transition-all duration-300 cursor-pointer">
+          <IconWrapper name="mdi:minus" size="sm" color="secondary" />
+        </button>
+      </div>
+      
+      <!-- Indicador de ubicación -->
+      <div class="absolute bottom-4 left-4 bg-white rounded-full px-3 py-1 shadow-lg flex items-center gap-2">
+        <IconWrapper name="mdi:map-marker" size="sm" color="secondary" />
+        <span class="text-xs font-medium text-[#1e3a5f]">Ubicación</span>
       </div>
     </div>
   </div>
 )}
 
-<!-- Script de mapa comentado temporalmente
-<script is:inline>
+<script>
+  let currentZoom = 15;
+  let mapIframe = null;
+
   function initFooterMap() {
     const mapElement = document.getElementById('footer-map');
-    if (mapElement) {
-      const location = { lat: -16.409047, lng: -71.537451 }; // Example: Arequipa, Peru coordinates
-      const map = new google.maps.Map(mapElement, {
-        zoom: 12,
-        center: location,
-        disableDefaultUI: true, // Hide controls for a cleaner look
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false
+    if (mapElement && !mapElement.querySelector('iframe')) {
+      // Crear el iframe del mapa de Google Maps con controles interactivos
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=José+Galvez+375+Urb.+Chicago+Trujillo+Peru&zoom=${currentZoom}&maptype=roadmap`;
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.style.border = '0';
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      
+      // Agregar estilos para mejorar la interactividad
+      iframe.style.cursor = 'grab';
+      iframe.style.transition = 'all 0.3s ease';
+      
+      // Agregar eventos para mejorar la experiencia de usuario
+      iframe.addEventListener('load', function() {
+        // El mapa está listo para interactuar
+        iframe.style.cursor = 'grab';
+        mapIframe = iframe;
       });
-      new google.maps.Marker({
-        position: location,
-        map: map,
+      
+      // Agregar hover effect
+      iframe.addEventListener('mouseenter', function() {
+        iframe.style.transform = 'scale(1.02)';
+        iframe.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
       });
+      
+      iframe.addEventListener('mouseleave', function() {
+        iframe.style.transform = 'scale(1)';
+        iframe.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+      });
+      
+      mapElement.appendChild(iframe);
     }
   }
 
-  // Load Google Maps API script dynamically if not already loaded
-  if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
-    const script = document.createElement('script');
-    // Pega aquí tu API Key de Google Maps entre las comillas
-    const API_KEY = "AQUI_TU_API_KEY";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initFooterMap`;
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
+  // Funciones de zoom
+  function zoomIn() {
+    if (currentZoom < 20) {
+      currentZoom++;
+      updateMapZoom();
+    }
+  }
+
+  function zoomOut() {
+    if (currentZoom > 10) {
+      currentZoom--;
+      updateMapZoom();
+    }
+  }
+
+  function updateMapZoom() {
+    const mapElement = document.getElementById('footer-map');
+    if (mapElement) {
+      const iframe = mapElement.querySelector('iframe');
+      if (iframe) {
+        iframe.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=José+Galvez+375+Urb.+Chicago+Trujillo+Peru&zoom=${currentZoom}&maptype=roadmap`;
+      }
+    }
+  }
+
+  // Agregar event listeners para los botones de zoom
+  function setupZoomControls() {
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener('click', zoomIn);
+    }
+    
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener('click', zoomOut);
+    }
+  }
+
+  // Inicializar el mapa cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initFooterMap();
+      setupZoomControls();
+    });
   } else {
     initFooterMap();
+    setupZoomControls();
   }
+
+  // Reinicializar el mapa cuando se navega entre páginas (para Astro)
+  document.addEventListener('astro:page-load', function() {
+    initFooterMap();
+    setupZoomControls();
+  });
 </script>
--->

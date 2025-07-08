@@ -102,28 +102,73 @@ import IconWrapper from '../components/IconWrapper.astro';
         <p class="text-[#1e3a5f] font-semibold">Principal: José Galvez 375 Urb. Chicago - Trujillo</p>
         <p class="text-[#1e3a5f] font-semibold">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</p>
       </div>
-      <div class="w-full rounded-md bg-white p-8 border border-[#c8aa6e]/20">
-        <div class="text-center">
-          <div class="space-y-4">
-            <div class="flex items-center justify-center gap-3">
-              <IconWrapper name="mdi:map-marker" size="md" color="secondary" />
-              <div class="text-left">
-                <p class="text-[#1e3a5f] font-semibold">Principal: José Galvez 375 Urb. Chicago - Trujillo</p>
-                <p class="text-[#1e3a5f] font-semibold">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</p>
-              </div>
+      <div class="w-full rounded-md bg-white p-6 sm:p-8 border border-[#c8aa6e]/20">
+        <div class="text-center mb-6">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <IconWrapper name="mdi:map-marker" size="md" color="secondary" />
+            <div class="text-left">
+              <p class="text-[#1e3a5f] font-semibold">Principal: José Galvez 375 Urb. Chicago - Trujillo</p>
+              <p class="text-[#1e3a5f] font-semibold">Sucursal: Sector Chanquin Alto - Campiña de Moche s/n. - Moche</p>
             </div>
-            <a 
-              href="https://maps.google.com/?q=José+Galvez+375+Urb.+Chicago+Trujillo+Peru" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 py-3 rounded-lg text-base font-medium hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <IconWrapper name="mdi:map" size="md" color="white" />
-              Ver en Google Maps
-            </a>
           </div>
         </div>
+        <div id="contact-map" class="w-full h-64 sm:h-80 rounded-md overflow-hidden shadow-lg">
+          <!-- El mapa se cargará aquí -->
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Script para cargar el mapa -->
+  <script>
+    function initContactMap() {
+      const mapElement = document.getElementById('contact-map');
+      if (mapElement && !mapElement.querySelector('iframe')) {
+        // Crear el iframe del mapa de Google Maps con controles interactivos
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=José+Galvez+375+Urb.+Chicago+Trujillo+Peru&zoom=15&maptype=roadmap`;
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.style.border = '0';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        
+        // Agregar estilos para mejorar la interactividad
+        iframe.style.cursor = 'grab';
+        iframe.style.transition = 'all 0.3s ease';
+        
+        // Agregar eventos para mejorar la experiencia de usuario
+        iframe.addEventListener('load', function() {
+          // El mapa está listo para interactuar
+          iframe.style.cursor = 'grab';
+        });
+        
+        // Agregar hover effect
+        iframe.addEventListener('mouseenter', function() {
+          iframe.style.transform = 'scale(1.02)';
+          iframe.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
+        });
+        
+        iframe.addEventListener('mouseleave', function() {
+          iframe.style.transform = 'scale(1)';
+          iframe.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        });
+        
+        mapElement.appendChild(iframe);
+      }
+    }
+
+    // Inicializar el mapa cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initContactMap);
+    } else {
+      initContactMap();
+    }
+
+    // Reinicializar el mapa cuando se navega entre páginas (para Astro)
+    document.addEventListener('astro:page-load', initContactMap);
+  </script>
     </div>
   </div>
 

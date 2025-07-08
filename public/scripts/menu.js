@@ -1,7 +1,7 @@
 /**
  * Script robusto para menú móvil
  * Funciona siempre incluso tras navegación SPA
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 (function() {
@@ -85,13 +85,27 @@
     try {
       const menu = document.getElementById(menuId);
       const toggle = document.querySelector(toggleId);
-      const chevron = toggle?.querySelector('svg');
       
       if (menu) {
+        const isHidden = menu.classList.contains(CONFIG.classes.hidden);
         menu.classList.toggle(CONFIG.classes.hidden);
-      }
-      if (chevron) {
-        chevron.classList.toggle(CONFIG.classes.rotate180);
+        
+        // Buscar el icono dentro del botón (puede ser svg, i, o span)
+        const icon = toggle?.querySelector('svg, i, span, [class*="icon"]');
+        if (icon) {
+          if (isHidden) {
+            // Mostrar menú - rotar flecha hacia abajo
+            icon.style.transform = 'rotate(180deg)';
+          } else {
+            // Ocultar menú - rotar flecha hacia arriba
+            icon.style.transform = 'rotate(0deg)';
+          }
+        }
+        
+        // Actualizar aria-expanded
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        }
       }
     } catch (error) {
       console.error('Error al alternar submenú:', error);
