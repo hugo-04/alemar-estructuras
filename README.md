@@ -16,18 +16,23 @@ Sitio web profesional para ALEMAR Estructuras, empresa especializada en solucion
 - **Astro**: Framework para sitios web estáticos
 - **Tailwind CSS**: Framework de CSS utilitario
 - **TypeScript**: Lenguaje de programación tipado
-- **Vue.js**: Componentes interactivos
-- **AOS**: Animaciones al hacer scroll
+- **Preact**: Componentes interactivos (reemplazó Vue.js)
+- **Hooks personalizados**: Lógica reutilizable
 
 ## 📁 Estructura del Proyecto
 
 ```
 src/
 ├── components/          # Componentes reutilizables
+│   ├── ui/             # Componentes de interfaz (botones, iconos, etc.)
+│   ├── layout/         # Componentes de layout (header, footer)
+│   ├── carousel/       # Componentes de carruseles
+│   └── cards/          # Componentes de tarjetas
+├── hooks/              # Hooks personalizados (useCarousel, etc.)
+├── utils/              # Utilidades y funciones auxiliares
 ├── data/               # Datos estáticos (servicios, proyectos)
 ├── layouts/            # Layouts de páginas
 ├── pages/              # Páginas del sitio
-├── scripts/            # Scripts JavaScript/TypeScript
 └── styles/             # Estilos globales
 ```
 
@@ -111,7 +116,7 @@ La configuración de Tailwind se encuentra en `tailwind.config.mjs` e incluye:
 La configuración de Astro está en `astro.config.mjs` e incluye:
 
 - Integración con Tailwind CSS
-- Soporte para Vue.js
+- Soporte para Preact (componentes interactivos)
 - Integración con iconos (astro-icon)
 
 ## 🚀 Despliegue

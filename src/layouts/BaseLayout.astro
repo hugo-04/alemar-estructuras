@@ -1,7 +1,7 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import FloatingWhatsAppButton from "../components/FloatingWhatsAppButton.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import FloatingWhatsAppButton from "../components/ui/FloatingWhatsAppButton.astro";
 import '../styles/global.css';
 import { ViewTransitions } from "astro:transitions";
 
@@ -77,15 +77,10 @@ const {
 		<Footer showMap={showFooterMap} />
 		<FloatingWhatsAppButton />
 
-		<!-- Scripts principales -->
-		<script is:inline src="/scripts/main.js"></script>
+		<!-- Scripts esenciales -->
 		<script is:inline src="/scripts/menu.js"></script>
-		<script is:inline src="/scripts/aos.js"></script>
 		<script is:inline src="/scripts/contact.js"></script>
 		<script is:inline src="/scripts/successPopup.js"></script>
-		<script is:inline src="/scripts/category.js"></script>
-		<script is:inline src="/scripts/serviceCarousel.js"></script>
-		<script is:inline src="/scripts/main-carousel.js"></script>
 
 	</body>
 </html>

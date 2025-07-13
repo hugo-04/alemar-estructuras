@@ -3,15 +3,16 @@
 interface CarouselImage {
   src: string; // Changed to string as images will be directly referenced from public
   alt: string;
+  text?: string; // Texto opcional para mostrar sobre la imagen
 }
 
 export const mainCarouselImages: CarouselImage[] = [
-  { src: '/images/techo-casa.jpg', alt: 'Techo instalado en casa de cliente' },
-  { src: '/images/estructura-metalica-almacen.jpg', alt: 'Estructura metálica para almacén' },
-  { src: '/images/pergola-jardin.jpg', alt: 'Pérgola metálica en jardín' },
-  { src: '/images/revestimiento-fachada-edificio.jpg', alt: 'Revestimiento de fachada de edificio' },
-  { src: '/images/instalacion-canaletas.jpg', alt: 'Instalación de canaletas' },
-  { src: '/images/reparacion-techo-industrial.jpg', alt: 'Reparación de techo industrial' },
+  { src: '/images/techo-casa.jpg', alt: 'Techo instalado en casa de cliente', text: 'Techos metálicos residenciales de alta calidad' },
+  { src: '/images/estructura-metalica-almacen.jpg', alt: 'Estructura metálica para almacén', text: 'Estructuras industriales robustas y seguras' },
+  { src: '/images/pergola-jardin.jpg', alt: 'Pérgola metálica en jardín', text: 'Diseño y elegancia en espacios exteriores' },
+  { src: '/images/revestimiento-fachada-edificio.jpg', alt: 'Revestimiento de fachada de edificio', text: 'Fachadas modernas y resistentes' },
+  { src: '/images/instalacion-canaletas.jpg', alt: 'Instalación de canaletas', text: 'Soluciones integrales en canaletas y drenaje' },
+  { src: '/images/reparacion-techo-industrial.jpg', alt: 'Reparación de techo industrial', text: 'Mantenimiento y reparación profesional' },
 ];
 
 export const clientCarouselImages: CarouselImage[] = [

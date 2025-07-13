@@ -3,8 +3,8 @@
 // Este componente muestra los servicios más adquiridos (active: true)
 // Utiliza la misma estructura de cards que los otros componentes de servicios
 
-import ServicePreviewCard from './ServicePreviewCard.astro';
-import { services } from '../data/services.ts';
+import ServicePreviewCard from '../../cards/ServicePreviewCard.astro';
+import { services } from '../../data/services.ts';
 
 // Filtra solo los servicios marcados como más adquiridos
 const popularServices = services.filter(service => service.active);

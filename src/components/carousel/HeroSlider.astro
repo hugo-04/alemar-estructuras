@@ -1,0 +1,19 @@
+---
+// src/components/carousel/HeroSlider.astro
+import HeroSliderClient from './HeroSliderClient.jsx';
+import { mainCarouselImages } from '../../data/carousel';
+
+interface Props {
+  images?: typeof mainCarouselImages;
+  interval?: number;
+  transition?: number;
+}
+
+const {
+  images = mainCarouselImages,
+  interval = 8000,
+  transition = 1200
+} = Astro.props;
+---
+
+<HeroSliderClient client:only="preact" images={images} interval={interval} transition={transition} /> 

@@ -3,9 +3,9 @@
 // Este componente define el pie de página principal del sitio web.
 // Muestra información de la empresa, enlaces rápidos, categorías de servicios y datos de contacto.
 
-import { services } from '../data/services.ts'; // Importa los datos de servicios para generar las categorías.
-import FooterMap from './FooterMap.astro';
-import IconWrapper from './IconWrapper.astro';
+import { services } from '../../data/services.ts'; // Importa los datos de servicios para generar las categorías.
+import FooterMap from './FooterMap.astro'; // Ya está correcto porque ambos están en layout/
+import IconWrapper from '../ui/IconWrapper.astro';
 
 
 interface Props {

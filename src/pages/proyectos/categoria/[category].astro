@@ -2,8 +2,8 @@
 // src/pages/proyectos/categoria/[category].astro
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { projects } from '../../../data/projects';
-import ClientReviewCard from '../../../components/ClientReviewCard.astro';
-import IconWrapper from '../../../components/IconWrapper.astro';
+import ClientReviewCard from '../../../components/cards/ClientReviewCard.astro';
+import IconWrapper from '../../../components/ui/IconWrapper.astro';
 
 export async function getStaticPaths() {
   const uniqueCategories = [...new Set(projects.map(project => project.category))];

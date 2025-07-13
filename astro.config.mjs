@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 import vue from '@astrojs/vue';
+import preact from '@astrojs/preact';
 
 export default defineConfig({
   integrations: [
@@ -12,6 +13,7 @@ export default defineConfig({
       include: ['mdi']
     }),
     vue(),
+    preact(),
   ],
   build: {
     assets: 'assets'

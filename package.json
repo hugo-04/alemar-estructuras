@@ -13,12 +13,14 @@
     "vercel-build": "astro build"
   },
   "dependencies": {
+    "@astrojs/preact": "^4.1.0",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vue": "^5.1.0",
     "@iconify-json/mdi": "^1.2.3",
     "aos": "^2.3.4",
-    "astro": "^5.10.1",
-    "astro-icon": "^1.1.5"
+    "astro": "^5.11.0",
+    "astro-icon": "^1.1.5",
+    "preact": "^10.26.9"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",

@@ -1,6 +1,6 @@
 /**
  * Estilos para el componente Header
- * @version 1.0.0
+ * @version 1.5.0
  */
 
 /* Animación del ícono hamburguesa */
@@ -16,62 +16,339 @@
   transform: translateY(-10px) rotate(-45deg);
 }
 
-/* Transiciones suaves para el menú móvil */
+/* Sidebar Clásico - Diseño principal */
 #mobile-sidebar {
-  transition: transform 0.3s ease-in-out;
-}
-
-#mobile-sidebar.-translate-x-full {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e2e4f 0%, #2d4a7a 100%);
+  border-right: 2px solid #31487a;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
   transform: translateX(-100%);
-}
-
-/* Overlay del sidebar */
-#sidebar-overlay {
-  backdrop-filter: blur(4px);
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.3s ease-in-out;
-}
-
-/* Efectos hover para navegación */
-.nav-link {
-  transition: all 0.3s ease-in-out;
-}
-
-.nav-link:hover {
-  transform: translateY(-2px);
-}
-
-/* Dropdown menus */
-.dropdown-menu {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.group:hover .dropdown-menu {
+/* Estado activo del Sidebar */
+#mobile-sidebar.active {
+  transform: translateX(0);
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  left: 0;
+}
+
+/* Overlay del Sidebar */
+#sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 9998;
+}
+
+#sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Contenido del Sidebar */
+#mobile-sidebar .flex.flex-col {
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header del Sidebar */
+#mobile-sidebar h2 {
+  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+/* Botón de cerrar */
+#close-sidebar-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#close-sidebar-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Navegación principal */
+#mobile-sidebar nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Elementos de navegación - Sin bordes */
+#mobile-sidebar .group {
+  background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+#mobile-sidebar .group::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+#mobile-sidebar .group:hover::before {
+  left: 100%;
+}
+
+#mobile-sidebar .group:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Iconos en los elementos de navegación - Más pequeños */
+#mobile-sidebar .group .w-10.h-10 {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  width: 2rem;
+  height: 2rem;
+}
+
+#mobile-sidebar .group:hover .w-10.h-10 {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Dropdowns - Sin fondo, despliegue completo */
+#services-menu,
+#projects-menu {
+  margin-top: 0.5rem;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+/* Elementos de dropdown - Sin scroll, sin fondo */
+#services-menu a,
+#projects-menu a {
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin: 0.25rem 0;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#services-menu a::before,
+#projects-menu a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+#services-menu a:hover::before,
+#projects-menu a:hover::before {
+  left: 100%;
+}
+
+#services-menu a:hover,
+#projects-menu a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Scroll personalizado para dropdowns - Eliminado */
+.services-scroll,
+.projects-scroll {
+  max-height: none;
+  overflow: visible;
+}
+
+/* Botones de navegación de scroll - Eliminados */
+.scroll-up-btn,
+.scroll-down-btn {
+  display: none;
+}
+
+/* Control de rotación de iconos */
+.chevron-icon {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.chevron-icon.rotated {
+  transform: rotate(180deg);
+}
+
+.chevron-icon.not-rotated {
+  transform: rotate(0deg);
+}
+
+/* Animaciones de entrada */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#mobile-sidebar.active nav > * {
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+#mobile-sidebar.active nav > *:nth-child(1) { animation-delay: 0.1s; }
+#mobile-sidebar.active nav > *:nth-child(2) { animation-delay: 0.2s; }
+#mobile-sidebar.active nav > *:nth-child(3) { animation-delay: 0.3s; }
+#mobile-sidebar.active nav > *:nth-child(4) { animation-delay: 0.4s; }
+#mobile-sidebar.active nav > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* Efecto de vibración sutil */
+#mobile-sidebar .group:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Transiciones para el botón de WhatsApp */
+#whatsapp-button {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Mejorar visibilidad de elementos siempre visibles - Sin bordes */
+#mobile-sidebar nav > a:not(.group) {
+  background: linear-gradient(135deg, #4a6fa5 0%, #6b8bb8 100%);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  z-index: 5;
+  padding: 0.75rem;
+}
+
+#mobile-sidebar nav > a:not(.group)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+#mobile-sidebar nav > a:not(.group):hover::before {
+  left: 100%;
+}
+
+#mobile-sidebar nav > a:not(.group):hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-  .desktop-nav {
-    display: none;
+@media (max-width: 640px) {
+  #mobile-sidebar {
+    width: 280px;
+    max-width: 90vw;
   }
   
-  .mobile-nav-toggle {
-    display: block;
+  #mobile-sidebar .flex.flex-col {
+    padding: 1rem;
+  }
+  
+  #mobile-sidebar nav {
+    gap: 0.4rem;
   }
 }
 
-@media (min-width: 1025px) {
-  .mobile-nav-toggle {
-    display: none;
+@media (min-width: 641px) and (max-width: 1024px) {
+  #mobile-sidebar {
+    width: 350px;
   }
-  
-  .desktop-nav {
-    display: flex;
-  }
+}
+
+/* Prevenir scroll en el body cuando el sidebar está abierto */
+body.sidebar-open {
+  overflow: hidden;
+}
+
+/* Mejorar contraste y visibilidad de texto */
+#mobile-sidebar .text-lg {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+}
+
+#mobile-sidebar .text-sm {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+/* Efecto de brillo en hover para mejor feedback visual */
+#mobile-sidebar .group:hover .text-lg,
+#mobile-sidebar nav > a:not(.group):hover .text-lg {
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Nuevo estilo para iconos en categorías */
+#mobile-sidebar .services-scroll i,
+#mobile-sidebar .projects-scroll i {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+#mobile-sidebar .services-scroll a:hover i,
+#mobile-sidebar .projects-scroll a:hover i {
+  opacity: 1;
+  transform: scale(1.1);
 } 
