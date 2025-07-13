@@ -181,9 +181,9 @@ const currentPath = url.pathname;
     aria-modal="true"
     aria-label="Menú de navegación móvil"
   >
-    <div class="flex flex-col h-full px-6 py-6">
+    <div class="flex flex-col h-full px-4 py-4">
       <!-- Header del Bottom Sheet -->
-      <div class="flex justify-between items-center mb-6">
+      <div class="flex justify-between items-center mb-4">
         <h2 class="text-2xl sm:text-3xl font-bold text-white">Menú</h2>
         <button
           id="close-sidebar-button"
@@ -197,7 +197,7 @@ const currentPath = url.pathname;
       </div>
 
       <!-- Navegación del Bottom Sheet -->
-      <nav class="flex-1 space-y-3 overflow-y-auto" role="navigation" aria-label="Navegación móvil">
+      <nav class="flex-1 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)] pr-2" role="navigation" aria-label="Navegación móvil">
         <a
           href="/"
           class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group"
@@ -302,9 +302,11 @@ const currentPath = url.pathname;
           <IconWrapper name="mdi:chevron-right" size="sm" color="white" class="opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
         </a>
 
+        <!-- El botón de contacto debe ir al final -->
+        <div class="h-4"></div>
         <a
           href="/contacto"
-          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group"
+          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group mb-2 mt-4"
           aria-current={currentPath === '/contacto' ? 'page' : undefined}
         >
           <div class="flex items-center space-x-3">
