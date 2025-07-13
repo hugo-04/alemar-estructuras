@@ -10,6 +10,7 @@ Sitio web profesional para ALEMAR Estructuras, empresa especializada en solucion
 - **Accesibilidad**: Cumple con estándares WCAG
 - **Performance**: Carga rápida con optimizaciones de imágenes y CSS
 - **TypeScript**: Código tipado para mayor mantenibilidad
+- **Arquitectura Limpia**: Separación clara de responsabilidades
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -172,4 +173,4 @@ ALEMAR Estructuras
 
 ---
 
-Desarrollado con ❤️ para ALEMAR Estructuras
+Desarrollado para ALEMAR Estructuras

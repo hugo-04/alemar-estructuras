@@ -3,6 +3,8 @@
 // Componente para mostrar la sección de clientes con efecto similar a Pepper
 
 import { clientCarouselImages } from '../../data/carousel';
+import '../../styles/clientSection.css';
+import ClientLogo from './ClientLogo.astro';
 
 interface Props {
   title?: string;
@@ -17,15 +19,18 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-neutral/50 to-white overflow-hidden">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<section class="py-16 sm:py-20 lg:py-24 client-section-bg overflow-hidden relative">
+  <!-- Overlay oscuro para mejorar legibilidad -->
+  <div class="absolute inset-0 bg-black/60 pointer-events-none z-0"></div>
+  <!-- Contenido principal con overlay -->
+  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
     {showTitle && (
       <div class="text-center mb-16 sm:mb-20">
-        <div class="w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto mb-8 rounded-full"></div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-accent mb-6">
+        <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 drop-shadow-lg">
           {title}
         </h2>
-        <p class="text-lg sm:text-xl text-text-secondary max-w-4xl mx-auto leading-relaxed">
+        <p class="text-lg sm:text-xl text-white/95 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
           {subtitle}
         </p>
       </div>
@@ -38,73 +43,17 @@ const {
         {/* Primera fila de logos */}
         <div class="flex space-x-12 sm:space-x-16 lg:space-x-20 animate-scroll-left">
           {clientCarouselImages.map((client, index) => (
-            <div class="flex-shrink-0 group">
-              <div class="w-36 sm:w-48 lg:w-56 h-28 sm:h-36 lg:h-40 bg-white rounded-2xl shadow-lg border border-light/10 flex items-center justify-center p-6 sm:p-8 transition-all duration-700 hover:shadow-2xl hover:scale-105 hover:border-secondary/40 hover:bg-white/95 backdrop-blur-sm">
-                <img 
-                  src={client.src} 
-                  alt={client.alt}
-                  class="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-700"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            <ClientLogo src={client.src} alt={client.alt} />
           ))}
         </div>
         
         {/* Segunda fila de logos (duplicada para efecto continuo) */}
         <div class="flex space-x-12 sm:space-x-16 lg:space-x-20 animate-scroll-left">
           {clientCarouselImages.map((client, index) => (
-            <div class="flex-shrink-0 group">
-              <div class="w-36 sm:w-48 lg:w-56 h-28 sm:h-36 lg:h-40 bg-white rounded-2xl shadow-lg border border-light/10 flex items-center justify-center p-6 sm:p-8 transition-all duration-700 hover:shadow-2xl hover:scale-105 hover:border-secondary/40 hover:bg-white/95 backdrop-blur-sm">
-                <img 
-                  src={client.src} 
-                  alt={client.alt}
-                  class="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-all duration-700"
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            <ClientLogo src={client.src} alt={client.alt} />
           ))}
         </div>
       </div>
     </div>
   </div>
-</section>
-
-<style>
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-scroll-left {
-    animation: scroll-left 80s linear infinite;
-  }
-
-  /* Pausar animación en hover */
-  .animate-scroll-left:hover {
-    animation-play-state: paused;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    .animate-scroll-left {
-      animation-duration: 50s;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .animate-scroll-left {
-      animation-duration: 80s;
-    }
-  }
-
-  /* Mejorar el efecto de hover */
-  .group:hover {
-    z-index: 10;
-  }
-</style> 
+</section> 

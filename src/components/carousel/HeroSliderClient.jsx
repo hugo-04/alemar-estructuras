@@ -37,15 +37,35 @@ export default function HeroSliderClient({ images, interval = 8000, transition =
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center center;
           opacity: 0;
           z-index: 0;
-          transition: opacity ${transition}ms ease-in-out;
-          will-change: opacity, transform;
+          transition: opacity ${transition}ms ease-in-out, filter 0.3s;
+          will-change: opacity, transform, filter;
+          background: #1e3a5f;
+          image-rendering: auto;
+          box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
         }
         .hero-slide-img.active {
           opacity: 1;
           z-index: 1;
           animation: kenburns-pepper ${interval}ms linear both;
+          filter: blur(0px) brightness(1);
+        }
+        .hero-slide-img:not(.active) {
+          filter: blur(2px) brightness(0.9);
+        }
+        @media (max-width: 640px) {
+          .hero-slide-img {
+            min-height: 220px;
+            max-height: 350px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .hero-slide-img {
+            min-height: 400px;
+            max-height: 700px;
+          }
         }
         @keyframes kenburns-pepper {
           0% {

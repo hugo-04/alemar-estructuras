@@ -1,0 +1,103 @@
+/**
+ * Estilos para la sección de clientes
+ * @version 1.0.0
+ */
+
+/* Fondo fijo para la sección de clientes */
+.client-section-bg {
+  background-image: url('/images/estructura-metalica-almacen.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Eliminar reglas de .client-background y .client-background-image */
+.client-background,
+.client-background-image {
+  display: none !important;
+}
+
+/* Logos de clientes: tamaño uniforme */
+.client-logo-img {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .client-logo-img {
+    width: 140px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .client-logo-img {
+    width: 180px;
+    height: 100px;
+  }
+}
+
+/* Efecto parallax para la imagen de fondo */
+@media (prefers-reduced-motion: no-preference) {
+  .client-background-image {
+    will-change: transform;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .client-background-image {
+    opacity: 0.22;
+    height: 220%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .client-background-image {
+    opacity: 0.32;
+    height: 200%;
+  }
+}
+
+/* Animación de scroll horizontal */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 80s linear infinite;
+}
+
+/* Pausar animación en hover */
+.animate-scroll-left:hover {
+  animation-play-state: paused;
+}
+
+/* Responsive adjustments para animación */
+@media (max-width: 640px) {
+  .animate-scroll-left {
+    animation-duration: 50s;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animate-scroll-left {
+    animation-duration: 80s;
+  }
+}
+
+/* Mejorar el efecto de hover */
+.group:hover {
+  z-index: 10;
+} 

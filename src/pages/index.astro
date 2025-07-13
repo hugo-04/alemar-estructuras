@@ -12,15 +12,20 @@ import { mainCarouselImages, clientCarouselImages } from '../data/carousel';
 			<HeroSlider images={mainCarouselImages} />
 		</section>
 
-		<!-- Sección de Experiencia -->
-		<section class="text-center mb-8 sm:mb-12 lg:mb-16 p-4 sm:p-6 lg:p-8 xl:p-12 bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-light">
-			<div class="w-12 sm:w-16 lg:w-24 h-1 bg-gradient-to-r from-secondary to-primary mx-auto mb-4 sm:mb-6 lg:mb-8 rounded-full"></div>
-			<h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-accent mb-4 sm:mb-6 lg:mb-8">
-				Nuestra Experiencia a su Servicio
-			</h2>
-			<p class="text-sm sm:text-base lg:text-lg text-text-secondary max-w-4xl mx-auto leading-relaxed">
-				Con años de experiencia en el sector, ofrecemos soluciones personalizadas y de alta calidad en techado y estructuras metálicas. Nuestro compromiso es la excelencia y la satisfacción total de nuestros clientes, garantizando durabilidad y seguridad en cada proyecto.
-			</p>
+		<!-- Bloque de experiencia integrado, sin card -->
+		<section class="w-full flex justify-center items-center py-10 sm:py-16 lg:py-20 px-4 sm:px-12 lg:px-32 bg-transparent">
+			<div class="w-full text-center">
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-accent mb-4 leading-tight tracking-tight relative inline-block text-center">
+					Más de 10 años creando techos y estructuras metálicas confiables
+					<span class="block w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] rounded-full mt-3 mx-auto"></span>
+				</h1>
+				<p class="text-lg sm:text-xl lg:text-2xl text-text-secondary max-w-2xl leading-relaxed mb-2 text-center mx-auto">
+					En <b>ALEMAR Estructuras</b>, transformamos ideas en soluciones sólidas y duraderas. Nuestro equipo experto diseña, fabrica e instala techos metálicos, coberturas industriales y estructuras a medida, garantizando seguridad, eficiencia y estética en cada proyecto.
+				</p>
+				<p class="text-primary font-bold text-lg sm:text-xl lg:text-2xl mt-2 text-center mx-auto">
+					¡Confía en profesionales responsables y apasionados por la excelencia!
+				</p>
+			</div>
 		</section>
 
 		<!-- Botón CTA -->
@@ -38,3 +43,4 @@ import { mainCarouselImages, clientCarouselImages } from '../data/carousel';
 		<ClientSection />
 	</main>
 </BaseLayout>
+

@@ -311,13 +311,10 @@
     });
   }
 
-  // Inicializar cuando el DOM esté listo
+  // Inicializar cuando el DOM esté listo y tras navegación SPA
   if (typeof document !== 'undefined') {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMobileMenu);
-    } else {
-      initMobileMenu();
-    }
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+    window.addEventListener('astro:after-swap', initMobileMenu);
   }
 
   // Exponer funciones globalmente si es necesario
