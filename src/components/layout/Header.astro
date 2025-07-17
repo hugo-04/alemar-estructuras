@@ -1,19 +1,13 @@
 ---
 // src/components/Header.astro
-import { services } from "../../data/services.ts";
-import { projects } from "../../data/projects.ts";
-import IconWrapper from "../ui/IconWrapper.astro";
-
-const serviceCategories: string[] = [
-  ...new Set(services.map((service) => service.category)),
-];
-
-const projectCategories: string[] = [
-  ...new Set(projects.map((project) => project.category)),
-];
-
+import { services } from '@/data/services.ts';
+import { projects } from '@/data/projects.ts';
+import IconWrapper from '@/components/ui/IconWrapper.astro';
+import '@/styles/Header.css';
 const { url } = Astro;
-const currentPath = url.pathname;
+const currentPath = url?.pathname || '';
+const serviceCategories: string[] = [...new Set(services.map((service) => service.category))] as string[];
+const projectCategories: string[] = [...new Set(projects.map((project) => project.category))] as string[];
 ---
 
 <header class="bg-accent text-white shadow-lg sticky top-0 z-50">
@@ -22,16 +16,16 @@ const currentPath = url.pathname;
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
         <a
-          href="tel:+51915157257"
+          href="tel:+51946595095"
           class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
-          aria-label="Llamar al +51 915 157 257"
+          aria-label="Llamar al +51946595095"
         >
           <IconWrapper name="mdi:phone" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
-          <span class="hidden xs:inline">+51 915 157 257</span>
-          <span class="xs:hidden">+51 915 157 257</span>
+          <span class="hidden xs:inline">946 595 095</span>
+          <span class="xs:hidden">946 595 095</span>
         </a>
         <a
-          href="https://wa.me/+51915157257"
+          href="https://wa.me/51946595095"
           target="_blank"
           rel="noopener noreferrer"
           class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
@@ -213,7 +207,7 @@ const currentPath = url.pathname;
         </a>
 
         <!-- Servicios con enlace principal y dropdown -->
-        <div class="space-y-2">
+        <div class="space-y-3">
           <div class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group">
             <div class="flex items-center space-x-3">
               <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
@@ -231,9 +225,9 @@ const currentPath = url.pathname;
               <IconWrapper name="mdi:chevron-down" size="sm" color="white" class="chevron-icon transition-transform duration-300" />
             </button>
           </div>
-          <div id="services-menu" class="hidden pl-4 mt-2">
+          <div id="services-menu" class="hidden pl-4 mt-2 space-y-3">
             <div class="relative">
-              <div class="grid grid-cols-1 gap-1 services-scroll">
+              <div class="grid grid-cols-1 gap-3 services-scroll">
                 {
                   serviceCategories.map((category: string) => (
                     <a
@@ -251,7 +245,7 @@ const currentPath = url.pathname;
         </div>
 
         <!-- Proyectos con enlace principal y dropdown -->
-        <div class="space-y-2">
+        <div class="space-y-3">
           <div class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group">
             <div class="flex items-center space-x-3">
               <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
@@ -269,9 +263,9 @@ const currentPath = url.pathname;
               <IconWrapper name="mdi:chevron-down" size="sm" color="white" class="chevron-icon transition-transform duration-300" />
             </button>
           </div>
-          <div id="projects-menu" class="hidden pl-4 mt-2">
+          <div id="projects-menu" class="hidden pl-4 mt-2 space-y-3">
             <div class="relative">
-              <div class="grid grid-cols-1 gap-1 projects-scroll">
+              <div class="grid grid-cols-1 gap-3 projects-scroll">
                 {
                   projectCategories.map((category: string) => (
                     <a
@@ -303,10 +297,9 @@ const currentPath = url.pathname;
         </a>
 
         <!-- El botón de contacto debe ir al final -->
-        <div class="h-4"></div>
         <a
           href="/contacto"
-          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group mb-2 mt-4"
+          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group"
           aria-current={currentPath === '/contacto' ? 'page' : undefined}
         >
           <div class="flex items-center space-x-3">
@@ -329,107 +322,3 @@ const currentPath = url.pathname;
   >
   </div>
 </header>
-
-<!-- CSS del Header -->
-<style>
-  /* Animación del ícono hamburguesa */
-  .hamburger-icon-wrapper.open span:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-  }
-  .hamburger-icon-wrapper.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger-icon-wrapper.open span:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-  }
-
-  /* Mejoras para las flechas de dropdown */
-  .group:hover .group-hover\\:rotate-180 {
-    transform: rotate(180deg);
-  }
-
-  /* Mejoras para las flechas en móvil */
-  #services-toggle svg,
-  #projects-toggle svg,
-  #services-toggle i,
-  #projects-toggle i,
-  #services-toggle span,
-  #projects-toggle span {
-    transition: transform 0.3s ease-in-out;
-  }
-
-  /* Efecto hover mejorado para los botones de flecha */
-  .group:hover button:hover {
-    background-color: rgba(59, 130, 246, 0.3);
-  }
-
-  /* Mejor contraste para las flechas */
-  .group button svg,
-  .group button i,
-  .group button span {
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .group:hover button svg,
-  .group:hover button i,
-  .group:hover button span {
-    color: rgba(255, 255, 255, 1);
-  }
-
-  /* Mejoras específicas para el sidebar móvil */
-  #mobile-sidebar {
-    width: 100%;
-    max-width: 320px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  /* Mantener diseño consistente en dropdowns */
-  #services-menu,
-  #projects-menu {
-    transition: all 0.3s ease-in-out;
-    transform-origin: top;
-  }
-
-  /* Asegurar que los elementos del menú mantengan su estilo */
-  #mobile-sidebar nav > div {
-    margin-bottom: 0.75rem;
-  }
-
-  #mobile-sidebar nav > div:last-child {
-    margin-bottom: 0;
-  }
-
-  /* Prevenir distorsión cuando se abren dropdowns */
-  #mobile-sidebar nav {
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
-  }
-
-  #mobile-sidebar nav > * {
-    flex-shrink: 0;
-  }
-
-  /* Mantener altura consistente de los botones principales */
-  #mobile-sidebar .bg-secondary {
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-  }
-
-  /* Asegurar que los dropdowns no afecten el layout */
-  #services-menu,
-  #projects-menu {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Responsive para pantallas muy pequeñas */
-  @media (max-width: 375px) {
-    #mobile-sidebar {
-      max-width: 100%;
-    }
-  }
-</style>

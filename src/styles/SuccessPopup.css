@@ -1,0 +1,10 @@
+/* Estilos para controlar la visibilidad del pop-up */
+.is-visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+}
+#success-popup {
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.3s, transform 0.3s;
+} 

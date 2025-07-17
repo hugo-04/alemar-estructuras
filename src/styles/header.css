@@ -352,3 +352,102 @@ body.sidebar-open {
   opacity: 1;
   transform: scale(1.1);
 } 
+
+/* Mejoras para las flechas de dropdown */
+.group:hover .group-hover\:rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Mejoras para las flechas en móvil */
+#services-toggle svg,
+#projects-toggle svg,
+#services-toggle i,
+#projects-toggle i,
+#services-toggle span,
+#projects-toggle span {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Efecto hover mejorado para los botones de flecha */
+.group:hover button:hover {
+  background-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Mejor contraste para las flechas */
+.group button svg,
+.group button i,
+.group button span {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.group:hover button svg,
+.group:hover button i,
+.group:hover button span {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Mejoras específicas para el sidebar móvil */
+#mobile-sidebar {
+  width: 100%;
+  max-width: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Mantener diseño consistente en dropdowns */
+#services-menu,
+#projects-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+/* Asegurar que los elementos del menú mantengan su estilo */
+#mobile-sidebar nav > div {
+  margin-bottom: 0.75rem;
+}
+
+#mobile-sidebar nav > div:last-child {
+  margin-bottom: 0;
+}
+
+/* Prevenir distorsión cuando se abren dropdowns */
+#mobile-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 0;
+}
+
+#mobile-sidebar nav > * {
+  flex-shrink: 0;
+}
+
+/* Mantener altura consistente de los botones principales */
+#mobile-sidebar .bg-secondary {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+/* Asegurar que los dropdowns no afecten el layout */
+#services-menu,
+#projects-menu {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 375px) {
+  #mobile-sidebar {
+    max-width: 100%;
+  }
+}
+
+#mobile-sidebar nav > div,
+#mobile-sidebar nav > a {
+  margin-bottom: 0 !important;
+}
+#mobile-sidebar nav > div,
+#mobile-sidebar nav > a {
+  margin-top: 0 !important;
+} 

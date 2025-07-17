@@ -1,6 +1,6 @@
 ---
 // src/components/ServiceCard.astro
-import IconWrapper from '../../ui/IconWrapper.astro';
+import IconWrapper from '@/components/ui/IconWrapper.astro';
 
 // Este componente representa una tarjeta individual para mostrar un servicio.
 // Incluye la imagen, título, descripción y botones de "Más Información" y "Cotizar".
@@ -18,7 +18,7 @@ interface Service {
 interface Props extends Service {} // Define las propiedades del componente extendiendo la interfaz Service.
 
 // Desestructura las propiedades del servicio.
-const { title, description, whatsappLink, imageUrl, slug } = Astro.props;
+const { title, description, whatsappLink, imageUrl, slug } = Astro.props as Props;
 
 // El slug del servicio se usa directamente para el enlace de "Más Información".
 const serviceSlug = slug;
@@ -40,9 +40,7 @@ const serviceSlug = slug;
     <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-accent mb-2 sm:mb-3 lg:mb-4 leading-tight">
       {title}
     </h3>
-    <p class="text-sm sm:text-base lg:text-lg text-text-secondary mb-4 sm:mb-6 lg:mb-8 leading-relaxed flex-grow">
-      {description}
-    </p>
+    <!-- Descripción eliminada para mostrar solo el nombre -->
     
     <!-- Botones de acción -->
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-auto">

@@ -2,8 +2,6 @@
 // src/components/SuccessPopup.astro
 // Componente reutilizable para mostrar un mensaje de éxito o confirmación en un pop-up.
 
-
-
 interface Props {
   message: string; // Mensaje a mostrar en el pop-up.
   id?: string; // ID opcional para el componente.
@@ -39,18 +37,5 @@ const buttonId = `close-btn-${id}`;
     ✕
   </button>
 </div>
-
-<style>
-  /* Estilos para controlar la visibilidad del pop-up */
-  .is-visible {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    transform: translateY(0) scale(1) !important;
-  }
-  #success-popup {
-    transform: translateY(20px) scale(0.98);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-</style>
 
 <script is:inline src="/scripts/successPopup.js"></script>

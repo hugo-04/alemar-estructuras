@@ -3,9 +3,9 @@
 // Esta página muestra todos los servicios organizados por categorías
 // Es la vista completa cuando se hace clic en "Ver Todos los Servicios"
 
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ServicePreviewCard from '../components/cards/ServicePreviewCard.astro';
-import { services } from '../data/services.ts';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServicePreviewCard from '@/components/cards/ServicePreviewCard.astro';
+import { services } from '@/data/services.ts';
 
 // Organizar servicios por categorías y subcategorías
 const servicesByCategory: Record<string, Record<string, typeof services>> = services.reduce((acc, service) => {

@@ -3,21 +3,10 @@
 // Esta es una página dinámica que genera una URL única para cada servicio.
 // Utiliza la función getStaticPaths para pre-renderizar las páginas en tiempo de construcción.
 
-import { services } from '../../data/services'; // Importa los datos de todos los servicios.
-import BaseLayout from '../../layouts/BaseLayout.astro'; // Importa el layout principal de la página.
-import IconWrapper from '../../components/ui/IconWrapper.astro';
-import ServiceCarousel from '../../components/carousel/ServiceCarousel.astro'; // Importa el carrusel especial para servicios
-
-interface Service {
-  title: string;
-  slug: string; // Identificador único y amigable para la URL del servicio (usar guiones en lugar de espacios).
-  description: string; // Descripción detallada del servicio.
-  whatsappLink: string; // Enlace de WhatsApp para cotizar este servicio.
-  imageUrl: string; // URL de la imagen del servicio (debe estar en la carpeta public/images).
-  category: string; // Categoría a la que pertenece el servicio.
-  isMostClicked?: boolean; // Opcional: true si quieres destacarlo como "más clicado" en la página principal de servicios.
-  imageUrls: string[]; // Nueva propiedad para almacenar múltiples URLs de imagen
-}
+import { services } from '@/data/services'; // Importa los datos de todos los servicios.
+import BaseLayout from '@/layouts/BaseLayout.astro'; // Importa el layout principal de la página.
+import IconWrapper from '@/components/ui/IconWrapper.astro';
+import ServiceCarousel from '@/components/carousel/ServiceCarousel.astro'; // Importa el carrusel especial para servicios
 
 // getStaticPaths es una función de Astro que genera las rutas estáticas para esta página dinámica.
 // Por cada servicio, crea un 'params.slug' que se convierte en parte de la URL.
@@ -43,8 +32,6 @@ const { service } = Astro.props;
           images={service.imageUrls.map(url => ({ src: url, alt: service.title }))}
           autoplay={true}
           interval={3000}
-          showNavigation={true}
-          showPagination={false}
         />
       </div>
       <div class="md:w-1/2">

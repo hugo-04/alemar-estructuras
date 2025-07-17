@@ -32,13 +32,12 @@ const generateSrcSet = (imageSrc: string) => {
 <img 
   src={src} 
   alt={alt}
-  class={`w-full h-auto object-cover ${className}`}
+  class={`w-full h-auto object-cover fade-in-img ${className}`}
   loading={priority ? 'eager' : loading}
   sizes={sizes}
   srcset={generateSrcSet(src)}
   decoding="async"
-  onload="this.style.opacity='1'"
-  style="opacity: 0; transition: opacity 0.3s ease-in-out;"
+  onload="this.classList.add('loaded')"
   role="img"
   aria-label={alt}
 /> 
