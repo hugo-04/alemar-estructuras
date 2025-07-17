@@ -3,7 +3,7 @@
 import { services } from '@/data/services.ts';
 import { projects } from '@/data/projects.ts';
 import IconWrapper from '@/components/ui/IconWrapper.astro';
-import '@/styles/Header.css';
+import '@/styles/header.css';
 const { url } = Astro;
 const currentPath = url?.pathname || '';
 const serviceCategories: string[] = [...new Set(services.map((service) => service.category))] as string[];
