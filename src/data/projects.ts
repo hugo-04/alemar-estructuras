@@ -4,7 +4,6 @@ export interface Project {
   description: string;
   imageUrl: string;
   category: string;
-  imageUrls: string[];
   clientReview: string;
   clientName: string;
   location: string;
@@ -12,175 +11,343 @@ export interface Project {
   featured: boolean;
 }
 
-export const projects: Project[] = [
-  {
-    title: "Techo Metálico Industrial - Almacén Logístico",
-    slug: "techo-metalico-industrial-almacen",
-    description: "Instalación completa de techo metálico para almacén logístico de 2000m². Incluye estructura de soporte, láminas galvanizadas, canaletas y bajantes. Diseño optimizado para máxima durabilidad y resistencia a la intemperie.",
-    imageUrl: "/images/estructura-metalica-almacen.jpg",
-    category: "Techos Industriales",
-    imageUrls: [
-      "/images/IMG-20250628-WA0057.jpg",
-      "/images/IMG-20250628-WA0058.jpg",
-      "/images/IMG-20250628-WA0059.jpg",
-    ],
-    clientReview: "Excelente trabajo en nuestro almacén. El techo quedó perfecto y resistió las lluvias del invierno sin problemas. Muy profesionales y puntuales.",
-    clientName: "Carlos Mendoza",
-    location: "Arequipa",
-    completionDate: "Enero 2024",
-    featured: true
+// Categorías organizadas jerárquicamente
+export const projectCategories = {
+  // INFRAESTRUCTURA INDUSTRIAL Y COMERCIAL
+  "Naves Industriales": {
+    name: "Naves Industriales y Plantas de Procesamiento",
+    subcategories: [
+      "Naves Industriales",
+      "Plantas de Procesamiento",
+      "Vestuarios Industriales",
+      "Mobiliario Industrial"
+    ]
   },
+  "Infraestructura Comercial": {
+    name: "Infraestructura Comercial y Empresarial",
+    subcategories: [
+      "Mezanines y Entrepisos",
+      "Andamios Industriales",
+      "Techos Metálicos Comerciales",
+      "Oficinas"
+    ]
+  },
+  
+  // INFRAESTRUCTURA DE SALUD
+  "Infraestructura de Salud": {
+    name: "Hospitales y Centros Médicos",
+    subcategories: [
+      "Hospitales",
+      "Clínicas",
+      "Centrales de Esterilización"
+    ]
+  },
+  
+  // INFRAESTRUCTURA TURÍSTICA Y COMERCIAL
+  "Infraestructura Turística": {
+    name: "Centros Comerciales y Turismo",
+    subcategories: [
+      "Restaurantes Turísticos",
+      "Galerías Comerciales",
+      "Centros de Entretenimiento"
+    ]
+  },
+  
+  // ESTRUCTURAS METÁLICAS ESPECIALIZADAS
+  "Estructuras Metálicas": {
+    name: "Cubiertas y Techos Metálicos",
+    subcategories: [
+      "Techos Sol y Sombra",
+      "Pasamanos",
+      "Estructuras Especiales"
+    ]
+  },
+  
+  // SERVICIOS DE MANTENIMIENTO Y SEGURIDAD
+  "Mantenimiento Industrial": {
+    name: "Mantenimiento Industrial",
+    subcategories: [
+      "Cercos de Seguridad",
+      "Mantenimiento de Estructuras"
+    ]
+  },
+  
+  // CARPINTERÍA METÁLICA
+  "Carpintería Metálica": {
+    name: "Puertas y Ventanas",
+    subcategories: [
+      "Puertas Metálicas",
+      "Portones",
+      "Ventanas"
+    ]
+  },
+  
+};
+
+export const projects: Project[] = [
+  // ========================================
+  // INFRAESTRUCTURA INDUSTRIAL Y COMERCIAL
+  // ========================================
+  
+  // Naves Industriales y Plantas de Procesamiento
   {
-    title: "Cubierta Metálica para Restaurante",
-    slug: "cubierta-metalica-restaurante",
-    description: "Diseño e instalación de cubierta metálica para terraza de restaurante. Estructura de acero inoxidable con acabado premium, incluye iluminación integrada y sistema de drenaje.",
-    imageUrl: "/images/pergola-jardin.jpg",
-    category: "Cubiertas Comerciales",
-    imageUrls: [
-      "/images/IMG-20250628-WA0060.jpg",
-      "/images/IMG-20250628-WA0061.jpg",
-      "/images/IMG-20250628-WA0062.jpg",
-    ],
-    clientReview: "La cubierta transformó completamente nuestro restaurante. Los clientes adoran el ambiente y el diseño es exactamente lo que queríamos.",
-    clientName: "María González",
-    location: "Lima",
+    title: "Nave Industrial para Despacho - Packing",
+    slug: "nave-industrial-despacho-packing-plantaciones-el-sol",
+    description: "Construcción completa de nave industrial para despacho y packing en Plantaciones El Sol. Incluye estructura metálica, techado, sistemas de ventilación y áreas de trabajo optimizadas para procesamiento agrícola.",
+    imageUrl: "/images/Proyectos/nave-industrial-packing.jpg",
+    category: "Naves Industriales",
+    clientReview: "Excelente trabajo en nuestra nave industrial. La estructura es muy sólida y optimizada para nuestras operaciones de packing. Muy profesionales.",
+    clientName: "Plantaciones El Sol",
+    location: "Olmos",
     completionDate: "Marzo 2024",
     featured: true
   },
   {
-    title: "Estructura Metálica para Taller Mecánico",
-    slug: "estructura-metalica-taller-mecanico",
-    description: "Fabricación e instalación de estructura metálica completa para taller mecánico. Incluye columnas, vigas, techado y mezzanine de trabajo. Diseño resistente para equipos pesados.",
-    imageUrl: "/images/IMG-20250628-WA0063.jpg",
-    category: "Estructuras Industriales",
-    imageUrls: [
-      "/images/IMG-20250628-WA0064.jpg",
-      "/images/IMG-20250628-WA0065.jpg",
-      "/images/IMG-20250628-WA0066.jpg",
-    ],
-    clientReview: "La estructura es muy sólida y nos permite trabajar con toda la maquinaria pesada sin problemas. El equipo fue muy profesional desde el diseño hasta la instalación.",
-    clientName: "Roberto Silva",
-    location: "Arequipa",
+    title: "Construcción de Vestuarios - Cosecha",
+    slug: "construccion-vestuarios-cosecha-plantaciones-el-sol",
+    description: "Construcción de vestuarios para trabajadores de cosecha en Plantaciones El Sol. Incluye estructura metálica, techado, instalaciones sanitarias y áreas de descanso.",
+    imageUrl: "/images/Proyectos/vestuarios-cosecha.jpg",
+    category: "Naves Industriales",
+    clientReview: "Los vestuarios quedaron muy funcionales y cómodos para nuestros trabajadores. Construcción de primera calidad.",
+    clientName: "Plantaciones El Sol",
+    location: "Olmos",
     completionDate: "Febrero 2024",
     featured: false
   },
   {
-    title: "Techo Residencial con Panel Sándwich",
-    slug: "techo-residencial-panel-sandwich",
-    description: "Instalación de techo con panel sándwich para casa residencial. Incluye aislamiento térmico y acústico, acabado interior y exterior premium. Sistema de ventilación integrado.",
-    imageUrl: "/images/techo-casa.jpg",
-    category: "Techos Residenciales",
-    imageUrls: [
-      "/images/IMG-20250628-WA0067.jpg",
-      "/images/IMG-20250628-WA0068.jpg",
-      "/images/IMG-20250628-WA0069.jpg",
-    ],
-    clientReview: "El techo quedó espectacular. La casa está mucho más fresca en verano y cálida en invierno. La instalación fue muy limpia y profesional.",
-    clientName: "Ana Torres",
-    location: "Lima",
-    completionDate: "Diciembre 2023",
+    title: "Mobiliario en Acero Inoxidable para Packing",
+    slug: "mobiliario-acero-inoxidable-packing-plantaciones-el-sol",
+    description: "Fabricación e instalación de mobiliario especializado en acero inoxidable para planta de packing. Incluye mesas de trabajo, estanterías, y sistemas de transporte adaptados a normas sanitarias.",
+    imageUrl: "/images/Proyectos/mobiliario-inoxidable-packing.jpg",
+    category: "Naves Industriales",
+    clientReview: "El mobiliario es perfecto para nuestras operaciones. Cumple con todas las normas sanitarias y es muy resistente.",
+    clientName: "Plantaciones El Sol",
+    location: "Olmos",
+    completionDate: "Abril 2024",
     featured: true
   },
+  
+  // Infraestructura Comercial y Empresarial
   {
-    title: "Pérgola Metálica para Jardín",
-    slug: "pergola-metalica-jardin",
-    description: "Diseño y fabricación de pérgola metálica para jardín residencial. Estructura de acero con acabado anticorrosivo, incluye sistema de sombreado retráctil y iluminación LED.",
-    imageUrl: "/images/IMG-20250628-WA0070.jpg",
-    category: "Pérgolas y Toldos",
-    imageUrls: [
-      "/images/IMG-20250628-WA0071.jpg",
-      "/images/IMG-20250628-WA0072.jpg",
-      "/images/IMG-20250628-WA0073.jpg",
-    ],
-    clientReview: "La pérgola es el punto focal de nuestro jardín. El diseño es elegante y funcional. Los materiales son de excelente calidad.",
-    clientName: "Luis Ramírez",
-    location: "Arequipa",
-    completionDate: "Noviembre 2023",
+    title: "Mezanine y Entrepiso",
+    slug: "mezanine-entrepiso-distribuidora-pialesa",
+    description: "Construcción de mezanine y entrepiso metálico para optimizar espacios en Distribuidora Pialesa. Incluye estructura de acero, pisos industriales y sistemas de acceso.",
+    imageUrl: "/images/Proyectos/mezanine-entrepiso.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "El mezanine nos permitió duplicar nuestro espacio de almacenamiento. Muy bien construido y funcional.",
+    clientName: "Distribuidora Pialesa",
+    location: "Lima",
+    completionDate: "Enero 2024",
     featured: false
   },
   {
-    title: "Impermeabilización de Techo Comercial",
-    slug: "impermeabilizacion-techo-comercial",
-    description: "Aplicación de sistema impermeabilizante de alta calidad en techo comercial de 1500m². Incluye limpieza previa, reparación de grietas y aplicación de membrana líquida.",
-    imageUrl: "/images/reparacion-techo-industrial.jpg",
-    category: "Impermeabilización",
-    imageUrls: [
-      "/images/IMG-20250628-WA0074.jpg",
-      "/images/IMG-20250628-WA0075.jpg",
-      "/images/IMG-20250628-WA0076.jpg",
-    ],
-    clientReview: "Solucionaron completamente nuestros problemas de filtraciones. El trabajo fue impecable y la garantía nos da mucha tranquilidad.",
-    clientName: "Comercial San Martín",
+    title: "Andamios Industriales para Tiendas",
+    slug: "andamios-industriales-tiendas-distribuidora-pintel",
+    description: "Fabricación e instalación de andamios industriales para tiendas de Distribuidora Pintel SAC. Sistemas modulares de alta resistencia para exhibición y almacenamiento.",
+    imageUrl: "/images/Proyectos/andamios-industriales.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "Los andamios son muy resistentes y nos permiten organizar mejor nuestros productos. Excelente calidad.",
+    clientName: "Distribuidora Pintel SAC",
     location: "Lima",
-    completionDate: "Octubre 2023",
+    completionDate: "Diciembre 2023",
+    featured: false
+  },
+  {
+    title: "Techo Metálico Plano para Taller Mecánico",
+    slug: "techo-metalico-plano-taller-mecanico-emtrafesa",
+    description: "Instalación de techo metálico plano para taller mecánico de Emtrafesa. Estructura de acero galvanizado, láminas metálicas y sistema de drenaje completo.",
+    imageUrl: "/images/Proyectos/techo-metalico-taller.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "El techo es muy resistente y funcional para nuestro taller. Protege perfectamente nuestros equipos.",
+    clientName: "Emtrafesa",
+    location: "Trujillo",
+    completionDate: "Noviembre 2023",
     featured: true
   },
   {
-    title: "Estructura para Paneles Solares",
-    slug: "estructura-paneles-solares",
-    description: "Fabricación e instalación de estructura metálica para sistema de paneles solares. Diseño optimizado para máxima exposición solar y resistencia a vientos fuertes.",
-    imageUrl: "/images/IMG-20250628-WA0077.jpg",
-    category: "Estructuras Especiales",
-    imageUrls: [
-      "/images/IMG-20250628-WA0078.jpg",
-      "/images/IMG-20250628-WA0079.jpg",
-      "/images/IMG-20250628-WA0080.jpg",
-    ],
-    clientReview: "La estructura es perfecta para nuestros paneles solares. Muy resistente y bien calculada para las condiciones climáticas de la zona.",
-    clientName: "Energía Solar Perú",
-    location: "Arequipa",
+    title: "Techo en Voladizo Zona de Preembarque",
+    slug: "techo-voladizo-preembarque-emtrafesa",
+    description: "Construcción de techo en voladizo para zona de preembarque de Emtrafesa. Diseño especializado para protección de mercancías y operaciones logísticas.",
+    imageUrl: "/images/Proyectos/techo-voladizo.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "El techo en voladizo es perfecto para nuestras operaciones de carga. Muy bien diseñado y construido.",
+    clientName: "Emtrafesa",
+    location: "Trujillo",
+    completionDate: "Octubre 2023",
+    featured: false
+  },
+  {
+    title: "Techo Metálico Oficina - Imprenta Gardel",
+    slug: "techo-metalico-oficina-imprenta-gardel",
+    description: "Instalación de techo metálico para oficinas de Imprenta Gardel. Incluye estructura liviana, aislamiento térmico y acabados interiores.",
+    imageUrl: "/images/Proyectos/techo-oficina-gardel.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "El techo de la oficina quedó excelente. Muy buen aislamiento y acabado profesional.",
+    clientName: "Imprenta Gardel",
+    location: "Lima",
     completionDate: "Septiembre 2023",
     featured: false
   },
   {
-    title: "Barandales Metálicos para Edificio",
-    slug: "barandales-metalicos-edificio",
-    description: "Fabricación e instalación de barandales metálicos para balcones y escaleras de edificio residencial. Diseño moderno con acabado anticorrosivo y pasamanos de seguridad.",
-    imageUrl: "/images/IMG-20250628-WA0081.jpg",
-    category: "Barandales y Pasamanos",
-    imageUrls: [
-      "/images/IMG-20250628-WA0082.jpg",
-      "/images/IMG-20250628-WA0084.jpg",
-      "/images/IMG-20250628-WA0085.jpg",
-    ],
-    clientReview: "Los barandales quedaron muy elegantes y seguros. El acabado es de primera calidad y la instalación fue muy profesional.",
-    clientName: "Constructora Horizonte",
+    title: "Techo a Dos Aguas - Imprenta Gardel",
+    slug: "techo-dos-aguas-imprenta-gardel",
+    description: "Construcción de techo a dos aguas para área de producción de Imprenta Gardel. Diseño clásico con estructura metálica y sistema de ventilación natural.",
+    imageUrl: "/images/Proyectos/techo-dos-aguas.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "El techo a dos aguas es muy funcional y estético. Permite buena ventilación en nuestro área de producción.",
+    clientName: "Imprenta Gardel",
     location: "Lima",
     completionDate: "Agosto 2023",
     featured: false
   },
   {
-    title: "Portón Metálico Automatizado",
-    slug: "porton-metalico-automatizado",
-    description: "Fabricación e instalación de portón metálico automatizado para acceso vehicular. Incluye motor eléctrico, sistema de seguridad y control remoto. Diseño resistente y elegante.",
-    imageUrl: "/images/IMG-20250628-WA0086.jpg",
-    category: "Portones y Rejas",
-    imageUrls: [
-      "/images/IMG-20250628-WA0087.jpg",
-      "/images/IMG-20250628-WA0088.jpg",
-      "/images/IMG-20250628-WA0089.jpg",
-    ],
-    clientReview: "El portón funciona perfectamente y es muy seguro. La automatización facilita mucho el acceso y el diseño es muy elegante.",
-    clientName: "Familia Rodríguez",
+    title: "Techo Metálico Oficina - Piedras Castillo",
+    slug: "techo-metalico-oficina-piedras-castillo",
+    description: "Instalación de techo metálico para oficinas de Piedras Castillo. Estructura moderna con acabados premium y sistema de iluminación integrado.",
+    imageUrl: "/images/Proyectos/techo-oficina-castillo.jpg",
+    category: "Infraestructura Comercial",
+    clientReview: "El techo de nuestras oficinas quedó muy elegante y funcional. Excelente trabajo y acabados.",
+    clientName: "Piedras Castillo",
     location: "Arequipa",
     completionDate: "Julio 2023",
     featured: false
   },
+
+  // ========================================
+  // INFRAESTRUCTURA DE SALUD
+  // ========================================
+  
+  // Hospitales y Centros Médicos
   {
-    title: "Refuerzo Estructural de Edificio",
-    slug: "refuerzo-estructural-edificio",
-    description: "Refuerzo estructural de edificio comercial con elementos metálicos. Incluye análisis estructural, diseño de refuerzos y ejecución de obras. Certificación de ingeniería.",
-    imageUrl: "/images/IMG-20250628-WA0090.jpg",
-    category: "Refuerzos Estructurales",
-    imageUrls: [
-      "/images/IMG-20250628-WA0091.jpg",
-      "/images/IMG-20250628-WA0093.jpg",
-      "/images/IMG-20250628-WA0095.jpg",
-    ],
-    clientReview: "El refuerzo estructural fue fundamental para la seguridad del edificio. El trabajo técnico fue excelente y cumplieron todos los estándares de seguridad.",
-    clientName: "Inmobiliaria Central",
-    location: "Lima",
-    completionDate: "Junio 2023",
+    title: "Central de Esterilización - IREN Norte",
+    slug: "central-esterilizacion-iren-norte",
+    description: "Construcción de central de esterilización para IREN Norte. Incluye estructura especializada, sistemas de ventilación, acabados sanitarios y cumplimiento de normas hospitalarias.",
+    imageUrl: "/images/Proyectos/central-esterilizacion.jpg",
+    category: "Infraestructura de Salud",
+    clientReview: "La central de esterilización cumple con todos los estándares hospitalarios. Trabajo muy profesional y técnico.",
+    clientName: "IREN Norte",
+    location: "Trujillo",
+    completionDate: "Mayo 2024",
     featured: true
+  },
+  {
+    title: "Instalación de Cobertura - Hospital Regional Docente de Trujillo",
+    slug: "instalacion-cobertura-hospital-trujillo",
+    description: "Instalación de cobertura especializada en Hospital Regional Docente de Trujillo. Diseño hospitalario con materiales certificados y sistemas de protección climática.",
+    imageUrl: "/images/Proyectos/cobertura-hospital.jpg",
+    category: "Infraestructura de Salud",
+    clientReview: "La cobertura protege perfectamente nuestras instalaciones. Cumple con todas las normas hospitalarias.",
+    clientName: "Hospital Regional Docente de Trujillo",
+    location: "Trujillo",
+    completionDate: "Abril 2024",
+    featured: true
+  },
+  {
+    title: "Ampliación de Salas de Espera - Clínica Suárez",
+    slug: "ampliacion-salas-espera-clinica-suarez",
+    description: "Ampliación de salas de espera para Clínica Suárez. Incluye estructura metálica, acabados sanitarios, sistemas de climatización y diseño ergonómico.",
+    imageUrl: "/images/Proyectos/salas-espera-clinica.jpg",
+    category: "Infraestructura de Salud",
+    clientReview: "Las salas de espera quedaron muy cómodas y funcionales. Nuestros pacientes están muy satisfechos.",
+    clientName: "Clínica Suárez",
+    location: "Lima",
+    completionDate: "Marzo 2024",
+    featured: false
+  },
+
+  // ========================================
+  // INFRAESTRUCTURA TURÍSTICA Y COMERCIAL
+  // ========================================
+  
+  // Centros Comerciales y Turismo
+  {
+    title: "Escenario y Almacén - Restaurant Turístico El Limonero",
+    slug: "escenario-almacen-restaurant-el-limonero",
+    description: "Construcción de escenario y almacén para Restaurant Turístico El Limonero. Diseño arquitectónico especializado para entretenimiento y almacenamiento gastronómico.",
+    imageUrl: "/images/Proyectos/escenario-restaurant.jpg",
+    category: "Infraestructura Turística",
+    clientReview: "El escenario transformó nuestro restaurant. Ahora podemos ofrecer espectáculos y nuestros clientes están encantados.",
+    clientName: "Restaurant Turístico El Limonero",
+    location: "Trujillo",
+    completionDate: "Febrero 2024",
+    featured: true
+  },
+  {
+    title: "Proyecto Integral - Galería La Promesa de Dios",
+    slug: "proyecto-integral-galeria-promesa-dios",
+    description: "Proyecto integral para Galería La Promesa de Dios incluyendo techos metálicos, pasamanos de seguridad, andamios comerciales, reja de ingreso, puertas enrollables y divisiones de ambiente.",
+    imageUrl: "/images/Proyectos/galeria-integral.jpg",
+    category: "Infraestructura Turística",
+    clientReview: "Un proyecto muy completo que transformó toda nuestra galería. Excelente coordinación y acabados de primera.",
+    clientName: "Galería La Promesa de Dios",
+    location: "Lima",
+    completionDate: "Enero 2024",
+    featured: true
+  },
+
+  // ========================================
+  // ESTRUCTURAS METÁLICAS ESPECIALIZADAS
+  // ========================================
+  
+  // Cubiertas y Techos Metálicos
+  {
+    title: "Techos Estilo Sol y Sombra",
+    slug: "techos-sol-sombra-diversos",
+    description: "Instalación de techos estilo sol y sombra para diversos proyectos. Diseño especializado para protección solar con ventilación natural y estructura liviana.",
+    imageUrl: "/images/Proyectos/techos-sol-sombra.jpg",
+    category: "Estructuras Metálicas",
+    clientReview: "Los techos sol y sombra son perfectos para nuestro clima. Proporcionan protección y ventilación ideal.",
+    clientName: "Diversos Clientes",
+    location: "Nacional",
+    completionDate: "Diversos",
+    featured: false
+  },
+  {
+    title: "Pasamanos en Acero Inoxidable",
+    slug: "pasamanos-acero-inoxidable-diversos",
+    description: "Fabricación e instalación de pasamanos en acero inoxidable para diversos proyectos. Diseño moderno, resistente a la corrosión y cumplimiento de normas de seguridad.",
+    imageUrl: "/images/Proyectos/pasamanos-inoxidable.jpg",
+    category: "Estructuras Metálicas",
+    clientReview: "Los pasamanos son muy elegantes y resistentes. Perfectos para nuestras instalaciones.",
+    clientName: "Diversos Clientes",
+    location: "Nacional",
+    completionDate: "Diversos",
+    featured: false
+  },
+
+  // ========================================
+  // SERVICIOS DE MANTENIMIENTO Y SEGURIDAD
+  // ========================================
+  
+  // Mantenimiento Industrial
+  {
+    title: "Mantenimiento de Cercos con Malla Olímpica - Subestación UPAO",
+    slug: "mantenimiento-cercos-malla-olimpica-upao",
+    description: "Mantenimiento especializado de cercos con malla olímpica en subestación de generadores eléctricos de UPAO. Incluye reparación, refuerzo y pintura anticorrosiva.",
+    imageUrl: "/images/Proyectos/cercos-malla-upao.jpg",
+    category: "Mantenimiento Industrial",
+    clientReview: "El mantenimiento de los cercos fue muy profesional. Ahora tenemos mayor seguridad en nuestras instalaciones.",
+    clientName: "UPAO",
+    location: "Trujillo",
+    completionDate: "Junio 2024",
+    featured: false
+  },
+
+  // ========================================
+  // CARPINTERÍA METÁLICA
+  // ========================================
+  
+  // Puertas y Ventanas
+  {
+    title: "Puertas, Portones y Ventanas",
+    slug: "puertas-portones-ventanas-diversos",
+    description: "Fabricación e instalación de puertas, portones y ventanas metálicas para diversos proyectos. Diseños personalizados con acabados premium y sistemas de seguridad.",
+    imageUrl: "/images/Proyectos/carpinteria-metalica.jpg",
+    category: "Carpintería Metálica",
+    clientReview: "Las puertas y ventanas son de excelente calidad. Muy seguras y con acabados perfectos.",
+    clientName: "Diversos Clientes",
+    location: "Nacional",
+    completionDate: "Diversos",
+    featured: false
   }
 ];

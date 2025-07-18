@@ -27,7 +27,6 @@ console.log(`Current categoryName: ${categoryName}, categorySlug: ${categorySlug
 
 const filteredServices = services.filter(service => {
   const serviceCategorySlug = service.category.toLowerCase().replace(/ /g, '-');
-  console.log(`Comparing service category slug: ${serviceCategorySlug} with current category slug: ${categorySlug}`);
   return serviceCategorySlug === categorySlug;
 });
 
@@ -48,14 +47,10 @@ const initialVisibleServices = 3;
   </section>
 
   <main class="container mx-auto p-6 mt-8 flex-grow">
-    <div id="services-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-initial-visible-services={initialVisibleServices}>
-      {
-        filteredServices.map((service, index) => (
-          <div class:list={["service-item", { "hidden": index >= initialVisibleServices }]}>
-            <ServicePreviewCard service={service} />
-          </div>
-        ))
-      }
+    <div id="services-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {filteredServices.map(service => (
+        <ServicePreviewCard service={service} />
+      ))}
     </div>
 
     {filteredServices.length > initialVisibleServices && (

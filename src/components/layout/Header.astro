@@ -1,13 +1,13 @@
 ---
 // src/components/Header.astro
 import { services } from '@/data/services.ts';
-import { projects } from '@/data/projects.ts';
+import { projectCategories } from '@/data/projects.ts';
 import IconWrapper from '@/components/ui/IconWrapper.astro';
 import '@/styles/header.css';
 const { url } = Astro;
 const currentPath = url?.pathname || '';
 const serviceCategories: string[] = [...new Set(services.map((service) => service.category))] as string[];
-const projectCategories: string[] = [...new Set(projects.map((project) => project.category))] as string[];
+const projectCategoryKeys: string[] = Object.keys(projectCategories);
 ---
 
 <header class="bg-accent text-white shadow-lg sticky top-0 z-50">
@@ -120,12 +120,12 @@ const projectCategories: string[] = [...new Set(projects.map((project) => projec
           </a>
           <div class="absolute left-0 mt-1 w-56 z-20 bg-primary shadow-xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-secondary/20">
             {
-              projectCategories.map((category: string) => (
+              projectCategoryKeys.map((key: string) => (
                 <a
-                  href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                  href={`/proyectos/categoria/${key.toLowerCase().replace(/ /g, "-")}`}
                   class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200 focus:outline-none focus:bg-secondary focus:text-white"
                 >
-                  {category}
+                  {projectCategories[key as keyof typeof projectCategories].name}
                 </a>
               ))
             }
@@ -267,13 +267,13 @@ const projectCategories: string[] = [...new Set(projects.map((project) => projec
             <div class="relative">
               <div class="grid grid-cols-1 gap-3 projects-scroll">
                 {
-                  projectCategories.map((category: string) => (
+                  projectCategoryKeys.map((key: string) => (
                     <a
-                      href={`/proyectos/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
+                      href={`/proyectos/categoria/${key.toLowerCase().replace(/ /g, "-")}`}
                       class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-accent text-xs"
                     >
                       <IconWrapper name="mdi:chevron-right" size="xs" color="white" class="mr-1 opacity-70" />
-                      <span class="font-medium">{category}</span>
+                      <span class="font-medium">{projectCategories[key as keyof typeof projectCategories].name}</span>
                     </a>
                   ))
                 }

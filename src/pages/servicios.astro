@@ -13,22 +13,10 @@ const mostClickedServices = services.filter(service => service.isMostClicked);
 
 // Agrupa los servicios por categoría y subcategoría
 const servicesByCategory = services.reduce((acc, service) => {
-  if (!acc[service.category]) {
-    acc[service.category] = {};
-  }
-  
-  if (service.subcategory) {
-    if (!acc[service.category][service.subcategory]) {
-      acc[service.category][service.subcategory] = [];
-    }
-    acc[service.category][service.subcategory].push(service);
-  } else {
-    if (!acc[service.category]['general']) {
-      acc[service.category]['general'] = [];
-    }
-    acc[service.category]['general'].push(service);
-  }
-  
+  if (!acc[service.category]) acc[service.category] = {};
+  const subcat = service.subcategory || 'General';
+  if (!acc[service.category][subcat]) acc[service.category][subcat] = [];
+  acc[service.category][subcat].push(service);
   return acc;
 }, {} as Record<string, Record<string, typeof services>>);
 
@@ -100,49 +88,25 @@ const categoryStructure = {
       </div>
 
       {
-        Object.entries(categoryStructure).map(([category, subcategories]) => {
-          const categoryServices = servicesByCategory[category];
-          if (!categoryServices) return null;
-          
-          return (
-            <div class="mb-16">
-              <h3 class="text-3xl font-bold text-[#1e3a5f] mb-8 text-center">
-                {category}
-              </h3>
-              
-              {
-                Object.entries(subcategories).map(([subcategory, serviceNames]) => {
-                  // Encontrar los servicios que coinciden con esta subcategoría
-                  const subcategoryServices = services.filter(service => 
-                    service.category === category && 
-                    (subcategory === 'general' ? !service.subcategory : service.subcategory === subcategory)
-                  );
-                  
-                  if (subcategoryServices.length === 0) return null;
-                  
-                  return (
-                    <div class="mb-12">
-                      {subcategory !== 'general' && (
-                        <h4 class="text-xl font-semibold text-[#31487a] mb-6 text-center">
-                          {subcategory}
-                        </h4>
-                      )}
-                      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {
-                          subcategoryServices.map((service) => (
-                            <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
-                              <ServicePreviewCard service={service} />
-                            </div>
-                          ))
-                        }
-                      </div>
+        Object.entries(servicesByCategory).map(([category, subcats]) => (
+          <div class="mb-16">
+            <h3 class="text-3xl font-bold text-[#1e3a5f] mb-8 text-center">{category}</h3>
+            {Object.entries(subcats).map(([subcat, list]) => (
+              <div class="mb-12">
+                {subcat !== 'General' && (
+                  <h4 class="text-xl font-semibold text-[#31487a] mb-6 text-center">{subcat}</h4>
+                )}
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {list.map(service => (
+                    <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
+                      <ServicePreviewCard service={service} />
                     </div>
-                  );
-                })
-              }
-            </div>
-          );
-        })
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))
       }
     </section>
 

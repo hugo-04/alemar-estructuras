@@ -2,27 +2,27 @@
 // src/pages/proyectos/categoria/[category].astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { projects } from '@/data/projects';
+import { projectCategories } from '@/data/projects';
 import ClientReviewCard from '@/components/cards/ClientReviewCard.astro';
 import IconWrapper from '@/components/ui/IconWrapper.astro';
 
 export async function getStaticPaths() {
-  const uniqueCategories = [...new Set(projects.map(project => project.category))];
-  
-  return uniqueCategories.map(category => ({
-    params: { category: category.toLowerCase().replace(/ /g, "-") },
-    props: { categoryName: category, categorySlug: category.toLowerCase().replace(/ /g, "-") }
+  const categoryKeys = Object.keys(projectCategories);
+  return categoryKeys.map(key => ({
+    params: { category: key.toLowerCase().replace(/ /g, "-") },
+    props: { categoryKey: key, categorySlug: key.toLowerCase().replace(/ /g, "-") }
   }));
 }
 
-const { categoryName, categorySlug } = Astro.props;
-
-// Filtrar proyectos por categoría
-const categoryProjects = projects.filter(project => 
-  project.category.toLowerCase().replace(/ /g, "-") === categorySlug
-);
+const { categoryKey, categorySlug } = Astro.props;
+// Forzar el tipo de categoryKey a keyof typeof projectCategories
+const categoryData = projectCategories[categoryKey as keyof typeof projectCategories];
+const allCategories = [categoryKey, ...(categoryData?.subcategories || [])];
+// Filtrar proyectos por categoría principal o subcategoría
+const categoryProjects = projects.filter(project => allCategories.includes(project.category));
 ---
 
-<BaseLayout title={`${categoryName} - Proyectos - ALEMAR Estructuras`}>
+<BaseLayout title={`${categoryData?.name || categoryKey} - Proyectos - ALEMAR Estructuras`}>
   <main class="container mx-auto px-4 py-8 mt-8">
     <!-- Hero Section -->
     <section class="text-center mb-12">
@@ -33,27 +33,28 @@ const categoryProjects = projects.filter(project =>
         </a>
       </div>
       <h1 class="text-4xl md:text-5xl font-bold text-[#1e3a5f] mb-6">
-        {categoryName}
+        {categoryData?.name || categoryKey}
       </h1>
       <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-        Descubre nuestros proyectos realizados en {categoryName.toLowerCase()}. 
+        Descubre nuestros proyectos realizados en {(categoryData?.name || categoryKey).toLowerCase()}. 
         Cada trabajo refleja nuestra experiencia y el compromiso con la calidad.
       </p>
     </section>
 
     <!-- Proyectos de la Categoría -->
     <section class="mb-16">
-      <h2 class="text-3xl font-bold text-[#1e3a5f] mb-8 text-center">
-        Proyectos de {categoryName}
+      <h2 class="text-3xl font-bold text-[#1e3a5f] mb-4 text-center">
+        Proyectos de {categoryData?.name || categoryKey}
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <p class="text-center text-gray-500 mb-8">{categoryProjects.length} proyecto(s) encontrados</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 justify-items-center">
         {categoryProjects.map(project => (
-          <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div class="relative h-64">
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden max-w-md w-full flex flex-col mx-auto">
+            <div class="relative aspect-[4/3] w-full">
               <img 
                 src={project.imageUrl} 
                 alt={project.title}
-                class="w-full h-full object-cover"
+                class="absolute inset-0 w-full h-full object-cover"
               />
               <div class="absolute top-4 left-4">
                 <span class="bg-[#c8aa6e] text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -61,19 +62,23 @@ const categoryProjects = projects.filter(project =>
                 </span>
               </div>
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">{project.title}</h3>
-              <p class="text-gray-600 mb-4">{project.description}</p>
-              <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
-                <span>{project.location}</span>
+            <div class="p-6 flex flex-col items-center text-center">
+              <h3 class="text-xl font-bold text-[#1e3a5f] mb-3 break-words w-full">{project.title}</h3>
+              <p class="text-gray-600 mb-4 line-clamp-4 max-h-24 overflow-hidden w-full">
+                {project.description}
+              </p>
+              <div class="flex items-center justify-between text-sm text-gray-500 mb-4 w-full">
+                <span class="truncate">{project.location}</span>
                 <span>{project.completionDate}</span>
               </div>
-              <ClientReviewCard 
-                review={project.clientReview}
-                clientName={project.clientName}
-                location={project.location}
-                completionDate={project.completionDate}
-              />
+              <div class="w-full">
+                <ClientReviewCard 
+                  review={project.clientReview}
+                  clientName={project.clientName}
+                  location={project.location}
+                  completionDate={project.completionDate}
+                />
+              </div>
             </div>
           </div>
         ))}
@@ -87,7 +92,7 @@ const categoryProjects = projects.filter(project =>
           ¿Necesitas un proyecto similar?
         </h2>
         <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-          Nuestro equipo tiene la experiencia necesaria para realizar tu proyecto en {categoryName.toLowerCase()}. 
+          Nuestro equipo tiene la experiencia necesaria para realizar tu proyecto en {categoryData?.name || categoryKey}. 
           Contáctanos para una consulta gratuita.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
