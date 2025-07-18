@@ -87,9 +87,9 @@ export default function ServiceCarouselClient({ images = [], id, autoplay = true
   return (
     <div
       id={id}
-      class="service-carousel-container relative flex flex-col items-center border border-slate-200/50 backdrop-blur-sm rounded-3xl shadow-2xl max-w-full sm:max-w-lg md:max-w-2xl w-full mx-auto group p-0 bg-gradient-to-br from-slate-50 via-white to-blue-50"
+      class="service-carousel-container relative flex flex-col items-center border border-slate-200/50 backdrop-blur-sm rounded-3xl shadow-2xl max-w-4xl w-full mx-auto group p-0 bg-gradient-to-br from-slate-50 via-white to-blue-50"
     >
-      <div class="carousel-viewport w-full overflow-hidden rounded-3xl bg-gradient-to-br from-slate-100 via-white to-blue-100 flex items-center justify-center aspect-[16/9] min-h-[180px] sm:min-h-[220px] md:min-h-[340px] max-h-[320px] sm:max-h-[420px] md:max-h-[600px]" style={{ border: '2px solid #e0e7ef', boxShadow: '0 8px 32px 0 rgba(31,38,135,0.10)' }}>
+      <div class="carousel-viewport w-full overflow-hidden rounded-3xl bg-gradient-to-br from-slate-100 via-white to-blue-100 flex items-center justify-center aspect-[16/9] min-h-[180px] sm:min-h-[220px] md:min-h-[340px] max-h-[800px]" style={{ border: '2px solid #e0e7ef', boxShadow: '0 8px 32px 0 rgba(31,38,135,0.10)' }}>
         <div
           class={`carousel-inner flex w-full h-full ${instant ? '' : 'transition-transform duration-700 ease-in-out'}`}
           ref={innerRef}
@@ -103,9 +103,9 @@ export default function ServiceCarouselClient({ images = [], id, autoplay = true
             <img 
               src={images[images.length - 1].src} 
               alt={images[images.length - 1].alt} 
-              class="w-full h-[180px] sm:h-[220px] md:h-[500px] object-center bg-white transition-opacity duration-300"
+              class="w-full h-full max-w-full max-h-[800px] object-cover mx-auto bg-white transition-opacity duration-300"
               style={{ 
-                objectFit: imageStates[images.length - 1]?.objectFit || 'contain',
+                objectFit: 'cover',
                 opacity: imageStates[images.length - 1]?.loaded ? 1 : 0
               }}
               onLoad={(e) => handleImageLoad(e, images.length - 1)}
@@ -117,9 +117,9 @@ export default function ServiceCarouselClient({ images = [], id, autoplay = true
               <img 
                 src={image.src} 
                 alt={image.alt || 'Imagen de servicio'} 
-                class="w-full h-[180px] sm:h-[220px] md:h-[500px] object-center bg-white transition-opacity duration-300"
+                class="w-full h-full max-w-full max-h-[800px] object-cover mx-auto bg-white transition-opacity duration-300"
                 style={{ 
-                  objectFit: imageStates[index]?.objectFit || 'contain',
+                  objectFit: 'cover',
                   opacity: imageStates[index]?.loaded ? 1 : 0
                 }}
                 onLoad={(e) => handleImageLoad(e, index)}
@@ -131,9 +131,9 @@ export default function ServiceCarouselClient({ images = [], id, autoplay = true
             <img 
               src={images[0].src} 
               alt={images[0].alt} 
-              class="w-full h-[180px] sm:h-[220px] md:h-[500px] object-center bg-white transition-opacity duration-300"
+              class="w-full h-full max-w-full max-h-[800px] object-cover mx-auto bg-white transition-opacity duration-300"
               style={{ 
-                objectFit: imageStates[0]?.objectFit || 'contain',
+                objectFit: 'cover',
                 opacity: imageStates[0]?.loaded ? 1 : 0
               }}
               onLoad={(e) => handleImageLoad(e, 0)}
