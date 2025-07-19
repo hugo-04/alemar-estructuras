@@ -23,18 +23,43 @@
 .hero-slide-img:not(.active) {
   filter: blur(2px) brightness(0.9);
 }
-@media (max-width: 640px) {
+
+/* Responsive adjustments para móviles */
+@media (max-width: 480px) {
   .hero-slide-img {
-    min-height: 220px;
+    min-height: 250px;
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 640px) {
+  .hero-slide-img {
+    min-height: 280px;
     max-height: 350px;
   }
 }
-@media (min-width: 1024px) {
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .hero-slide-img {
+    min-height: 320px;
+    max-height: 400px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-slide-img {
+    min-height: 350px;
+    max-height: 500px;
+  }
+}
+
+@media (min-width: 1025px) {
   .hero-slide-img {
     min-height: 400px;
     max-height: 700px;
   }
 }
+
 @keyframes kenburns-pepper {
   0% {
     transform: scale(1) translate(0%, 0%);

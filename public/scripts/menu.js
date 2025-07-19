@@ -1,341 +1,375 @@
 /**
- * Script robusto para menú móvil - Sidebar Clásico
- * Funciona siempre incluso tras navegación SPA
- * @version 2.2.0
+ * Script para el menú móvil y sidebar
+ * @version 2.3.0
  */
 
-(function() {
-  'use strict';
+document.addEventListener('DOMContentLoaded', function() {
+  // Elementos del DOM
+  const menuButton = document.getElementById('menu-button');
+  const closeSidebarButton = document.getElementById('close-sidebar-button');
+  const mobileSidebar = document.getElementById('mobile-sidebar');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+  const hamburgerIconWrapper = document.getElementById('hamburger-icon-wrapper');
+  
+  // Botones de toggle para dropdowns
+  const servicesToggle = document.getElementById('services-toggle');
+  const projectsToggle = document.getElementById('projects-toggle');
+  
+  // Menús de dropdown
+  const servicesMenu = document.getElementById('services-menu');
+  const projectsMenu = document.getElementById('projects-menu');
+  
+  // Iconos de chevron
+  const chevronIcons = document.querySelectorAll('.chevron-icon');
 
-  // Configuración del menú
-  const CONFIG = {
-    selectors: {
-      mobileSidebar: '#mobile-sidebar',
-      sidebarOverlay: '#sidebar-overlay',
-      hamburgerIconWrapper: '#hamburger-icon-wrapper',
-      menuButton: '#menu-button',
-      closeSidebarButton: '#close-sidebar-button',
-      servicesToggle: '#services-toggle',
-      projectsToggle: '#projects-toggle',
-      servicesMenu: '#services-menu',
-      projectsMenu: '#projects-menu'
-    },
-    classes: {
-      active: 'active',
-      hidden: 'hidden',
-      open: 'open',
-      rotated: 'rotated',
-      notRotated: 'not-rotated'
-    }
-  };
+  // Estado del sidebar
+  let isSidebarOpen = false;
 
   /**
-   * Alterna la visibilidad del sidebar móvil
-   * @param {boolean} show - Si mostrar o ocultar el sidebar
-   */
-  function toggleSidebar(show) {
-    try {
-      console.log('🔄 Alternando sidebar:', show);
-      
-      const mobileSidebar = document.querySelector(CONFIG.selectors.mobileSidebar);
-      const sidebarOverlay = document.querySelector(CONFIG.selectors.sidebarOverlay);
-      const hamburgerIconWrapper = document.querySelector(CONFIG.selectors.hamburgerIconWrapper);
-      const whatsappButton = document.getElementById('whatsapp-button');
-      
-      console.log('📱 Elementos encontrados:', {
-        mobileSidebar: !!mobileSidebar,
-        sidebarOverlay: !!sidebarOverlay,
-        hamburgerIconWrapper: !!hamburgerIconWrapper,
-        whatsappButton: !!whatsappButton
-      });
-      
-      if (mobileSidebar) {
-        if (show) {
-          // Mostrar sidebar
-          console.log('✅ Mostrando sidebar...');
-          mobileSidebar.classList.add(CONFIG.classes.active);
-          document.body.classList.add('sidebar-open');
-          console.log('🎯 Clases después de mostrar:', mobileSidebar.className);
-        } else {
-          // Ocultar sidebar
-          console.log('❌ Ocultando sidebar...');
-          mobileSidebar.classList.remove(CONFIG.classes.active);
-          document.body.classList.remove('sidebar-open');
-          console.log('🎯 Clases después de ocultar:', mobileSidebar.className);
-        }
-      }
-      
-      if (sidebarOverlay) {
-        if (show) {
-          sidebarOverlay.classList.add(CONFIG.classes.active);
-        } else {
-          sidebarOverlay.classList.remove(CONFIG.classes.active);
-        }
-      }
-      
-      if (hamburgerIconWrapper) {
-        hamburgerIconWrapper.classList.toggle(CONFIG.classes.open, show);
-      }
-      
-      // Ocultar/mostrar el botón de WhatsApp con transición suave
-      if (whatsappButton) {
-        if (show) {
-          whatsappButton.style.opacity = '0';
-          whatsappButton.style.transform = 'scale(0.8)';
-          setTimeout(() => {
-            whatsappButton.style.display = 'none';
-          }, 200);
-        } else {
-          whatsappButton.style.display = 'flex';
-          setTimeout(() => {
-            whatsappButton.style.opacity = '1';
-            whatsappButton.style.transform = 'scale(1)';
-          }, 50);
-        }
-      }
-    } catch (error) {
-      console.error('Error al alternar bottom sheet:', error);
-    }
-  }
-
-  /**
-   * Cierra el sidebar móvil
-   */
-  function closeSidebar() {
-    console.log('🚪 Cerrando sidebar...');
-    toggleSidebar(false);
-  }
-
-  /**
-   * Abre el sidebar móvil
+   * Abrir el sidebar móvil
    */
   function openSidebar() {
-    console.log('🚪 Abriendo sidebar...');
-    toggleSidebar(true);
-  }
-
-  /**
-   * Alterna un submenú específico
-   * @param {string} menuId - ID del menú a alternar
-   * @param {string} toggleId - ID del botón toggle
-   */
-  function toggleSubmenu(menuId, toggleId) {
-    try {
-      console.log('📂 Alternando submenú:', menuId);
+    if (mobileSidebar && sidebarOverlay) {
+      mobileSidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      hamburgerIconWrapper?.classList.add('open');
+      document.body.classList.add('sidebar-open');
+      isSidebarOpen = true;
       
-      const menu = document.getElementById(menuId);
-      const toggle = document.querySelector(toggleId);
-      const chevronIcon = toggle?.querySelector('.chevron-icon');
+      // Actualizar aria-expanded
+      menuButton?.setAttribute('aria-expanded', 'true');
       
-      // Identificar el otro menú y su toggle
-      const otherMenuId = menuId === 'services-menu' ? 'projects-menu' : 'services-menu';
-      const otherToggleId = menuId === 'services-menu' ? CONFIG.selectors.projectsToggle : CONFIG.selectors.servicesToggle;
-      const otherMenu = document.getElementById(otherMenuId);
-      const otherToggle = document.querySelector(otherToggleId);
-      const otherChevronIcon = otherToggle?.querySelector('.chevron-icon');
-
-      if (menu) {
-        const isHidden = menu.classList.contains(CONFIG.classes.hidden);
-        console.log('📊 Estado del menú:', isHidden ? 'oculto' : 'visible');
-        
-        // Cerrar el otro menú y resetear su icono
-        if (otherMenu && !otherMenu.classList.contains(CONFIG.classes.hidden)) {
-          console.log('🔄 Cerrando otro menú:', otherMenuId);
-          otherMenu.classList.add(CONFIG.classes.hidden);
-          if (otherChevronIcon) {
-            otherChevronIcon.classList.remove(CONFIG.classes.rotated);
-            otherChevronIcon.classList.add(CONFIG.classes.notRotated);
-          }
-        }
-        
-        // Alternar el menú actual
-        menu.classList.toggle(CONFIG.classes.hidden);
-        
-        // Rotar el icono
-        if (chevronIcon) {
-          chevronIcon.classList.remove(CONFIG.classes.rotated, CONFIG.classes.notRotated);
-          if (isHidden) {
-            chevronIcon.classList.add(CONFIG.classes.rotated);
-            console.log('🔄 Rotando icono hacia abajo');
-          } else {
-            chevronIcon.classList.add(CONFIG.classes.notRotated);
-            console.log('🔄 Rotando icono hacia arriba');
-          }
-        }
-        
-        // Actualizar aria-expanded
-        if (toggle) {
-          toggle.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-        }
-      }
-    } catch (error) {
-      console.error('Error al alternar submenú:', error);
+      // Enfoque en el botón de cerrar para accesibilidad
+      setTimeout(() => {
+        closeSidebarButton?.focus();
+      }, 100);
     }
   }
 
   /**
-   * Maneja los clics en el documento
-   * @param {Event} e - Evento de clic
+   * Cerrar el sidebar móvil
    */
-  function handleDocumentClick(e) {
-    const target = e.target;
-    
-    try {
-      console.log('🖱️ Clic detectado en:', target?.tagName, target?.className);
+  function closeSidebar() {
+    if (mobileSidebar && sidebarOverlay) {
+      mobileSidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+      hamburgerIconWrapper?.classList.remove('open');
+      document.body.classList.remove('sidebar-open');
+      isSidebarOpen = false;
       
-      // Botón menú hamburguesa
-      if (target?.closest(CONFIG.selectors.menuButton)) {
-        console.log('🍔 Clic en botón de menú hamburguesa');
-        const mobileSidebar = document.querySelector(CONFIG.selectors.mobileSidebar);
-        const isOpen = mobileSidebar && mobileSidebar.classList.contains(CONFIG.classes.active);
-        console.log('📊 Estado actual del sidebar:', isOpen);
-        toggleSidebar(!isOpen);
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
+      // Actualizar aria-expanded
+      menuButton?.setAttribute('aria-expanded', 'false');
       
-      // Botón cerrar sidebar
-      if (target?.closest(CONFIG.selectors.closeSidebarButton)) {
-        console.log('❌ Clic en botón cerrar sidebar');
-        closeSidebar();
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
+      // Enfoque en el botón del menú para accesibilidad
+      menuButton?.focus();
       
-      // Overlay para cerrar
-      if (target?.closest(CONFIG.selectors.sidebarOverlay)) {
-        console.log('🖱️ Clic en overlay');
-        closeSidebar();
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-      
-      // Clic en enlace del sidebar
-      if (target?.closest(CONFIG.selectors.mobileSidebar) && target.tagName === 'A') {
-        console.log('🔗 Clic en enlace del sidebar');
-        closeSidebar();
-        return;
-      }
-      
-      // Toggle de servicios
-      if (target?.closest(CONFIG.selectors.servicesToggle)) {
-        console.log('🔧 Clic en toggle de servicios');
-        toggleSubmenu('services-menu', CONFIG.selectors.servicesToggle);
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-      
-      // Toggle de proyectos
-      if (target?.closest(CONFIG.selectors.projectsToggle)) {
-        console.log('📁 Clic en toggle de proyectos');
-        toggleSubmenu('projects-menu', CONFIG.selectors.projectsToggle);
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
-    } catch (error) {
-      console.error('Error al manejar clic:', error);
+      // Resetear todos los dropdowns al cerrar
+      resetAllDropdowns();
     }
   }
 
   /**
-   * Inicializa el menú móvil
+   * Resetear todos los dropdowns
    */
-  function initMobileMenu() {
-    try {
-      console.log('🚀 Inicializando menú móvil...');
+  function resetAllDropdowns() {
+    // Cerrar menú de servicios
+    if (servicesMenu) {
+      servicesMenu.classList.add('hidden');
+      servicesToggle?.setAttribute('aria-expanded', 'false');
+      const servicesChevron = servicesToggle?.querySelector('.chevron-icon');
+      if (servicesChevron) {
+        servicesChevron.classList.remove('rotated');
+        servicesChevron.classList.add('not-rotated');
+      }
+      // Marcar como cerrado
+      const servicesGroup = servicesToggle?.closest('.group');
+      if (servicesGroup) {
+        servicesGroup.setAttribute('data-dropdown-closed', 'true');
+      }
+    }
+    
+    // Cerrar menú de proyectos
+    if (projectsMenu) {
+      projectsMenu.classList.add('hidden');
+      projectsToggle?.setAttribute('aria-expanded', 'false');
+      const projectsChevron = projectsToggle?.querySelector('.chevron-icon');
+      if (projectsChevron) {
+        projectsChevron.classList.remove('rotated');
+        projectsChevron.classList.add('not-rotated');
+      }
+      // Marcar como cerrado
+      const projectsGroup = projectsToggle?.closest('.group');
+      if (projectsGroup) {
+        projectsGroup.setAttribute('data-dropdown-closed', 'true');
+      }
+    }
+    
+    // Resetear estados activos inmediatamente
+    resetActiveStates();
+  }
+
+  /**
+   * Toggle del menú de servicios
+   */
+  function toggleServicesMenu() {
+    if (servicesMenu && servicesToggle) {
+      const isExpanded = servicesToggle.getAttribute('aria-expanded') === 'true';
+      const servicesGroup = servicesToggle.closest('.group');
       
-      // Delegación de eventos para máxima robustez
-      document.addEventListener('click', handleDocumentClick);
-
-      // Inicializar funcionalidad del sidebar
-      initSidebar();
-
-      // Reaplica tras navegación SPA
-      if (typeof window !== 'undefined') {
-        window.addEventListener('astro:after-swap', closeSidebar);
+      // Cerrar menú de proyectos si está abierto
+      if (projectsMenu) {
+        projectsMenu.classList.add('hidden');
+        projectsToggle?.setAttribute('aria-expanded', 'false');
+        const projectsChevron = projectsToggle?.querySelector('.chevron-icon');
+        if (projectsChevron) {
+          projectsChevron.classList.remove('rotated');
+          projectsChevron.classList.add('not-rotated');
+        }
+        // Marcar proyectos como cerrado
+        const projectsGroup = projectsToggle?.closest('.group');
+        if (projectsGroup) {
+          projectsGroup.setAttribute('data-dropdown-closed', 'true');
+        }
       }
       
-      console.log('✅ Menú móvil inicializado correctamente');
-    } catch (error) {
-      console.error('Error al inicializar menú móvil:', error);
+      // Toggle del menú de servicios
+      servicesMenu.classList.toggle('hidden');
+      servicesToggle.setAttribute('aria-expanded', !isExpanded);
+      
+      // Rotar icono
+      const chevronIcon = servicesToggle.querySelector('.chevron-icon');
+      if (chevronIcon) {
+        chevronIcon.classList.toggle('rotated');
+        chevronIcon.classList.toggle('not-rotated');
+      }
+      
+      // Si estamos cerrando el dropdown, resetear estados inmediatamente
+      if (isExpanded) {
+        if (servicesGroup) {
+          servicesGroup.setAttribute('data-dropdown-closed', 'true');
+        }
+        resetActiveStates();
+      } else {
+        // Si estamos abriendo, remover el atributo de cerrado
+        if (servicesGroup) {
+          servicesGroup.removeAttribute('data-dropdown-closed');
+        }
+      }
     }
   }
 
   /**
-   * Inicializa la funcionalidad del sidebar
+   * Toggle del menú de proyectos
    */
-  function initSidebar() {
-    const sidebar = document.querySelector(CONFIG.selectors.mobileSidebar);
-    if (!sidebar) return;
-
-    // Cerrar sidebar con Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeSidebar();
+  function toggleProjectsMenu() {
+    if (projectsMenu && projectsToggle) {
+      const isExpanded = projectsToggle.getAttribute('aria-expanded') === 'true';
+      const projectsGroup = projectsToggle.closest('.group');
+      
+      // Cerrar menú de servicios si está abierto
+      if (servicesMenu) {
+        servicesMenu.classList.add('hidden');
+        servicesToggle?.setAttribute('aria-expanded', 'false');
+        const servicesChevron = servicesToggle?.querySelector('.chevron-icon');
+        if (servicesChevron) {
+          servicesChevron.classList.remove('rotated');
+          servicesChevron.classList.add('not-rotated');
+        }
+        // Marcar servicios como cerrado
+        const servicesGroup = servicesToggle?.closest('.group');
+        if (servicesGroup) {
+          servicesGroup.setAttribute('data-dropdown-closed', 'true');
+        }
       }
-    });
-
-    // Cerrar sidebar al hacer clic fuera
-    document.addEventListener('click', (e) => {
-      if (sidebar.classList.contains('active') && 
-          !sidebar.contains(e.target) && 
-          !e.target.closest(CONFIG.selectors.menuButton)) {
-        closeSidebar();
+      
+      // Toggle del menú de proyectos
+      projectsMenu.classList.toggle('hidden');
+      projectsToggle.setAttribute('aria-expanded', !isExpanded);
+      
+      // Rotar icono
+      const chevronIcon = projectsToggle.querySelector('.chevron-icon');
+      if (chevronIcon) {
+        chevronIcon.classList.toggle('rotated');
+        chevronIcon.classList.toggle('not-rotated');
       }
-    });
-
-    // Cierra el sidebar y permite la navegación al hacer clic en cualquier enlace dentro del sidebar
-    setupSidebarLinkClose();
+      
+      // Si estamos cerrando el dropdown, resetear estados inmediatamente
+      if (isExpanded) {
+        if (projectsGroup) {
+          projectsGroup.setAttribute('data-dropdown-closed', 'true');
+        }
+        resetActiveStates();
+      } else {
+        // Si estamos abriendo, remover el atributo de cerrado
+        if (projectsGroup) {
+          projectsGroup.removeAttribute('data-dropdown-closed');
+        }
+      }
+    }
   }
 
   /**
-   * Cierra el sidebar móvil y permite la navegación al hacer clic en cualquier enlace dentro del sidebar
+   * Resetear estados activos
    */
-  function setupSidebarLinkClose() {
-    const sidebar = document.querySelector(CONFIG.selectors.mobileSidebar);
-    if (!sidebar) return;
-    sidebar.addEventListener('click', function(e) {
-      const link = e.target.closest('a');
-      if (link && link.href) {
-        // Cierra el sidebar
-        closeSidebar();
-        // Permite la navegación normal (no preventDefault)
-        // Si usas SPA y quieres forzar navegación, puedes usar:
-        // window.location = link.href;
-      }
+  function resetActiveStates() {
+    // Remover clases activas de todos los elementos
+    const allGroups = document.querySelectorAll('#mobile-sidebar .group');
+    allGroups.forEach(group => {
+      group.classList.remove('active', 'pressed', 'highlighted');
+      // Forzar reset de estilos inline
+      group.style.background = '';
+      group.style.transform = '';
+      group.style.boxShadow = '';
+    });
+    
+    // Remover clases activas de todos los enlaces
+    const allLinks = document.querySelectorAll('#mobile-sidebar nav > a');
+    allLinks.forEach(link => {
+      link.classList.remove('active', 'pressed', 'highlighted');
+      // Forzar reset de estilos inline
+      link.style.background = '';
+      link.style.transform = '';
+      link.style.boxShadow = '';
+    });
+    
+    // Resetear iconos
+    const allIcons = document.querySelectorAll('#mobile-sidebar .w-8.h-8');
+    allIcons.forEach(icon => {
+      icon.style.background = '';
+      icon.style.transform = '';
+    });
+    
+    // Resetear botones toggle
+    const allToggleButtons = document.querySelectorAll('#services-toggle, #projects-toggle');
+    allToggleButtons.forEach(button => {
+      button.style.background = '';
+      button.style.transform = '';
+      button.style.boxShadow = '';
+      button.style.color = '';
     });
   }
 
-  // Inicializar cuando el DOM esté listo y tras navegación SPA
-  if (typeof document !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', initMobileMenu);
-    window.addEventListener('astro:after-swap', initMobileMenu);
+  /**
+   * Manejar clics en enlaces del sidebar
+   */
+  function handleSidebarLinkClick(event) {
+    const link = event.target.closest('a');
+    if (link && !link.querySelector('button')) {
+      // Si es un enlace principal (no un botón toggle), cerrar el sidebar
+      setTimeout(() => {
+        closeSidebar();
+      }, 100);
+    }
   }
 
-  // Exponer funciones globalmente si es necesario
-  if (typeof window !== 'undefined') {
-    window.initMobileMenu = initMobileMenu;
-    window.closeSidebar = closeSidebar;
-    window.openSidebar = openSidebar;
-    
-    // Funciones para navegación de scroll
-    window.scrollUp = function(type) {
-      const container = document.querySelector(`.${type}-scroll`);
-      if (container) {
-        container.scrollBy({ top: -50, behavior: 'smooth' });
-      }
-    };
-    
-    window.scrollDown = function(type) {
-      const container = document.querySelector(`.${type}-scroll`);
-      if (container) {
-        container.scrollBy({ top: 50, behavior: 'smooth' });
-      }
-    };
+  /**
+   * Manejar navegación por teclado
+   */
+  function handleKeyboardNavigation(event) {
+    if (event.key === 'Escape' && isSidebarOpen) {
+      closeSidebar();
+    }
   }
-})(); 
+
+  // Event Listeners
+
+  // Botón de abrir menú
+  if (menuButton) {
+    menuButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openSidebar();
+    });
+  }
+
+  // Botón de cerrar menú
+  if (closeSidebarButton) {
+    closeSidebarButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSidebar();
+    });
+  }
+
+  // Overlay para cerrar
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSidebar();
+    });
+  }
+
+  // Toggle de servicios
+  if (servicesToggle) {
+    servicesToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleServicesMenu();
+    });
+  }
+
+  // Toggle de proyectos
+  if (projectsToggle) {
+    projectsToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleProjectsMenu();
+    });
+  }
+
+  // Clicks en enlaces del sidebar
+  if (mobileSidebar) {
+    mobileSidebar.addEventListener('click', handleSidebarLinkClick);
+  }
+
+  // Navegación por teclado
+  document.addEventListener('keydown', handleKeyboardNavigation);
+
+  // Cerrar sidebar al cambiar de tamaño de ventana
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 1024 && isSidebarOpen) {
+      closeSidebar();
+    }
+  });
+
+  // Prevenir scroll del body cuando el sidebar está abierto
+  document.addEventListener('touchmove', function(e) {
+    if (isSidebarOpen) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Inicializar estado de los iconos
+  chevronIcons.forEach(icon => {
+    icon.classList.add('not-rotated');
+  });
+
+  // Mejorar accesibilidad - eliminar bordes de focus en botones toggle
+  const toggleButtons = [servicesToggle, projectsToggle];
+  toggleButtons.forEach(button => {
+    if (button) {
+      button.addEventListener('focus', function() {
+        this.style.outline = 'none';
+        this.style.border = 'none';
+        this.style.boxShadow = 'none';
+      });
+      
+      button.addEventListener('blur', function() {
+        this.style.outline = 'none';
+        this.style.border = 'none';
+        this.style.boxShadow = 'none';
+      });
+    }
+  });
+
+  // Log para debugging
+  console.log('✅ Menú móvil inicializado correctamente');
+  console.log('📱 Funcionalidades disponibles:');
+  console.log('   - Apertura/cierre de sidebar');
+  console.log('   - Toggle de menús de servicios y proyectos');
+  console.log('   - Navegación por teclado (ESC para cerrar)');
+  console.log('   - Cierre automático en resize');
+  console.log('   - Reset inmediato de estados activos con data-dropdown-closed');
+  console.log('   - Eliminación de bordes de focus en botones toggle');
+}); 

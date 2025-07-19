@@ -36,6 +36,19 @@
     margin: 0.5rem;
     padding: 1rem;
   }
+  
+  /* Mejorar formularios en móviles */
+  .form-input-mobile {
+    font-size: 16px;
+    padding: 0.75rem;
+  }
+  
+  /* Mejorar botones de acción en móviles */
+  .action-btn-mobile {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* Mejoras para tablets */
@@ -47,12 +60,20 @@
   .tablet-text {
     font-size: 1rem;
   }
+  
+  .tablet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Mejoras para pantallas medianas */
 @media (min-width: 769px) and (max-width: 1024px) {
   .desktop-padding {
     padding: 2rem;
+  }
+  
+  .desktop-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -126,4 +147,63 @@
   background-color: rgba(255, 255, 255, 0.9);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+}
+
+/* Mejorar espaciado en móviles */
+.mobile-spacing {
+  margin: 0.5rem;
+  padding: 0.75rem;
+}
+
+/* Mejorar tipografía en móviles */
+.mobile-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* Mejorar contenedores en móviles */
+.mobile-container {
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+/* Mejorar grid en móviles */
+.mobile-grid {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Mejorar flexbox en móviles */
+.mobile-flex {
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Mejorar botones en móviles */
+.mobile-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  min-height: 44px;
+}
+
+/* Mejorar inputs en móviles */
+.mobile-input {
+  font-size: 16px;
+  padding: 0.75rem;
+  min-height: 44px;
+}
+
+/* Mejorar textarea en móviles */
+.mobile-textarea {
+  font-size: 16px;
+  padding: 0.75rem;
+  min-height: 100px;
+}
+
+/* Mejorar select en móviles */
+.mobile-select {
+  font-size: 16px;
+  padding: 0.75rem;
+  min-height: 44px;
 } 

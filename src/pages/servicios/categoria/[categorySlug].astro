@@ -1,75 +1,150 @@
 ---
+// src/pages/servicios/categoria/[categorySlug].astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ServicePreviewCard from '@/components/cards/ServicePreviewCard.astro';
 import { services } from '@/data/services.ts';
 
-
 export async function getStaticPaths() {
   const categories = [...new Set(services.map(service => service.category))];
-  return categories.map(category => {
-    const categorySlug = category.toLowerCase().replace(/ /g, '-');
-    console.log(`Generating path for category: ${category}, slug: ${categorySlug}`);
-    return {
-      params: { categorySlug: categorySlug },
-      props: { categoryName: category },
-    };
-  });
+  
+  return categories.map(category => ({
+    params: {
+      categorySlug: category.toLowerCase().replace(/ /g, "-")
+    },
+    props: { category }
+  }));
 }
 
-interface Props {
-  categoryName: string;
-}
+const { categorySlug } = Astro.params;
+const { category } = Astro.props;
 
-const { categoryName } = Astro.props as Props;
-const categorySlug = categoryName.toLowerCase().replace(/ /g, '-');
+// Obtener servicios de esta categoría
+const categoryServices = services.filter(service => 
+  service.category.toLowerCase().replace(/ /g, "-") === categorySlug
+);
 
-console.log(`Current categoryName: ${categoryName}, categorySlug: ${categorySlug}`);
+// Servicios destacados de esta categoría (active: true)
+const featuredServices = categoryServices.filter(service => service.active);
 
-const filteredServices = services.filter(service => {
-  const serviceCategorySlug = service.category.toLowerCase().replace(/ /g, '-');
-  return serviceCategorySlug === categorySlug;
-});
+// Servicios regulares de esta categoría
+const regularServices = categoryServices.filter(service => !service.active);
 
-console.log(`Filtered services count: ${filteredServices.length}`);
-
-const initialVisibleServices = 3;
+// Obtener el nombre de la categoría original
+const categoryName = categoryServices[0]?.category || category;
 ---
 
-<BaseLayout title={`${categoryName} - Nuestros Servicios - [Nombre de tu Empresa]`}>
-  <!-- Sección Hero de Categoría -->
-  <section class="relative bg-cover bg-center h-48 flex items-center justify-center text-white shadow-lg"
-    style={`background-image: url('https://via.placeholder.com/1920x400/334155/FFFFFF?text=${encodeURIComponent(categoryName)}');`}>
-    <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
-    <div class="relative z-10 text-center p-4">
-      <h1 class="text-5xl font-extrabold mb-4">{categoryName}</h1>
-      <p class="text-xl max-w-2xl mx-auto">Explora todos nuestros servicios en la categoría de {categoryName}.</p>
+<BaseLayout title={`${categoryName} - ALEMAR Estructuras`}>
+  <!-- Sección Hero -->
+  <section class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-8 sm:p-12 md:p-16 lg:p-20 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+    <div class="relative z-10">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6">
+        {categoryName}
+      </h1>
+      <p class="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+        Descubre nuestros servicios especializados en {categoryName.toLowerCase()}. Soluciones profesionales y confiables para sus proyectos.
+      </p>
     </div>
   </section>
 
-  <main class="container mx-auto p-6 mt-8 flex-grow">
-    <div id="services-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {filteredServices.map(service => (
-        <ServicePreviewCard service={service} />
-      ))}
-    </div>
+  <main class="container mx-auto p-4 sm:p-6 mt-6 sm:mt-8 flex-grow">
+    
+    <!-- Servicios Destacados de esta Categoría -->
+    {featuredServices.length > 0 && (
+      <section class="mb-12 sm:mb-16 md:mb-20">
+        <div class="text-center mb-8 sm:mb-12">
+          <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-6 sm:mb-8 rounded-full"></div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
+            Servicios <span class="text-[#c8aa6e]">Destacados</span> en {categoryName}
+          </h2>
+          <p class="text-sm sm:text-base md:text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+            Estos son los servicios más solicitados en {categoryName.toLowerCase()}. Cada uno representa una solución probada y confiable.
+          </p>
+        </div>
 
-    {filteredServices.length > initialVisibleServices && (
-      <div class="text-center mt-12">
-        <button id="toggle-services-button" class="bg-gray-800 text-white px-8 py-3 rounded-md hover:bg-gray-900 transition-colors duration-300 font-semibold">
-          Ver Más
-        </button>
-      </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
+          {featuredServices.map(service => (
+            <div class="h-full flex">
+              <ServicePreviewCard service={service} className="h-full w-full flex-1" />
+            </div>
+          ))}
+        </div>
+      </section>
     )}
 
-    <!-- Sección de Llamada a la Acción (CTA) -->
-    <section class="bg-gray-800 text-white text-center p-12 rounded-lg shadow-lg mt-16">
-      <h2 class="text-4xl font-extrabold mb-4">¿No encuentras lo que buscas?</h2>
-      <p class="text-xl mb-8">Contáctanos para una solución personalizada.</p>
-      <a href="/contacto" class="inline-block bg-blue-800 text-white px-10 py-5 rounded-md text-xl font-semibold hover:bg-blue-900 transition duration-300">
-        Contactar Ahora
-      </a>
+    <!-- Todos los Servicios de esta Categoría -->
+    {categoryServices.length > 0 && (
+      <section class="mb-12 sm:mb-16 md:mb-20">
+        <div class="text-center mb-8 sm:mb-12">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
+            Todos los Servicios de <span class="text-[#c8aa6e]">{categoryName}</span>
+          </h2>
+          <p class="text-sm sm:text-base md:text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+            Explora nuestra completa gama de servicios en {categoryName.toLowerCase()}. Encuentra la solución perfecta para su proyecto.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
+          {categoryServices.map(service => (
+            <div class="h-full flex">
+              <ServicePreviewCard service={service} className="h-full w-full flex-1" />
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Mensaje si no hay servicios -->
+    {categoryServices.length === 0 && (
+      <section class="text-center py-12 sm:py-16">
+        <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-6 sm:mb-8 rounded-full"></div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
+          Servicios en <span class="text-[#c8aa6e]">{categoryName}</span>
+        </h2>
+        <p class="text-base sm:text-lg text-[#2d2d2d] max-w-2xl mx-auto leading-relaxed">
+          Actualmente no tenemos servicios disponibles en esta categoría. Contáctenos para consultar sobre servicios personalizados.
+        </p>
+        <div class="mt-8 sm:mt-12">
+          <a 
+            href="/contacto" 
+            class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95"
+          >
+            Consultar Servicios
+          </a>
+        </div>
+      </section>
+    )}
+
+    <!-- Enlaces de navegación -->
+    <section class="text-center mt-12 sm:mt-16">
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+        <a 
+          href="/servicios-populares" 
+          class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:ring-offset-2 active:scale-95"
+        >
+          Ver Servicios Destacados
+        </a>
+        <a 
+          href="/servicios-completos" 
+          class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95"
+        >
+          Ver Todos los Servicios
+        </a>
+      </div>
+    </section>
+
+    <!-- Sección de Llamada a la Acción -->
+    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-8 sm:p-12 md:p-16 rounded-3xl shadow-2xl mt-16 sm:mt-20 md:mt-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+      <div class="relative z-10">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 sm:mb-6">
+          ¿Necesita servicios de <span class="text-[#c8aa6e]">{categoryName.toLowerCase()}</span>?
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
+          Contáctenos hoy mismo para recibir una asesoría especializada y obtener la mejor solución para su proyecto.
+        </p>
+        <a href="/contacto" class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-[#1e3a5f]/20 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95">Contactar Ahora</a>
+      </div>
     </section>
   </main>
-
-  <script is:inline src="/scripts/category.js"></script>
 </BaseLayout>

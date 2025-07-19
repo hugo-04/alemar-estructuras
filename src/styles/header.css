@@ -1,6 +1,6 @@
 /**
  * Estilos para el componente Header
- * @version 1.5.0
+ * @version 1.7.0
  */
 
 /* Animación del ícono hamburguesa */
@@ -107,7 +107,7 @@
   padding-right: 0.5rem;
 }
 
-/* Elementos de navegación - Sin bordes */
+/* Elementos de navegación - Estado base */
 #mobile-sidebar .group {
   background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%);
   backdrop-filter: blur(10px);
@@ -118,28 +118,30 @@
   padding: 0.75rem;
 }
 
-#mobile-sidebar .group::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s ease;
-}
-
-#mobile-sidebar .group:hover::before {
-  left: 100%;
-}
-
+/* Hover state para elementos de navegación */
 #mobile-sidebar .group:hover {
+  background: linear-gradient(135deg, #3a5a8a 0%, #5a7fb5 100%);
   transform: translateX(5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Iconos en los elementos de navegación - Más pequeños */
-#mobile-sidebar .group .w-10.h-10 {
+/* Estado activo para elementos de navegación - RESETEADO */
+#mobile-sidebar .group:active,
+#mobile-sidebar .group:focus {
+  background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Reset completo después de interacción */
+#mobile-sidebar .group:not(:hover):not(:active):not(:focus) {
+  background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Iconos en los elementos de navegación */
+#mobile-sidebar .group .w-8.h-8 {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
@@ -147,12 +149,25 @@
   height: 2rem;
 }
 
-#mobile-sidebar .group:hover .w-10.h-10 {
+#mobile-sidebar .group:hover .w-8.h-8 {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.1) rotate(5deg);
 }
 
-/* Dropdowns - Sin fondo, despliegue completo */
+/* Reset iconos en estado activo */
+#mobile-sidebar .group:active .w-8.h-8,
+#mobile-sidebar .group:focus .w-8.h-8 {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: none !important;
+}
+
+/* Reset iconos después de interacción */
+#mobile-sidebar .group:not(:hover):not(:active):not(:focus) .w-8.h-8 {
+  background: rgba(255, 255, 255, 0.15);
+  transform: none;
+}
+
+/* Dropdowns */
 #services-menu,
 #projects-menu {
   margin-top: 0.5rem;
@@ -160,7 +175,7 @@
   transition: all 0.3s ease;
 }
 
-/* Elementos de dropdown - Sin scroll, sin fondo */
+/* Elementos de dropdown */
 #services-menu a,
 #projects-menu a {
   background: rgba(255, 255, 255, 0.05);
@@ -176,23 +191,6 @@
   gap: 0.5rem;
 }
 
-#services-menu a::before,
-#projects-menu a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s ease;
-}
-
-#services-menu a:hover::before,
-#projects-menu a:hover::before {
-  left: 100%;
-}
-
 #services-menu a:hover,
 #projects-menu a:hover {
   background: rgba(255, 255, 255, 0.15);
@@ -200,14 +198,14 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Scroll personalizado para dropdowns - Eliminado */
+/* Scroll personalizado para dropdowns */
 .services-scroll,
 .projects-scroll {
   max-height: none;
   overflow: visible;
 }
 
-/* Botones de navegación de scroll - Eliminados */
+/* Botones de navegación de scroll */
 .scroll-up-btn,
 .scroll-down-btn {
   display: none;
@@ -249,19 +247,13 @@
 #mobile-sidebar.active nav > *:nth-child(4) { animation-delay: 0.4s; }
 #mobile-sidebar.active nav > *:nth-child(5) { animation-delay: 0.5s; }
 
-/* Efecto de vibración sutil */
-#mobile-sidebar .group:active {
-  transform: scale(0.98);
-  transition: transform 0.1s ease;
-}
-
 /* Transiciones para el botón de WhatsApp */
 #whatsapp-button {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Mejorar visibilidad de elementos siempre visibles - Sin bordes */
-#mobile-sidebar nav > a:not(.group) {
+/* Enlaces de navegación */
+#mobile-sidebar nav > a {
   background: linear-gradient(135deg, #4a6fa5 0%, #6b8bb8 100%);
   backdrop-filter: blur(10px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -272,24 +264,25 @@
   padding: 0.75rem;
 }
 
-#mobile-sidebar nav > a:not(.group)::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.5s ease;
-}
-
-#mobile-sidebar nav > a:not(.group):hover::before {
-  left: 100%;
-}
-
-#mobile-sidebar nav > a:not(.group):hover {
+#mobile-sidebar nav > a:hover {
+  background: linear-gradient(135deg, #5a7fb5 0%, #7b9bc8 100%);
   transform: translateX(5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset estado activo para enlaces */
+#mobile-sidebar nav > a:active,
+#mobile-sidebar nav > a:focus {
+  background: linear-gradient(135deg, #4a6fa5 0%, #6b8bb8 100%) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Reset completo para enlaces después de interacción */
+#mobile-sidebar nav > a:not(:hover):not(:active):not(:focus) {
+  background: linear-gradient(135deg, #4a6fa5 0%, #6b8bb8 100%);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Responsive adjustments */
@@ -334,92 +327,71 @@ body.sidebar-open {
 
 /* Efecto de brillo en hover para mejor feedback visual */
 #mobile-sidebar .group:hover .text-lg,
-#mobile-sidebar nav > a:not(.group):hover .text-lg {
+#mobile-sidebar .group:hover .text-sm {
   color: rgba(255, 255, 255, 1);
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Nuevo estilo para iconos en categorías */
+/* Mejorar iconos en dropdowns */
 #mobile-sidebar .services-scroll i,
 #mobile-sidebar .projects-scroll i {
-  font-size: 0.75rem;
-  opacity: 0.8;
   transition: all 0.3s ease;
+  opacity: 0.7;
 }
 
 #mobile-sidebar .services-scroll a:hover i,
 #mobile-sidebar .projects-scroll a:hover i {
   opacity: 1;
-  transform: scale(1.1);
-} 
-
-/* Mejoras para las flechas de dropdown */
-.group:hover .group-hover\:rotate-180 {
-  transform: rotate(180deg);
+  transform: translateX(2px);
 }
 
-/* Mejoras para las flechas en móvil */
-#services-toggle svg,
-#projects-toggle svg,
-#services-toggle i,
-#projects-toggle i,
-#services-toggle span,
-#projects-toggle span {
-  transition: transform 0.3s ease-in-out;
+/* Eliminar bordes de focus en botones toggle */
+#services-toggle,
+#projects-toggle {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Efecto hover mejorado para los botones de flecha */
-.group:hover button:hover {
-  background-color: rgba(59, 130, 246, 0.3);
+#services-toggle:focus,
+#projects-toggle:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-/* Mejor contraste para las flechas */
+/* Eliminar efectos visuales molestos en botones toggle */
+#services-toggle:active,
+#projects-toggle:active {
+  transform: none !important;
+  background: transparent !important;
+  color: inherit !important;
+}
+
+#services-toggle:hover,
+#projects-toggle:hover {
+  background: transparent !important;
+  transform: none !important;
+}
+
+/* Eliminar bordes de focus en iconos de botones */
 .group button svg,
-.group button i,
-.group button span {
-  color: rgba(255, 255, 255, 0.9);
+.group button .icon-wrapper {
+  outline: none !important;
+  border: none !important;
 }
 
 .group:hover button svg,
-.group:hover button i,
-.group:hover button span {
-  color: rgba(255, 255, 255, 1);
+.group:hover button .icon-wrapper {
+  outline: none !important;
+  border: none !important;
 }
 
-/* Mejoras específicas para el sidebar móvil */
-#mobile-sidebar {
-  width: 100%;
-  max-width: 320px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* Mantener diseño consistente en dropdowns */
-#services-menu,
-#projects-menu {
-  transition: all 0.3s ease-in-out;
-  transform-origin: top;
-}
-
-/* Asegurar que los elementos del menú mantengan su estilo */
-#mobile-sidebar nav > div {
-  margin-bottom: 0.75rem;
-}
-
-#mobile-sidebar nav > div:last-child {
-  margin-bottom: 0;
-}
-
-/* Prevenir distorsión cuando se abren dropdowns */
-#mobile-sidebar nav {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  min-height: 0;
-}
-
-#mobile-sidebar nav > * {
-  flex-shrink: 0;
+/* Mejorar accesibilidad sin bordes */
+#mobile-sidebar button:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Mantener altura consistente de los botones principales */
@@ -450,4 +422,70 @@ body.sidebar-open {
 #mobile-sidebar nav > div,
 #mobile-sidebar nav > a {
   margin-top: 0 !important;
+}
+
+/* RESET COMPLETO PARA BOTONES TOGGLE Y SUS CONTENEDORES */
+/* Reset inmediato cuando se cierra el dropdown */
+#mobile-sidebar .group:has(#services-menu.hidden) button,
+#mobile-sidebar .group:has(#projects-menu.hidden) button {
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+/* Reset del contenedor cuando el dropdown está cerrado */
+#mobile-sidebar .group:has(#services-menu.hidden),
+#mobile-sidebar .group:has(#projects-menu.hidden) {
+  background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Reset de iconos cuando el dropdown está cerrado */
+#mobile-sidebar .group:has(#services-menu.hidden) .w-8.h-8,
+#mobile-sidebar .group:has(#projects-menu.hidden) .w-8.h-8 {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: none !important;
+}
+
+/* Reset específico para botones toggle después de interacción */
+#services-toggle:not(:hover):not(:active):not(:focus),
+#projects-toggle:not(:hover):not(:active):not(:focus) {
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+/* Reset de contenedores después de interacción */
+#mobile-sidebar .group:not(:hover):not(:active):not(:focus) {
+  background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Reset de iconos después de interacción */
+#mobile-sidebar .group:not(:hover):not(:active):not(:focus) .w-8.h-8 {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: none !important;
+}
+
+/* Forzar reset cuando el dropdown se cierra */
+#mobile-sidebar .group[data-dropdown-closed="true"] {
+  background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#mobile-sidebar .group[data-dropdown-closed="true"] button {
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+#mobile-sidebar .group[data-dropdown-closed="true"] .w-8.h-8 {
+  background: rgba(255, 255, 255, 0.15) !important;
+  transform: none !important;
 } 

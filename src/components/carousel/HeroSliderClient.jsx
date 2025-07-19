@@ -13,7 +13,7 @@ export default function HeroSliderClient({ images, interval = 8000, transition =
   }, [interval, images.length]);
 
   return (
-    <div className="relative w-full h-[60vw] min-h-[350px] max-h-[700px] overflow-hidden bg-[#1e3a5f]">
+    <div className="relative w-full h-[50vw] min-h-[250px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px] max-h-[700px] overflow-hidden bg-[#1e3a5f]">
       {images.map((img, idx) => (
         <img
           key={idx}
@@ -24,9 +24,9 @@ export default function HeroSliderClient({ images, interval = 8000, transition =
           loading="lazy"
         />
       ))}
-      <div className="absolute bottom-0 left-0 z-10 pointer-events-none p-4 sm:p-6 md:p-8 lg:p-12">
+      <div className="absolute bottom-0 left-0 z-10 pointer-events-none p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12">
         <div>
-          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#c8aa6e] text-left drop-shadow-2xl tracking-tight leading-tight">
+          <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-extrabold text-[#c8aa6e] text-left drop-shadow-2xl tracking-tight leading-tight">
             {images[active].text}
           </h1>
         </div>
