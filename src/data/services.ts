@@ -23,12 +23,12 @@ export const services: Service[] = [
     slug: "sol-y-sombra",
     description: "Ideales para terrazas, patios y espacios de recreación. Protección solar elegante que combina funcionalidad y estética.",
     whatsappLink: "https://wa.me/51946595095?text=Hola,%20me%20interesa%20sol%20y%20sombra%20para%20mi%20proyecto.",
-    previewImageUrl: "/images/Servicios/sol_sombra/IMG_20240106_171642.jpg",
+    previewImageUrl: "/images/Servicios/sol_sombra/sol_sombra.jpg",
     imageUrls: [
-      "/images/Servicios/sol_sombra/IMG_20240106_171638.jpg",
-      "/images/Servicios/sol_sombra/IMG_20240124_130141.jpg",
-      "/images/Servicios/sol_sombra/IMG_20240103_113717.jpg",
-      "/images/Servicios/sol_sombra/IMG_20240301_095811.jpg"
+      "/images/Servicios/sol_sombra/sol_sombra-1.jpg",
+      "/images/Servicios/sol_sombra/sol_sombra-2.jpg",
+      "/images/Servicios/sol_sombra/sol_sombra-3.jpg",
+      "/images/Servicios/sol_sombra/sol_sombra-4.jpg"
     ],
     category: "Techos Metálicos",
     subcategory: "Residenciales",
