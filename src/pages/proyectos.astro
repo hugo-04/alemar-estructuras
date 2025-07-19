@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import IconWrapper from '@/components/ui/IconWrapper.astro';
 import { projects, projectCategories } from '@/data/projects.ts';
+import { Image } from 'astro:assets';
 
 // Filtra solo los proyectos destacados
 const featuredProjects = projects.filter(project => project.featured);
@@ -11,10 +12,10 @@ const featuredProjects = projects.filter(project => project.featured);
   <main class="container mx-auto px-4 py-8 mt-8">
     <!-- Hero Section -->
     <section class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-[#1e3a5f] mb-6">
-        Nuestros <span class="text-[#c8aa6e]">Proyectos Destacados</span>
+      <h1 class="text-4xl md:text-5xl font-bold text-primary mb-6">
+        Nuestros <span class="text-warning">Proyectos Destacados</span>
       </h1>
-      <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+      <p class="text-xl text-text-secondary max-w-4xl mx-auto leading-relaxed">
         Descubre nuestros proyectos más relevantes en techos metálicos, estructuras industriales y proyectos especializados. 
         Cada proyecto cuenta con la satisfacción de nuestros clientes.
       </p>
@@ -23,11 +24,11 @@ const featuredProjects = projects.filter(project => project.featured);
     <!-- Proyectos destacados -->
     <section class="mb-16">
       <div class="text-center mb-12">
-        <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
-        <h2 class="text-4xl font-bold text-[#1e3a5f] mb-4">
-          Proyectos <span class="text-[#c8aa6e]">Más Relevantes</span>
+        <div class="w-24 h-1 bg-gradient-to-r from-warning to-secondary mx-auto mb-8 rounded-full"></div>
+        <h2 class="text-4xl font-bold text-primary mb-4">
+          Proyectos <span class="text-warning">Más Relevantes</span>
         </h2>
-        <p class="text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+        <p class="text-lg text-text-secondary max-w-4xl mx-auto leading-relaxed">
           Estos son los proyectos que mejor representan nuestra experiencia y calidad de trabajo.
         </p>
       </div>
@@ -38,30 +39,33 @@ const featuredProjects = projects.filter(project => project.featured);
             featuredProjects.map((project) => (
               <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden max-w-md mx-auto">
                 <div class="relative aspect-[4/3] w-full">
-                  <img 
+                  <Image 
                     src={project.imageUrl} 
                     alt={project.title}
+                    width={600}
+                    height={450}
                     class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div class="absolute top-4 left-4">
-                    <span class="bg-[#c8aa6e] text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <span class="bg-warning text-white px-2 py-0.5 text-xs sm:px-3 sm:py-1 sm:text-sm rounded-full font-medium">
                       {projectCategories[project.category as keyof typeof projectCategories]?.name || project.category}
                     </span>
                   </div>
                 </div>
                 <div class="p-6">
-                  <h3 class="text-xl font-bold text-[#1e3a5f] mb-3">
+                  <h3 class="text-xl font-bold text-primary mb-3">
                     {project.title}
                   </h3>
-                  <p class="text-[#2d2d2d] mb-4 line-clamp-3">
+                  <p class="text-text-secondary mb-4 line-clamp-3">
                     {project.description}
                   </p>
                   <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center text-sm text-[#2d2d2d]">
+                    <div class="flex items-center text-sm text-text-secondary">
                       <IconWrapper name="mdi:map-marker" size="sm" color="light" class="mr-1" />
                       {project.location}
                     </div>
-                    <div class="text-sm text-[#2d2d2d]">
+                    <div class="text-sm text-text-secondary">
                       {project.completionDate}
                     </div>
                   </div>
@@ -72,18 +76,18 @@ const featuredProjects = projects.filter(project => project.featured);
         </div>
       ) : (
         <div class="text-center py-12">
-          <p class="text-lg text-[#2d2d2d]">No hay proyectos destacados disponibles en este momento.</p>
+          <p class="text-lg text-text-secondary">No hay proyectos destacados disponibles en este momento.</p>
         </div>
       )}
     </section>
 
     <!-- CTA -->
     <section class="text-center">
-      <div class="bg-white rounded-2xl shadow-xl p-8 border border-[#c8aa6e]/20">
-        <h2 class="text-3xl font-bold text-[#1e3a5f] mb-4">
+      <div class="bg-white rounded-2xl shadow-xl p-8 border border-warning/20">
+        <h2 class="text-3xl font-bold text-primary mb-4">
           ¿Tienes un proyecto en mente?
         </h2>
-        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+        <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
           Nuestro equipo está listo para ayudarte a materializar tu proyecto. 
           Contáctanos para una consulta gratuita y cotización personalizada.
         </p>

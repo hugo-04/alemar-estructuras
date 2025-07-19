@@ -62,15 +62,15 @@ import IconWrapper from '@/components/ui/IconWrapper.astro';
           <form id="contact-form" action="https://formspree.io/f/xvgrdwyl" method="POST" class="space-y-4 sm:space-y-5">
             <div>
               <label for="nombre" class="block text-[#1e3a5f] text-sm font-bold mb-2">Nombre Completo</label>
-              <input type="text" id="nombre" name="nombre" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2] text-sm sm:text-base" placeholder="Tu nombre completo" required>
+              <input type="text" id="nombre" name="nombre" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight text-sm sm:text-base" placeholder="Tu nombre completo" required>
             </div>
             <div>
               <label for="email" class="block text-[#1e3a5f] text-sm font-bold mb-2">Email</label>
-              <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2] text-sm sm:text-base" placeholder="tu@email.com" required>
+              <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight text-sm sm:text-base" placeholder="tu@email.com" required>
             </div>
             <div>
               <label for="tipo" class="block text-[#1e3a5f] text-sm font-bold mb-2">Tipo de Proyecto</label>
-              <select id="tipo" name="tipo" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2] text-sm sm:text-base">
+              <select id="tipo" name="tipo" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight text-sm sm:text-base">
                 <option value="">Selecciona una opción</option>
                 <option value="comercial">Comercial</option>
                 <option value="residencial">Residencial</option>
@@ -80,7 +80,7 @@ import IconWrapper from '@/components/ui/IconWrapper.astro';
             </div>
             <div>
               <label for="mensaje" class="block text-[#1e3a5f] text-sm font-bold mb-2">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" rows="4" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight focus:outline-none focus:ring-2 focus:ring-[#4a90e2] text-sm sm:text-base" placeholder="Describe tu proyecto..."></textarea>
+              <textarea id="mensaje" name="mensaje" rows="4" class="shadow-sm appearance-none border rounded w-full py-2 sm:py-3 px-3 sm:px-4 text-gray-800 leading-tight text-sm sm:text-base" placeholder="Describe tu proyecto..."></textarea>
             </div>
             <div>
               <button type="submit" class="w-full bg-[#1e3a5f] text-white py-2 sm:py-3 px-6 sm:px-8 rounded-lg text-sm sm:text-base font-bold hover:bg-[#4a90e2] transition-all duration-300 shadow-lg">Enviar Solicitud</button>

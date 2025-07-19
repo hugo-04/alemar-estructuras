@@ -26,11 +26,11 @@ const {
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Header de la sección -->
     <div class="text-center mb-12 sm:mb-16">
-      <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-6 sm:mb-8 rounded-full"></div>
-      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
+      <div class="w-24 h-1 bg-gradient-to-r from-warning to-secondary mx-auto mb-6 sm:mb-8 rounded-full"></div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary mb-4 sm:mb-6">
         {title}
       </h2>
-      <p class="text-lg sm:text-xl text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+      <p class="text-lg sm:text-xl text-secondary max-w-4xl mx-auto leading-relaxed">
         {subtitle}
       </p>
     </div>
@@ -48,7 +48,7 @@ const {
       </div>
     ) : (
       <div class="text-center py-12">
-        <p class="text-lg text-[#2d2d2d]">No hay servicios destacados disponibles en este momento.</p>
+        <p class="text-lg text-secondary">No hay servicios destacados disponibles en este momento.</p>
       </div>
     )}
 
@@ -57,11 +57,11 @@ const {
       <div class="text-center mt-12 sm:mt-16">
         <a 
           href="/servicios-completos" 
-          class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95"
+          class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-bold hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95"
         >
           Ver Todos los Servicios
         </a>
       </div>
     )}
   </div>
-</section> 
+</section>

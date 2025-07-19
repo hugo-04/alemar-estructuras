@@ -4,6 +4,7 @@ import { services } from '@/data/services.ts';
 import { projectCategories } from '@/data/projects.ts';
 import IconWrapper from '@/components/ui/IconWrapper.astro';
 import '@/styles/header.css';
+// Script del menú móvil se carga automáticamente
 const { url } = Astro;
 const currentPath = url?.pathname || '';
 const serviceCategories: string[] = [...new Set(services.map((service) => service.category))] as string[];
@@ -17,7 +18,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
       <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8">
         <a
           href="tel:+51946595095"
-          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
+          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md"
           aria-label="Llamar al +51946595095"
         >
           <IconWrapper name="mdi:phone" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
@@ -28,7 +29,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
           href="https://wa.me/51946595095"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
+          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md"
           aria-label="Contactar por WhatsApp"
         >
           <IconWrapper name="mdi:whatsapp" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
@@ -37,7 +38,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
         </a>
         <a
           href="mailto:servicios@multiserviciosprecisur.com"
-          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-primary"
+          class="flex items-center text-xs sm:text-sm lg:text-base font-medium text-white hover:text-white/80 transition-colors duration-300 p-1 sm:p-2 rounded-md"
           aria-label="Enviar correo electrónico"
         >
           <IconWrapper name="mdi:email" size="sm" color="white" hoverColor="light" class="mr-1 sm:mr-2" />
@@ -60,7 +61,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
       <div class="flex items-center">
         <a
           href="/"
-          class="flex flex-col sm:flex-row sm:items-center text-white hover:text-white/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md p-1"
+          class="flex flex-col sm:flex-row sm:items-center text-white hover:text-white/80 transition-colors duration-300 rounded-md p-1"
           aria-label="Ir a página principal"
         >
           <span class="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold">ALEMAR Estructuras</span>
@@ -72,7 +73,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
       <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2" role="navigation" aria-label="Navegación principal">
         <a
           href="/"
-          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath === '/' ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 ${currentPath === '/' ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:text-white hover:bg-primary/20'}`}
           aria-current={currentPath === '/' ? 'page' : undefined}
         >
           Inicio
@@ -82,7 +83,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
         <div class="relative group">
           <a
             href="/servicios-populares"
-            class={`flex items-center gap-2 px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/servicios') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:bg-primary/20 hover:text-white group-hover:bg-primary/20 group-hover:text-white'}`}
+            class={`flex items-center gap-2 px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 ${currentPath.startsWith('/servicios') ? 'bg-secondary text-white font-bold' : 'text-white/90 hover:bg-primary/20 hover:text-white group-hover:bg-primary/20 group-hover:text-white'}`}
             aria-current={currentPath.startsWith('/servicios') ? 'page' : undefined}
             aria-haspopup="true"
             aria-expanded="false"
@@ -96,7 +97,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
               serviceCategories.map((category: string) => (
                 <a
                   href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                  class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200 focus:outline-none focus:bg-secondary focus:text-white"
+                  class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200"
                 >
                   {category}
                 </a>
@@ -109,7 +110,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
         <div class="relative group">
           <a
             href="/proyectos"
-            class={`flex items-center gap-2 px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath.startsWith('/proyectos') ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20 group-hover:bg-primary/20 group-hover:text-white'}`}
+            class={`flex items-center gap-2 px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 ${currentPath.startsWith('/proyectos') ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20 group-hover:bg-primary/20 group-hover:text-white'}`}
             aria-current={currentPath.startsWith('/proyectos') ? 'page' : undefined}
             aria-haspopup="true"
             aria-expanded="false"
@@ -123,7 +124,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
               projectCategoryKeys.map((key: string) => (
                 <a
                   href={`/proyectos/categoria/${key.toLowerCase().replace(/ /g, "-")}`}
-                  class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200 focus:outline-none focus:bg-secondary focus:text-white"
+                  class="block px-4 py-2 text-sm text-white/80 hover:bg-secondary hover:text-white transition-colors duration-200"
                 >
                   {projectCategories[key as keyof typeof projectCategories].name}
                 </a>
@@ -134,14 +135,14 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
 
         <a
           href="/nosotros"
-          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath === '/nosotros' ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20'}`}
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 ${currentPath === '/nosotros' ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20'}`}
           aria-current={currentPath === '/nosotros' ? 'page' : undefined}
         >
           Nosotros
         </a>
         <a
           href="/contacto"
-          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent ${currentPath === '/contacto' ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20'}`}
+          class={`px-3 py-2 rounded-md text-sm xl:text-base font-medium transition-all duration-300 ${currentPath === '/contacto' ? 'bg-secondary text-white font-bold' : 'text-white/80 hover:text-white hover:bg-primary/20'}`}
           aria-current={currentPath === '/contacto' ? 'page' : undefined}
         >
           Contacto
@@ -152,7 +153,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
       <div class="lg:hidden">
         <button
           id="menu-button"
-          class="text-white/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-md p-2 transition-colors duration-200"
+          class="text-white/90 hover:text-white rounded-md p-2 transition-colors duration-200"
           aria-label="Abrir menú de navegación"
           aria-expanded="false"
           aria-controls="mobile-sidebar"
@@ -181,7 +182,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
         <h2 class="text-2xl sm:text-3xl font-bold text-white">Menú</h2>
         <button
           id="close-sidebar-button"
-          class="text-white/80 hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-accent rounded-full p-2 transition-all duration-200 hover:bg-white/10"
+          class="text-white/80 hover:text-white rounded-full p-2 transition-all duration-200 hover:bg-white/10"
           aria-label="Cerrar menú de navegación"
         >
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -194,7 +195,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
       <nav class="flex-1 space-y-3 overflow-y-auto max-h-[calc(100vh-120px)] pr-2" role="navigation" aria-label="Navegación móvil">
         <a
           href="/"
-          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group"
+          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group"
           aria-current={currentPath === '/' ? 'page' : undefined}
         >
           <div class="flex items-center space-x-3">
@@ -217,7 +218,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
             </div>
             <button
               id="services-toggle"
-              class="flex items-center space-x-2 focus:outline-none"
+              class="flex items-center space-x-2"
               aria-expanded="false"
               aria-controls="services-menu"
             >
@@ -231,7 +232,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
                 <!-- Servicios Destacados -->
                 <a
                   href="/servicios-populares"
-                  class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-accent text-xs"
+                  class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 text-xs"
                 >
                   <IconWrapper name="mdi:star" size="xs" color="white" class="mr-1 opacity-70" />
                   <span class="font-medium">⭐ Servicios Destacados</span>
@@ -241,7 +242,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
                   serviceCategories.map((category: string) => (
                     <a
                       href={`/servicios/categoria/${category.toLowerCase().replace(/ /g, "-")}`}
-                      class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-accent text-xs"
+                      class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 text-xs"
                     >
                       <IconWrapper name="mdi:chevron-right" size="xs" color="white" class="mr-1 opacity-70" />
                       <span class="font-medium">{category}</span>
@@ -264,7 +265,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
             </div>
             <button
               id="projects-toggle"
-              class="flex items-center space-x-2 focus:outline-none"
+              class="flex items-center space-x-2"
               aria-expanded="false"
               aria-controls="projects-menu"
             >
@@ -278,7 +279,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
                 <!-- Proyectos Destacados -->
                 <a
                   href="/proyectos"
-                  class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-accent text-xs"
+                  class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 text-xs"
                 >
                   <IconWrapper name="mdi:star" size="xs" color="white" class="mr-1 opacity-70" />
                   <span class="font-medium">⭐ Proyectos Destacados</span>
@@ -288,7 +289,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
                   projectCategoryKeys.map((key: string) => (
                     <a
                       href={`/proyectos/categoria/${key.toLowerCase().replace(/ /g, "-")}`}
-                      class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-white focus:ring-offset-1 focus:ring-offset-accent text-xs"
+                      class="flex items-center p-2 hover:bg-white/10 rounded text-white transition-all duration-200 text-xs"
                     >
                       <IconWrapper name="mdi:chevron-right" size="xs" color="white" class="mr-1 opacity-70" />
                       <span class="font-medium">{projectCategories[key as keyof typeof projectCategories].name}</span>
@@ -302,7 +303,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
 
         <a
           href="/nosotros"
-          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group"
+          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group"
           aria-current={currentPath === '/nosotros' ? 'page' : undefined}
         >
           <div class="flex items-center space-x-3">
@@ -317,7 +318,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
         <!-- El botón de contacto debe ir al final -->
         <a
           href="/contacto"
-          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary group"
+          class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group"
           aria-current={currentPath === '/contacto' ? 'page' : undefined}
         >
           <div class="flex items-center space-x-3">
@@ -340,3 +341,87 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
   >
   </div>
 </header>
+
+<script>
+  function initializeMobileMenu() {
+    const menuButton = document.getElementById('menu-button');
+    const closeSidebarButton = document.getElementById('close-sidebar-button');
+    const mobileSidebar = document.getElementById('mobile-sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const hamburgerIconWrapper = document.getElementById('hamburger-icon-wrapper');
+    const servicesToggle = document.getElementById('services-toggle');
+    const projectsToggle = document.getElementById('projects-toggle');
+    const servicesMenu = document.getElementById('services-menu');
+    const projectsMenu = document.getElementById('projects-menu');
+
+    if (!menuButton || !mobileSidebar || !sidebarOverlay || !closeSidebarButton || !servicesToggle || !projectsToggle || !servicesMenu || !projectsMenu) {
+      return;
+    }
+
+    let isSidebarOpen = false;
+
+    const openSidebar = () => {
+      mobileSidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      if (hamburgerIconWrapper) hamburgerIconWrapper.classList.add('open');
+      document.body.classList.add('sidebar-open');
+      isSidebarOpen = true;
+      menuButton.setAttribute('aria-expanded', 'true');
+      closeSidebarButton.focus();
+    };
+
+    const closeSidebar = () => {
+      mobileSidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+      if (hamburgerIconWrapper) hamburgerIconWrapper.classList.remove('open');
+      document.body.classList.remove('sidebar-open');
+      isSidebarOpen = false;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.focus();
+    };
+
+    /**
+     * Alterna la visibilidad de un menú desplegable y actualiza el estado aria.
+     * @param {HTMLElement} menu - El elemento del menú a mostrar/ocultar.
+     * @param {HTMLElement} toggle - El botón que activa el menú.
+     */
+    const toggleDropdown = (menu: HTMLElement, toggle: HTMLElement): void => {
+      if (!menu || !toggle) return;
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      menu.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isExpanded));
+    };
+
+    menuButton.addEventListener('click', openSidebar);
+    closeSidebarButton.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    servicesToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown(servicesMenu, servicesToggle);
+        if(projectsMenu.classList.contains('hidden') === false) {
+            toggleDropdown(projectsMenu, projectsToggle);
+        }
+    });
+
+    projectsToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown(projectsMenu, projectsToggle);
+        if(servicesMenu.classList.contains('hidden') === false) {
+            toggleDropdown(servicesMenu, servicesToggle);
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isSidebarOpen) {
+        closeSidebar();
+      }
+    });
+  }
+
+  // Run on initial page load
+  initializeMobileMenu();
+
+  // Run on subsequent page loads
+  document.addEventListener('astro:after-swap', initializeMobileMenu);
+</script>

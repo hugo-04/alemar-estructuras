@@ -89,7 +89,7 @@ export default function ServiceCarouselClient({ images = [], id, autoplay = true
       id={id}
       class="service-carousel-container relative flex flex-col items-center border border-slate-200/50 backdrop-blur-sm rounded-3xl shadow-2xl max-w-4xl w-full mx-auto group p-0 bg-gradient-to-br from-slate-50 via-white to-blue-50"
     >
-      <div class="carousel-viewport w-full overflow-hidden rounded-3xl bg-gradient-to-br from-slate-100 via-white to-blue-100 flex items-center justify-center aspect-[16/9] min-h-[180px] sm:min-h-[220px] md:min-h-[340px] max-h-[800px]" style={{ border: '2px solid #e0e7ef', boxShadow: '0 8px 32px 0 rgba(31,38,135,0.10)' }}>
+      <div class="carousel-viewport w-full overflow-hidden rounded-3xl bg-gradient-to-br from-slate-100 via-white to-blue-100 flex items-center justify-center aspect-[16/9] min-h-[180px] sm:min-h-[220px] md:min-h-[340px] max-h-[800px]" style={{ border: '2px solid theme(colors.light)', boxShadow: '0 8px 32px 0 rgba(31,38,135,0.10)' }}>
         <div
           class={`carousel-inner flex w-full h-full ${instant ? '' : 'transition-transform duration-700 ease-in-out'}`}
           ref={innerRef}

@@ -2,6 +2,7 @@
 // src/pages/proyectos/categoria/[category].astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { projects, projectCategories } from '@/data/projects.ts';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const categories = Object.keys(projectCategories);
@@ -28,8 +29,8 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
 
 <BaseLayout title={`${originalCategoryName} - ALEMAR Estructuras`}>
   <!-- Sección Hero -->
-  <section class="bg-gradient-to-br from-[#1e3a5f] via-[#2d2d2d] to-[#4a90e2] text-white p-8 sm:p-12 md:p-16 lg:p-20 text-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+  <section class="bg-gradient-to-br from-primary via-text-secondary to-secondary text-white p-8 sm:p-12 md:p-16 lg:p-20 text-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-warning/10 to-transparent"></div>
     <div class="relative z-10">
       <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6">
         {originalCategoryName}
@@ -46,10 +47,10 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
     {categoryProjects.length > 0 && (
       <section class="mb-12 sm:mb-16 md:mb-20">
         <div class="text-center mb-8 sm:mb-12">
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
-            Todos los Proyectos de <span class="text-[#c8aa6e]">{originalCategoryName}</span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary mb-4 sm:mb-6">
+            Todos los Proyectos de <span class="text-warning">{originalCategoryName}</span>
           </h2>
-          <p class="text-sm sm:text-base md:text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
+          <p class="text-sm sm:text-base md:text-lg text-text-secondary max-w-4xl mx-auto leading-relaxed">
             Explora nuestra completa cartera de proyectos en {originalCategoryName.toLowerCase()}. Cada proyecto refleja nuestro compromiso con la excelencia.
           </p>
         </div>
@@ -58,37 +59,40 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
           {categoryProjects.map(project => (
             <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
               <div class="relative overflow-hidden">
-                <img 
+                <Image 
                   src={project.imageUrl} 
                   alt={project.title}
+                  width={600}
+                  height={450}
                   class="w-full h-48 sm:h-56 md:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
                 {project.featured && (
-                  <div class="absolute top-4 right-4 bg-[#c8aa6e] text-[#1e3a5f] px-3 py-1 rounded-full text-xs font-bold">
+                  <div class="absolute top-4 right-4 bg-warning text-primary px-2 py-0.5 text-xs sm:px-3 sm:py-1 sm:text-sm rounded-full font-bold">
                     Destacado
                   </div>
                 )}
               </div>
               <div class="p-6">
-                <h3 class="text-lg sm:text-xl font-bold text-[#1e3a5f] mb-3 group-hover:text-[#c8aa6e] transition-colors duration-300">
+                <h3 class="text-lg sm:text-xl font-bold text-primary mb-3 group-hover:text-warning transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p class="text-sm sm:text-base text-[#2d2d2d] mb-4 leading-relaxed">
+                <p class="text-sm sm:text-base text-text-secondary mb-4 leading-relaxed">
                   {project.description}
                 </p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="bg-[#1e3a5f]/10 text-[#1e3a5f] px-3 py-1 rounded-full text-xs font-medium">
+                  <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium">
                     {project.location}
                   </span>
-                  <span class="bg-[#4a90e2]/10 text-[#4a90e2] px-3 py-1 rounded-full text-xs font-medium">
+                  <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-xs font-medium">
                     {project.completionDate}
                   </span>
                 </div>
                 <div class="border-t border-gray-200 pt-4">
-                  <blockquote class="text-sm text-[#2d2d2d] italic">
+                  <blockquote class="text-sm text-text-secondary italic">
                     "{project.clientReview}"
                   </blockquote>
-                  <p class="text-xs text-[#1e3a5f] font-semibold mt-2">
+                  <p class="text-xs text-primary font-semibold mt-2">
                     - {project.clientName}
                   </p>
                 </div>
@@ -102,17 +106,17 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
     <!-- Mensaje si no hay proyectos -->
     {categoryProjects.length === 0 && (
       <section class="text-center py-12 sm:py-16">
-        <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-6 sm:mb-8 rounded-full"></div>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
-          Proyectos en <span class="text-[#c8aa6e]">{originalCategoryName}</span>
+        <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-warning to-secondary mx-auto mb-6 sm:mb-8 rounded-full"></div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary mb-4 sm:mb-6">
+          Proyectos en <span class="text-warning">{originalCategoryName}</span>
         </h2>
-        <p class="text-base sm:text-lg text-[#2d2d2d] max-w-2xl mx-auto leading-relaxed">
+        <p class="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
           Actualmente no tenemos proyectos disponibles en esta categoría. Contáctenos para consultar sobre proyectos personalizados.
         </p>
         <div class="mt-8 sm:mt-12">
           <a 
             href="/contacto" 
-            class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95"
+            class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 sm:px-8 md:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95"
           >
             Consultar Proyectos
           </a>
@@ -125,13 +129,13 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
       <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
         <a 
           href="/proyectos" 
-          class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#1e3a5f] focus:ring-offset-2 active:scale-95"
+          class="inline-block bg-gradient-to-r from-warning to-secondary text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:from-secondary hover:to-warning transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
         >
           Ver Todos los Proyectos
         </a>
         <a 
           href="/servicios-populares" 
-          class="inline-block bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:from-[#4a90e2] hover:to-[#1e3a5f] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95"
+          class="inline-block bg-gradient-to-r from-primary to-secondary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold hover:from-secondary hover:to-primary transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95"
         >
           Ver Servicios
         </a>
@@ -139,16 +143,16 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
     </section>
 
     <!-- Sección de Llamada a la Acción -->
-    <section class="bg-gradient-to-br from-[#1e3a5f] to-[#2d2d2d] text-white text-center p-8 sm:p-12 md:p-16 rounded-3xl shadow-2xl mt-16 sm:mt-20 md:mt-24 relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-[#c8aa6e]/10 to-transparent"></div>
+    <section class="bg-gradient-to-br from-primary to-text-secondary text-white text-center p-8 sm:p-12 md:p-16 rounded-3xl shadow-2xl mt-16 sm:mt-20 md:mt-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-warning/10 to-transparent"></div>
       <div class="relative z-10">
         <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 sm:mb-6">
-          ¿Necesita un proyecto de <span class="text-[#c8aa6e]">{originalCategoryName.toLowerCase()}</span>?
+          ¿Necesita un proyecto de <span class="text-warning">{originalCategoryName.toLowerCase()}</span>?
         </h2>
         <p class="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
           Contáctenos hoy mismo para recibir una asesoría especializada y obtener la mejor solución para su proyecto.
         </p>
-        <a href="/contacto" class="inline-block bg-gradient-to-r from-[#c8aa6e] to-[#b89a5e] text-[#1e3a5f] px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-[#b89a5e] hover:to-[#c8aa6e] hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-[#1e3a5f]/20 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2 active:scale-95">Contactar Ahora</a>
+        <a href="/contacto" class="inline-block bg-gradient-to-r from-warning to-secondary text-primary px-8 sm:px-10 md:px-12 py-4 sm:py-5 md:py-6 rounded-2xl text-base sm:text-lg md:text-xl font-bold hover:from-secondary hover:to-warning hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg border-2 border-primary/20 active:scale-95">Contactar Ahora</a>
       </div>
     </section>
   </main>

@@ -1,6 +1,6 @@
 /**
  * Estilos para el componente Header
- * @version 1.9.0
+ * @version 1.12.0 - Código optimizado y limpio
  */
 
 /* Animación del ícono hamburguesa */
@@ -107,7 +107,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 0.5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 8rem;
   /* Mejorar scroll en todos los dispositivos */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
@@ -132,12 +132,6 @@
 
 #mobile-sidebar nav::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
-}
-
-/* Scrollbar para Firefox */
-#mobile-sidebar nav {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
 /* Elementos de navegación - Estado base */
@@ -233,19 +227,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Scroll personalizado para dropdowns */
-.services-scroll,
-.projects-scroll {
-  max-height: none;
-  overflow: visible;
-}
-
-/* Botones de navegación de scroll */
-.scroll-up-btn,
-.scroll-down-btn {
-  display: none;
-}
-
 /* Control de rotación de iconos */
 .chevron-icon {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -258,33 +239,6 @@
 
 .chevron-icon.not-rotated {
   transform: rotate(0deg);
-}
-
-/* Animaciones de entrada */
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-#mobile-sidebar.active nav > * {
-  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-#mobile-sidebar.active nav > *:nth-child(1) { animation-delay: 0.1s; }
-#mobile-sidebar.active nav > *:nth-child(2) { animation-delay: 0.2s; }
-#mobile-sidebar.active nav > *:nth-child(3) { animation-delay: 0.3s; }
-#mobile-sidebar.active nav > *:nth-child(4) { animation-delay: 0.4s; }
-#mobile-sidebar.active nav > *:nth-child(5) { animation-delay: 0.5s; }
-
-/* Transiciones para el botón de WhatsApp */
-#whatsapp-button {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 /* Enlaces de navegación */
@@ -334,7 +288,7 @@
   
   #mobile-sidebar nav {
     gap: 0.4rem;
-    padding-bottom: 2rem;
+    padding-bottom: 6rem;
   }
 }
 
@@ -460,15 +414,6 @@ body.sidebar-open {
   #mobile-sidebar {
     max-width: 100%;
   }
-}
-
-#mobile-sidebar nav > div,
-#mobile-sidebar nav > a {
-  margin-bottom: 0 !important;
-}
-#mobile-sidebar nav > div,
-#mobile-sidebar nav > a {
-  margin-top: 0 !important;
 }
 
 /* RESET COMPLETO PARA BOTONES TOGGLE Y SUS CONTENEDORES */
@@ -621,17 +566,12 @@ body.sidebar-open {
 
 /* Asegurar que el contacto siempre sea visible */
 #mobile-sidebar nav > a:last-child {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   flex-shrink: 0;
-}
-
-/* Mejorar el espacio para el scroll */
-#mobile-sidebar nav {
-  padding-bottom: 4rem;
 }
 
 @media (max-height: 600px) {
   #mobile-sidebar nav {
-    padding-bottom: 2rem;
+    padding-bottom: 4rem;
   }
 } 

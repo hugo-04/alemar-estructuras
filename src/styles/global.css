@@ -23,8 +23,7 @@
 
   /* Mejoras de accesibilidad para focus */
   *:focus {
-    outline: 2px solid #c8aa6e;
-    outline-offset: 2px;
+    outline: none; /* Removed outline */
   }
 
   /* Mejoras para imágenes */
@@ -53,11 +52,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2;
+    @apply bg-gradient-to-r from-[#1e3a5f] to-[#4a90e2] text-white px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300;
   }
   
   .btn-secondary {
-    @apply bg-[#c8aa6e] text-[#1e3a5f] px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-[#b89a5e] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2;
+    @apply bg-[#c8aa6e] text-[#1e3a5f] px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-lg font-semibold hover:bg-[#b89a5e] transition-all duration-300;
   }
 
   .card {
@@ -119,7 +118,7 @@
   }
 
   .focus-visible {
-    @apply focus:outline-none focus:ring-2 focus:ring-[#c8aa6e] focus:ring-offset-2;
+    /* Removed focus styles */
   }
 
   /* Utilidades para responsive spacing */

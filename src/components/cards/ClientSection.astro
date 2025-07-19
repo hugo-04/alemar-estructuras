@@ -43,14 +43,14 @@ const {
         {/* Primera fila de logos */}
         <div class="flex space-x-12 sm:space-x-16 lg:space-x-20 animate-scroll-left">
           {clientCarouselImages.map((client, index) => (
-            <ClientLogo src={client.src} alt={client.alt} />
+            <ClientLogo src={client.src} alt={client.alt} width={224} height={160} />
           ))}
         </div>
         
         {/* Segunda fila de logos (duplicada para efecto continuo) */}
         <div class="flex space-x-12 sm:space-x-16 lg:space-x-20 animate-scroll-left">
           {clientCarouselImages.map((client, index) => (
-            <ClientLogo src={client.src} alt={client.alt} />
+            <ClientLogo src={client.src} alt={client.alt} width={224} height={160} />
           ))}
         </div>
       </div>
