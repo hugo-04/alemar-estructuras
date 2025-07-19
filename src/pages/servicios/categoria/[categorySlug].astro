@@ -23,12 +23,6 @@ const categoryServices = services.filter(service =>
   service.category.toLowerCase().replace(/ /g, "-") === categorySlug
 );
 
-// Servicios destacados de esta categoría (active: true)
-const featuredServices = categoryServices.filter(service => service.active);
-
-// Servicios regulares de esta categoría
-const regularServices = categoryServices.filter(service => !service.active);
-
 // Obtener el nombre de la categoría original
 const categoryName = categoryServices[0]?.category || category;
 ---
@@ -49,29 +43,6 @@ const categoryName = categoryServices[0]?.category || category;
 
   <main class="container mx-auto p-4 sm:p-6 mt-6 sm:mt-8 flex-grow">
     
-    <!-- Servicios Destacados de esta Categoría -->
-    {featuredServices.length > 0 && (
-      <section class="mb-12 sm:mb-16 md:mb-20">
-        <div class="text-center mb-8 sm:mb-12">
-          <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-6 sm:mb-8 rounded-full"></div>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1e3a5f] mb-4 sm:mb-6">
-            Servicios <span class="text-[#c8aa6e]">Destacados</span> en {categoryName}
-          </h2>
-          <p class="text-sm sm:text-base md:text-lg text-[#2d2d2d] max-w-4xl mx-auto leading-relaxed">
-            Estos son los servicios más solicitados en {categoryName.toLowerCase()}. Cada uno representa una solución probada y confiable.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
-          {featuredServices.map(service => (
-            <div class="h-full flex">
-              <ServicePreviewCard service={service} className="h-full w-full flex-1" />
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
-
     <!-- Todos los Servicios de esta Categoría -->
     {categoryServices.length > 0 && (
       <section class="mb-12 sm:mb-16 md:mb-20">

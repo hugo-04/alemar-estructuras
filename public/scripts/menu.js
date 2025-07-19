@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
       menuButton?.setAttribute('aria-expanded', 'true');
       
       // Enfoque en el botón de cerrar para accesibilidad
-      setTimeout(() => {
+          setTimeout(() => {
         closeSidebarButton?.focus();
       }, 100);
       
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Rotar icono
       const chevronIcon = servicesToggle.querySelector('.chevron-icon');
-      if (chevronIcon) {
+        if (chevronIcon) {
         chevronIcon.classList.toggle('rotated');
         chevronIcon.classList.toggle('not-rotated');
       }
