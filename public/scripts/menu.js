@@ -1,6 +1,6 @@
 /**
  * Script para el menú móvil y sidebar
- * @version 2.3.0
+ * @version 2.4.0
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Resetear todos los dropdowns al cerrar
       resetAllDropdowns();
+      
+      // Forzar reset completo después de cerrar
+      setTimeout(() => {
+        forceResetAllStates();
+      }, 100);
     }
   }
 
@@ -149,6 +154,10 @@ document.addEventListener('DOMContentLoaded', function() {
           servicesGroup.setAttribute('data-dropdown-closed', 'true');
         }
         resetActiveStates();
+        // Forzar reset adicional para producción
+        setTimeout(() => {
+          forceResetToggleButton(servicesToggle);
+        }, 50);
       } else {
         // Si estamos abriendo, remover el atributo de cerrado
         if (servicesGroup) {
@@ -199,6 +208,10 @@ document.addEventListener('DOMContentLoaded', function() {
           projectsGroup.setAttribute('data-dropdown-closed', 'true');
         }
         resetActiveStates();
+        // Forzar reset adicional para producción
+        setTimeout(() => {
+          forceResetToggleButton(projectsToggle);
+        }, 50);
       } else {
         // Si estamos abriendo, remover el atributo de cerrado
         if (projectsGroup) {
@@ -246,6 +259,77 @@ document.addEventListener('DOMContentLoaded', function() {
       button.style.transform = '';
       button.style.boxShadow = '';
       button.style.color = '';
+    });
+  }
+
+  /**
+   * Forzar reset de botón toggle específico
+   */
+  function forceResetToggleButton(button) {
+    if (button) {
+      // Resetear estilos inline
+      button.style.background = 'transparent';
+      button.style.transform = 'none';
+      button.style.boxShadow = 'none';
+      button.style.color = 'inherit';
+      button.style.outline = 'none';
+      button.style.border = 'none';
+      
+      // Resetear contenedor
+      const group = button.closest('.group');
+      if (group) {
+        group.style.background = '';
+        group.style.transform = 'none';
+        group.style.boxShadow = 'none';
+        
+        // Resetear icono del grupo
+        const icon = group.querySelector('.w-8.h-8');
+        if (icon) {
+          icon.style.background = '';
+          icon.style.transform = 'none';
+        }
+      }
+    }
+  }
+
+  /**
+   * Forzar reset completo de todos los estados
+   */
+  function forceResetAllStates() {
+    // Resetear todos los grupos
+    const allGroups = document.querySelectorAll('#mobile-sidebar .group');
+    allGroups.forEach(group => {
+      group.style.background = '';
+      group.style.transform = 'none';
+      group.style.boxShadow = 'none';
+      group.classList.remove('active', 'pressed', 'highlighted');
+      
+      // Resetear iconos
+      const icons = group.querySelectorAll('.w-8.h-8');
+      icons.forEach(icon => {
+        icon.style.background = '';
+        icon.style.transform = 'none';
+      });
+      
+      // Resetear botones toggle
+      const buttons = group.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.style.background = 'transparent';
+        button.style.transform = 'none';
+        button.style.boxShadow = 'none';
+        button.style.color = 'inherit';
+        button.style.outline = 'none';
+        button.style.border = 'none';
+      });
+    });
+    
+    // Resetear enlaces
+    const allLinks = document.querySelectorAll('#mobile-sidebar nav > a');
+    allLinks.forEach(link => {
+      link.style.background = '';
+      link.style.transform = 'none';
+      link.style.boxShadow = 'none';
+      link.classList.remove('active', 'pressed', 'highlighted');
     });
   }
 
@@ -353,12 +437,18 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.outline = 'none';
         this.style.border = 'none';
         this.style.boxShadow = 'none';
+        this.style.background = 'transparent';
+        this.style.transform = 'none';
+        this.style.color = 'inherit';
       });
       
       button.addEventListener('blur', function() {
         this.style.outline = 'none';
         this.style.border = 'none';
         this.style.boxShadow = 'none';
+        this.style.background = 'transparent';
+        this.style.transform = 'none';
+        this.style.color = 'inherit';
       });
     }
   });
@@ -371,5 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('   - Navegación por teclado (ESC para cerrar)');
   console.log('   - Cierre automático en resize');
   console.log('   - Reset inmediato de estados activos con data-dropdown-closed');
+  console.log('   - Reset forzado para producción');
+  console.log('   - Scroll mejorado para todos los dispositivos');
   console.log('   - Eliminación de bordes de focus en botones toggle');
 }); 
