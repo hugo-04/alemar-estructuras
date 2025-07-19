@@ -1,6 +1,6 @@
 /**
  * Script para el menú móvil y sidebar
- * @version 2.4.0
+ * @version 2.5.0
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -26,6 +26,18 @@ document.addEventListener('DOMContentLoaded', function() {
   let isSidebarOpen = false;
 
   /**
+   * Verificar si el navegador soporta :has()
+   */
+  function supportsHasSelector() {
+    try {
+      document.querySelector(':has(*)');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
    * Abrir el sidebar móvil
    */
   function openSidebar() {
@@ -43,6 +55,9 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         closeSidebarButton?.focus();
       }, 100);
+      
+      // Resetear estados al abrir
+      resetAllDropdowns();
     }
   }
 
@@ -70,6 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         forceResetAllStates();
       }, 100);
+      
+      // Reset adicional para asegurar compatibilidad
+      setTimeout(() => {
+        forceResetAllStates();
+      }, 300);
     }
   }
 
@@ -453,6 +473,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Resetear sidebar al cargar la página
+  window.addEventListener('load', function() {
+    resetAllDropdowns();
+    forceResetAllStates();
+  });
+
+  // Resetear sidebar cuando se vuelve a la página
+  window.addEventListener('pageshow', function() {
+    if (!isSidebarOpen) {
+      resetAllDropdowns();
+      forceResetAllStates();
+    }
+  });
+
   // Log para debugging
   console.log('✅ Menú móvil inicializado correctamente');
   console.log('📱 Funcionalidades disponibles:');
@@ -463,5 +497,8 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('   - Reset inmediato de estados activos con data-dropdown-closed');
   console.log('   - Reset forzado para producción');
   console.log('   - Scroll mejorado para todos los dispositivos');
+  console.log('   - Compatibilidad con todos los navegadores');
+  console.log('   - Reset al cargar página y al volver');
   console.log('   - Eliminación de bordes de focus en botones toggle');
+  console.log('   - Soporte para :has() selector:', supportsHasSelector());
 }); 

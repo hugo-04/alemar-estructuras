@@ -1,6 +1,6 @@
 /**
  * Estilos para el componente Header
- * @version 1.8.0
+ * @version 1.9.0
  */
 
 /* Animación del ícono hamburguesa */
@@ -107,11 +107,13 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 0.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
   /* Mejorar scroll en todos los dispositivos */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  /* Asegurar que el scroll funcione en todos los navegadores */
+  scroll-behavior: smooth;
 }
 
 /* Scrollbar personalizado para Webkit */
@@ -130,6 +132,12 @@
 
 #mobile-sidebar nav::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
+}
+
+/* Scrollbar para Firefox */
+#mobile-sidebar nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
 }
 
 /* Elementos de navegación - Estado base */
@@ -326,7 +334,7 @@
   
   #mobile-sidebar nav {
     gap: 0.4rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -574,4 +582,56 @@ body.sidebar-open {
 #mobile-sidebar .group:has(#projects-menu.hidden) .w-8.h-8 {
   background: rgba(255, 255, 255, 0.15) !important;
   transform: none !important;
+}
+
+/* COMPATIBILIDAD CON TODOS LOS NAVEGADORES */
+/* Fallback para navegadores que no soportan :has() */
+@supports not (selector(:has(*))) {
+  #mobile-sidebar .group button {
+    background: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
+    color: inherit !important;
+  }
+  
+  #mobile-sidebar .group {
+    background: linear-gradient(135deg, #31487a 0%, #4a6fa5 100%) !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  #mobile-sidebar .group .w-8.h-8 {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: none !important;
+  }
+}
+
+/* Mejorar scroll para navegadores antiguos */
+#mobile-sidebar nav {
+  /* Para navegadores que no soportan scrollbar-width */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  
+  /* Para navegadores Webkit */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Para navegadores que no soportan scroll-behavior */
+  scroll-behavior: smooth;
+}
+
+/* Asegurar que el contacto siempre sea visible */
+#mobile-sidebar nav > a:last-child {
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+/* Mejorar el espacio para el scroll */
+#mobile-sidebar nav {
+  padding-bottom: 4rem;
+}
+
+@media (max-height: 600px) {
+  #mobile-sidebar nav {
+    padding-bottom: 2rem;
+  }
 } 
