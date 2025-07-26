@@ -3,7 +3,7 @@ import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
 import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton.astro";
 import '@/styles/global.css';
-import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -28,6 +28,20 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Performance optimizations -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="dns-prefetch" href="https://api.whatsapp.com" />
+		
+		<!-- Security headers -->
+		<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+		<meta http-equiv="X-Frame-Options" content="DENY" />
+		<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+		
+		<!-- PWA Manifest -->
+		<link rel="manifest" href="/manifest.json" />
+		<meta name="theme-color" content="#1e2e4f" />
 		
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
@@ -58,7 +72,79 @@ const {
 		<!-- Load Google Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 		
-		<ViewTransitions prefetch={true} />
+		<ViewTransitions />
+		
+		<!-- Structured Data JSON-LD -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "LocalBusiness",
+				"name": "ALEMAR Estructuras",
+				"description": "Soluciones integrales en techado y estructuras metálicas. Expertos en instalación, mantenimiento y fabricación de estructuras metálicas en Arequipa y Lima.",
+				"url": "https://alemar-estructuras.com",
+				"logo": "https://alemar-estructuras.com/favicon.svg",
+				"image": "https://alemar-estructuras.com/images/estructura-metalica-almacen.jpg",
+				"telephone": "+51 123 456 789",
+				"email": "contacto@alemar-estructuras.com",
+				"address": {
+					"@type": "PostalAddress",
+					"addressLocality": "Arequipa",
+					"addressRegion": "Arequipa",
+					"addressCountry": "PE"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": "-16.409047",
+					"longitude": "-71.537451"
+				},
+				"openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-13:00",
+				"priceRange": "$$",
+				"serviceArea": {
+					"@type": "GeoCircle",
+					"geoMidpoint": {
+						"@type": "GeoCoordinates",
+						"latitude": "-16.409047",
+						"longitude": "-71.537451"
+					},
+					"geoRadius": "500000"
+				},
+				"hasOfferCatalog": {
+					"@type": "OfferCatalog",
+					"name": "Servicios de Estructuras Metálicas",
+					"itemListElement": [
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Techos Metálicos",
+								"description": "Instalación y mantenimiento de techos metálicos residenciales e industriales"
+							}
+						},
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Estructuras Metálicas",
+								"description": "Diseño, fabricación e instalación de estructuras metálicas industriales"
+							}
+						},
+						{
+							"@type": "Offer",
+							"itemOffered": {
+								"@type": "Service",
+								"name": "Soldadura Especializada",
+								"description": "Servicios de soldadura especializada para estructuras metálicas"
+							}
+						}
+					]
+				},
+				"sameAs": [
+					"https://facebook.com/alemar-estructuras",
+					"https://instagram.com/alemar_estructuras",
+					"https://linkedin.com/company/alemar-estructuras"
+				]
+			}
+		</script>
 	</head>
 	<body
 		class="bg-neutral font-sans leading-normal tracking-normal flex flex-col min-h-screen text-base antialiased"

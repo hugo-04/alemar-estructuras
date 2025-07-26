@@ -1,24 +1,32 @@
+# ===================================
+# ALEMAR Estructuras - Astro Project
+# Optimized .gitignore for clean repo
+# ===================================
+
 # Dependencies
 node_modules/
 .pnp
 .pnp.js
+.yarn/
 
 # Build outputs
 dist/
 .output/
+build/
+out/
 
 # Environment variables
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
 
 # Logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
 # Runtime data
 pids
@@ -29,18 +37,24 @@ pids
 # Coverage directory used by tools like istanbul
 coverage/
 *.lcov
-
-# nyc test coverage
 .nyc_output
 
 # Dependency directories
 jspm_packages/
 
-# Optional npm cache directory
+# Package manager caches
 .npm
+.yarn-integrity
+.pnpm-store/
 
-# Optional eslint cache
+# ESLint cache
 .eslintcache
+
+# Prettier cache
+.prettiercache
+
+# TypeScript cache
+*.tsbuildinfo
 
 # Microbundle cache
 .rpt2_cache/
@@ -57,27 +71,33 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# parcel-bundler cache (https://parceljs.org/)
+# Parcel cache
 .cache
 .parcel-cache
 
-# Next.js build output
+# Framework specific build outputs
 .next
-
-# Nuxt.js build / generate output
 .nuxt
-dist
+.svelte-kit
+.astro
 
 # Storybook build outputs
 .out
 .storybook-out
+storybook-static/
 
 # Temporary folders
 tmp/
 temp/
+.tmp/
+.temp/
 
 # Editor directories and files
 .vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo
@@ -91,6 +111,79 @@ temp/
 .Trashes
 ehthumbs.db
 Thumbs.db
+desktop.ini
+
+# Astro specific
+.astro/
+dist/
+.output/
+
+# Deployment
+.vercel
+.netlify
+
+# Testing
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+jest.config.*
+cypress/
+.cypress/
+playwright-report/
+test-results/
+
+# Documentation
+*.md.backup
+*.md~
+
+# Backup files
+*.backup
+*.bak
+*.orig
+*.rej
+
+# Lock files (keep package-lock.json but ignore others)
+yarn.lock
+pnpm-lock.yaml
+
+# IDE and editor files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/extensions.json
+.history/
+.ionide/
+
+# Runtime and process files
+*.pid
+*.seed
+*.pid.lock
+
+# Optional: Uncomment if using specific tools
+# .sass-cache/
+# .connect.lock
+# .grunt
+# bower_components/
+# .lock-wscript
+
+# Local development
+.local
+.dev
+
+# Analytics and tracking
+.analytics
+.tracking
+
+# Miscellaneous
+*.tgz
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# End of optimized .gitignore
 
 # Vercel
 .vercel

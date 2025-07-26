@@ -19,18 +19,18 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-16 sm:py-20 lg:py-24 client-section-bg overflow-hidden relative">
+<section class="py-12 xs:py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 client-section-bg overflow-hidden relative">
   <!-- Overlay oscuro para mejorar legibilidad -->
   <div class="absolute inset-0 bg-black/60 pointer-events-none z-0"></div>
   <!-- Contenido principal con overlay -->
-  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="relative z-10 container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-7xl">
     {showTitle && (
-      <div class="text-center mb-16 sm:mb-20">
-        <div class="w-24 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-8 rounded-full"></div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 drop-shadow-lg">
-          {title}
+      <div class="text-center mb-12 xs:mb-16 sm:mb-20 md:mb-24">
+        <div class="w-16 xs:w-20 sm:w-24 md:w-32 h-1 bg-gradient-to-r from-[#c8aa6e] to-[#4a90e2] mx-auto mb-6 xs:mb-8 sm:mb-10 rounded-full"></div>
+        <h2 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-4 xs:mb-6 sm:mb-8 drop-shadow-lg leading-tight px-2">
+          <span class="block sm:inline">{title}</span>
         </h2>
-        <p class="text-lg sm:text-xl text-white/95 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
+        <p class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/95 max-w-5xl mx-auto leading-relaxed drop-shadow-md px-2">
           {subtitle}
         </p>
       </div>

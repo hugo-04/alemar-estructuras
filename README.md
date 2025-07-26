@@ -4,58 +4,62 @@ Sitio web profesional para ALEMAR Estructuras, empresa especializada en solucion
 
 ## 🚀 Características
 
-- **Diseño Responsivo**: Optimizado para dispositivos móviles, tablets y escritorio
-- **Navegación SPA**: Transiciones suaves entre páginas con Astro View Transitions
-- **SEO Optimizado**: Meta tags, Open Graph y Twitter Cards
-- **Accesibilidad**: Cumple con estándares WCAG
-- **Performance**: Carga rápida con optimizaciones de imágenes y CSS
-- **TypeScript**: Código tipado para mayor mantenibilidad
-- **Arquitectura Limpia**: Separación clara de responsabilidades
+## ✨ Características Destacadas
 
-## 🛠️ Tecnologías Utilizadas
+- 🚀 **Astro 5.11.0** - Framework moderno con generación estática
+- 🎨 **Tailwind CSS** - Diseño responsive y moderno
+- 📱 **PWA Ready** - Manifest y optimizaciones móviles
+- 🔍 **SEO Perfecto** - Meta tags, sitemap, robots.txt y datos estructurados
+- ⚡ **Performance Optimizado** - Prefetch, compresión HTML y assets optimizados
+- 🧪 **TypeScript Estricto** - Tipado completo y configuración avanzada
+- 🎯 **Multi-Framework** - Soporte para Preact, Vue y React
+- 🛠️ **DevEx Excelente** - ESLint, Prettier, CI/CD y herramientas de desarrollo
 
-- **Astro**: Framework para sitios web estáticos
-- **Tailwind CSS**: Framework de CSS utilitario
-- **TypeScript**: Lenguaje de programación tipado
-- **Preact**: Componentes interactivos (reemplazó Vue.js)
-- **Hooks personalizados**: Lógica reutilizable
+## 🏗️ Estructura del Proyecto
 
-## 📁 Estructura del Proyecto
-
+```text
+📁 alemar-estructuras/
+├── 📁 .github/workflows/     # CI/CD con GitHub Actions
+├── 📁 public/               # Assets estáticos
+│   ├── 🤖 robots.txt        # Configuración SEO para crawlers
+│   ├── 📱 manifest.json     # PWA manifest
+│   └── 🖼️ images/          # Imágenes optimizadas
+├── 📁 src/
+│   ├── 📁 components/       # Componentes reutilizables
+│   │   ├── 📁 cards/        # Componentes de tarjetas
+│   │   ├── 📁 carousel/     # Sliders y carruseles
+│   │   ├── 📁 layout/       # Header, Footer, Navigation
+│   │   └── 📁 ui/           # Componentes de interfaz
+│   ├── 📁 data/             # Datos tipados (TypeScript)
+│   ├── 📁 layouts/          # Layouts base de Astro
+│   ├── 📁 pages/            # Páginas del sitio
+│   ├── 📁 styles/           # Estilos CSS modulares
+│   ├── 📁 types/            # Definiciones TypeScript
+│   └── 📁 utils/            # Utilidades y helpers
+├── 🔧 astro.config.mjs      # Configuración Astro optimizada
+├── 🎨 tailwind.config.mjs   # Configuración Tailwind personalizada
+├── 📝 tsconfig.json         # TypeScript configuración estricta
+├── 🔍 .eslintrc.cjs         # Reglas de linting
+├── 💅 .prettierrc.json      # Formateo de código
+└── 🌍 .env.example          # Variables de entorno
 ```
-src/
-├── components/          # Componentes reutilizables
-│   ├── ui/             # Componentes de interfaz (botones, iconos, etc.)
-│   ├── layout/         # Componentes de layout (header, footer)
-│   ├── carousel/       # Componentes de carruseles
-│   └── cards/          # Componentes de tarjetas
-├── hooks/              # Hooks personalizados (useCarousel, etc.)
-├── utils/              # Utilidades y funciones auxiliares
-├── data/               # Datos estáticos (servicios, proyectos)
-├── layouts/            # Layouts de páginas
-├── pages/              # Páginas del sitio
-└── styles/             # Estilos globales
-```
 
-## 🚀 Instalación y Desarrollo
+## 🚀 Inicio Rápido
 
 ### Prerrequisitos
 
-- Node.js 18+ 
-- npm o yarn
+- **Node.js** 22.x o superior
+- **npm** o **yarn**
 
 ### Instalación
 
-1. Clona el repositorio:
 ```bash
-git clone <url-del-repositorio>
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/alemar-estructuras.git
 cd alemar-estructuras
-```
 
-2. Instala las dependencias:
-```bash
+# Instalar dependencias
 npm install
-```
 
 3. Inicia el servidor de desarrollo:
 ```bash

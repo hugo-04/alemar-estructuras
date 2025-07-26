@@ -1,5 +1,7 @@
 /* Importar estilos del header */
 @import './header.css';
+/* Importar utilidades responsivas */
+@import './responsive-utilities.css';
 
 @tailwind base;
 @tailwind components;

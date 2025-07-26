@@ -12,6 +12,16 @@ export default {
       'lg': '1024px',
       'xl': '1280px',
       '2xl': '1536px',
+      '3xl': '1920px',
+      // Breakpoints adicionales para dispositivos específicos
+      'mobile-s': '320px',
+      'mobile-m': '375px',
+      'mobile-l': '425px',
+      'tablet': '768px',
+      'laptop': '1024px',
+      'laptop-l': '1440px',
+      'desktop': '1920px',
+      'desktop-l': '2560px',
     },
     extend: {
       colors: {

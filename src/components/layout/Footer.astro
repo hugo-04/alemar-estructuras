@@ -18,20 +18,20 @@ const { showMap = true } = Astro.props;
 const categories: string[] = [...new Set(services.map(service => service.category))];
 ---
 
-<footer class="bg-accent text-white pt-6 sm:pt-8 md:pt-12 pb-3 sm:pb-4 md:pb-6">
-  <div class="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-    <!-- Grid principal del footer -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 pb-4 sm:pb-6 md:pb-8 border-b border-primary/30">
+<footer class="bg-accent text-white pt-6 xs:pt-8 sm:pt-10 md:pt-12 lg:pt-16 pb-3 xs:pb-4 sm:pb-5 md:pb-6 lg:pb-8">
+  <div class="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-7xl">
+    <!-- Grid principal del footer - Optimizado para todos los dispositivos -->
+    <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 xs:gap-8 sm:gap-10 md:gap-12 lg:gap-16 pb-6 xs:pb-8 sm:pb-10 md:pb-12 border-b border-primary/30">
       
-      <!-- Columna 1: Logo y descripción -->
-      <div class="flex flex-col items-start gap-2 sm:gap-3 md:gap-4">
-        <div class="flex items-center mb-2 sm:mb-3">
-          <IconWrapper name="mdi:office-building" size="lg" color="light" class="mr-2" />
-          <span class="text-lg sm:text-xl md:text-2xl font-bold text-white">
-            ALEMAR <span class="font-normal">Estructuras</span>
+      <!-- Columna 1: Logo y descripción - Optimizado -->
+      <div class="flex flex-col items-start gap-3 sm:gap-4 md:gap-5 lg:col-span-1">
+        <div class="flex items-center mb-2 sm:mb-3 md:mb-4">
+          <IconWrapper name="mdi:office-building" size="lg" color="light" class="mr-2 sm:mr-3" />
+          <span class="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight">
+            <span class="block xs:inline">ALEMAR</span> <span class="font-normal block xs:inline">Estructuras</span>
           </span>
         </div>
-        <p class="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed">
+        <p class="text-sm xs:text-base sm:text-lg md:text-xl text-white/90 leading-relaxed max-w-xs sm:max-w-sm md:max-w-md">
           Construyendo el futuro con estructuras sólidas, innovadoras y confiables.
         </p>
       </div>
