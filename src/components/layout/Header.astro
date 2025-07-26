@@ -78,7 +78,7 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
         >
           Inicio
         </a>
-        
+
         <!-- Dropdown Servicios -->
         <div class="relative group">
           <a
@@ -347,22 +347,22 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
   .chevron-icon {
     transition: transform 0.3s ease;
   }
-  
+
   button[aria-expanded="true"] .chevron-icon {
     transform: rotate(180deg);
   }
-  
+
   /* Mejora de la transición del menú desplegable */
   #services-menu, #projects-menu {
     transition: all 0.3s ease;
     overflow: hidden;
   }
-  
+
   #services-menu.hidden, #projects-menu.hidden {
     max-height: 0;
     opacity: 0;
   }
-  
+
   #services-menu:not(.hidden), #projects-menu:not(.hidden) {
     max-height: 400px;
     opacity: 1;
@@ -391,32 +391,28 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
     const openSidebar = () => {
       mobileSidebar.classList.add('active');
       sidebarOverlay.classList.add('active');
-      if (hamburgerIconWrapper) hamburgerIconWrapper.classList.add('open');
+      if (hamburgerIconWrapper) { hamburgerIconWrapper.classList.add('open'); }
       document.body.classList.add('sidebar-open');
       isSidebarOpen = true;
       menuButton.setAttribute('aria-expanded', 'true');
       closeSidebarButton.focus();
-      if (whatsappButton) whatsappButton.classList.add('opacity-0', 'pointer-events-none'); // Hide WhatsApp button
+      if (whatsappButton) { whatsappButton.classList.add('opacity-0', 'pointer-events-none'); } // Hide WhatsApp button
     };
 
     const closeSidebar = () => {
       mobileSidebar.classList.remove('active');
       sidebarOverlay.classList.remove('active');
-      if (hamburgerIconWrapper) hamburgerIconWrapper.classList.remove('open');
+      if (hamburgerIconWrapper) { hamburgerIconWrapper.classList.remove('open'); }
       document.body.classList.remove('sidebar-open');
       isSidebarOpen = false;
       menuButton.setAttribute('aria-expanded', 'false');
       menuButton.focus();
-      if (whatsappButton) whatsappButton.classList.remove('opacity-0', 'pointer-events-none'); // Show WhatsApp button
+      if (whatsappButton) { whatsappButton.classList.remove('opacity-0', 'pointer-events-none'); } // Show WhatsApp button
     };
 
-    /**
-     * Alterna la visibilidad de un menú desplegable y actualiza el estado aria.
-     * @param {HTMLElement} menu - El elemento del menú a mostrar/ocultar.
-     * @param {HTMLElement} toggle - El botón que activa el menú.
-     */
-    const toggleDropdown = (menu: HTMLElement, toggle: HTMLElement): void => {
-      if (!menu || !toggle) return;
+  
+    const toggleDropdown = function(menu: HTMLElement, toggle: HTMLElement) {
+      if (!menu || !toggle) { return; }
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
       menu.classList.toggle('hidden');
       toggle.setAttribute('aria-expanded', String(!isExpanded));

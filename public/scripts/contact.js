@@ -26,7 +26,7 @@
   function showSuccessPopup(popup) {
     try {
       popup.classList.add('is-visible');
-      
+
       // Ocultar automáticamente después del timeout
       setTimeout(() => {
         popup.classList.remove('is-visible');
@@ -47,7 +47,7 @@
 
     try {
       const formData = new FormData(form);
-      
+
       const response = await fetch(form.action, {
         method: form.method,
         body: formData,
@@ -111,7 +111,7 @@
         center: CONFIG.mapConfig.location,
       });
 
-      const marker = new window.google.maps.Marker({
+      new window.google.maps.Marker({
         position: CONFIG.mapConfig.location,
         map: map,
       });
@@ -157,4 +157,4 @@
 
   // Inicializar
   init();
-})(); 
+})();

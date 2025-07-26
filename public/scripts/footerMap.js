@@ -1,5 +1,4 @@
 let currentZoom = 15;
-let mapIframe = null;
 
 function initFooterMap() {
   const mapElement = document.getElementById('footer-map');
@@ -13,29 +12,28 @@ function initFooterMap() {
     iframe.allowFullscreen = true;
     iframe.loading = 'lazy';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    
+
     // Agregar estilos para mejorar la interactividad
     iframe.style.cursor = 'grab';
     iframe.style.transition = 'all 0.3s ease';
-    
+
     // Agregar eventos para mejorar la experiencia de usuario
     iframe.addEventListener('load', function() {
       // El mapa está listo para interactuar
       iframe.style.cursor = 'grab';
-      mapIframe = iframe;
     });
-    
+
     // Agregar hover effect
     iframe.addEventListener('mouseenter', function() {
       iframe.style.transform = 'scale(1.02)';
       iframe.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
     });
-    
+
     iframe.addEventListener('mouseleave', function() {
       iframe.style.transform = 'scale(1)';
       iframe.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
     });
-    
+
     mapElement.appendChild(iframe);
   }
 }
@@ -69,11 +67,11 @@ function updateMapZoom() {
 function setupZoomControls() {
   const zoomInBtn = document.getElementById('zoom-in');
   const zoomOutBtn = document.getElementById('zoom-out');
-  
+
   if (zoomInBtn) {
     zoomInBtn.addEventListener('click', zoomIn);
   }
-  
+
   if (zoomOutBtn) {
     zoomOutBtn.addEventListener('click', zoomOut);
   }
@@ -94,4 +92,4 @@ if (document.readyState === 'loading') {
 document.addEventListener('astro:page-load', function() {
   initFooterMap();
   setupZoomControls();
-}); 
+});

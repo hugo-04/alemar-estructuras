@@ -3,9 +3,9 @@
 declare module 'astro:content' {
   interface Render {
     '.md': Promise<{
-      Content: import('astro').MarkdownInstance<{}>['Content'];
+      Content: import('astro').MarkdownInstance<Record<string, unknown>>['Content'];
       headings: import('astro').MarkdownHeading[];
-      remarkPluginFrontmatter: Record<string, any>;
+      remarkPluginFrontmatter: Record<string, unknown>;
     }>;
   }
 }

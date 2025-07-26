@@ -32,7 +32,7 @@ export const projectCategories = {
       "Oficinas"
     ]
   },
-  
+
   // INFRAESTRUCTURA DE SALUD
   "Infraestructura de Salud": {
     name: "Hospitales y Centros Médicos",
@@ -42,7 +42,7 @@ export const projectCategories = {
       "Centrales de Esterilización"
     ]
   },
-  
+
   // INFRAESTRUCTURA TURÍSTICA Y COMERCIAL
   "Infraestructura Turística": {
     name: "Centros Comerciales y Turismo",
@@ -52,7 +52,7 @@ export const projectCategories = {
       "Centros de Entretenimiento"
     ]
   },
-  
+
   // ESTRUCTURAS METÁLICAS ESPECIALIZADAS
   "Estructuras Metálicas": {
     name: "Cubiertas y Techos Metálicos",
@@ -62,7 +62,7 @@ export const projectCategories = {
       "Estructuras Especiales"
     ]
   },
-  
+
   // SERVICIOS DE MANTENIMIENTO Y SEGURIDAD
   "Mantenimiento Industrial": {
     name: "Mantenimiento Industrial",
@@ -71,7 +71,7 @@ export const projectCategories = {
       "Mantenimiento de Estructuras"
     ]
   },
-  
+
   // CARPINTERÍA METÁLICA
   "Carpintería Metálica": {
     name: "Puertas y Ventanas",
@@ -81,14 +81,14 @@ export const projectCategories = {
       "Ventanas"
     ]
   },
-  
+
 };
 
 export const projects: Project[] = [
   // ========================================
   // INFRAESTRUCTURA INDUSTRIAL Y COMERCIAL
   // ========================================
-  
+
   // Naves Industriales y Plantas de Procesamiento
   {
     title: "Nave Industrial para Despacho - Packing",
@@ -126,7 +126,7 @@ export const projects: Project[] = [
     completionDate: "Abril 2024",
     featured: true
   },
-  
+
   // Infraestructura Comercial y Empresarial
   {
     title: "Mezanine y Entrepiso",
@@ -216,7 +216,7 @@ export const projects: Project[] = [
   // ========================================
   // INFRAESTRUCTURA DE SALUD
   // ========================================
-  
+
   // Hospitales y Centros Médicos
   {
     title: "Central de Esterilización - IREN Norte",
@@ -258,7 +258,7 @@ export const projects: Project[] = [
   // ========================================
   // INFRAESTRUCTURA TURÍSTICA Y COMERCIAL
   // ========================================
-  
+
   // Centros Comerciales y Turismo
   {
     title: "Escenario y Almacén - Restaurant Turístico El Limonero",
@@ -288,7 +288,7 @@ export const projects: Project[] = [
   // ========================================
   // ESTRUCTURAS METÁLICAS ESPECIALIZADAS
   // ========================================
-  
+
   // Cubiertas y Techos Metálicos
   {
     title: "Techos Estilo Sol y Sombra",
@@ -318,7 +318,7 @@ export const projects: Project[] = [
   // ========================================
   // SERVICIOS DE MANTENIMIENTO Y SEGURIDAD
   // ========================================
-  
+
   // Mantenimiento Industrial
   {
     title: "Mantenimiento de Cercos con Malla Olímpica - Subestación UPAO",
@@ -336,7 +336,7 @@ export const projects: Project[] = [
   // ========================================
   // CARPINTERÍA METÁLICA
   // ========================================
-  
+
   // Puertas y Ventanas
   {
     title: "Puertas, Portones y Ventanas",

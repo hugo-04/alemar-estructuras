@@ -5,31 +5,14 @@ module.exports = {
     es2022: true,
     node: true
   },
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'astro'],
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:astro/recommended'
+    'eslint:recommended'
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: './tsconfig.json'
+    sourceType: 'module'
   },
-  overrides: [
-    {
-      files: ['*.astro'],
-      parser: 'astro-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.astro']
-      }
-    }
-  ],
   rules: {
-    '@typescript-eslint/no-unused-vars': 'warn',
-    '@typescript-eslint/no-explicit-any': 'warn',
     'prefer-const': 'error',
     'no-var': 'error',
     'no-console': 'warn',
@@ -37,5 +20,38 @@ module.exports = {
     'curly': ['error', 'all'],
     'no-trailing-spaces': 'error',
     'eol-last': 'error'
-  }
+  },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended'
+      ],
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: './tsconfig.json'
+      },
+      rules: {
+        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-explicit-any': 'warn'
+      }
+    },
+    {
+      files: ['*.astro'],
+      parser: 'astro-eslint-parser',
+      plugins: ['astro'],
+      extends: [
+        'eslint:recommended',
+        'plugin:astro/recommended'
+      ],
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro']
+      }
+    }
+  ]
 };

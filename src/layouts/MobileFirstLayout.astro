@@ -17,8 +17,8 @@ interface Props {
 	canonical?: string;
 }
 
-const { 
-	title, 
+const {
+	title,
 	description = "ALEMAR Estructuras - Soluciones integrales en techado y estructuras metálicas. Expertos en instalación, mantenimiento y fabricación de estructuras metálicas en Arequipa y Lima.",
 	keywords = "estructuras metálicas, techos metálicos, soldadura, impermeabilización, Arequipa, Lima, construcción",
 	image = "/images/estructura-metalica-almacen.jpg",
@@ -35,14 +35,14 @@ const canonicalUrl = canonical || Astro.url.href;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content="ALEMAR Estructuras" />
 		<link rel="canonical" href={canonicalUrl} />
-		
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={Astro.url} />
@@ -53,31 +53,31 @@ const canonicalUrl = canonical || Astro.url.href;
 		<meta property="og:image:height" content="630" />
 		<meta property="og:site_name" content="ALEMAR Estructuras" />
 		<meta property="og:locale" content="es_PE" />
-		
+
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
-		
+
 		<!-- Preconnect to external domains -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		
+
 		<!-- Load Google Fonts -->
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-		
+
 		<!-- PWA Meta Tags -->
 		<meta name="theme-color" content="#1e3a5f" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 		<meta name="apple-mobile-web-app-title" content="ALEMAR Estructuras" />
-		
+
 		<!-- Performance optimizations -->
 		<link rel="dns-prefetch" href="//fonts.googleapis.com" />
 		<link rel="dns-prefetch" href="//fonts.gstatic.com" />
-		
+
 		<ViewTransitions />
 	</head>
 	<body
@@ -106,8 +106,7 @@ const canonicalUrl = canonical || Astro.url.href;
 			// Performance monitoring
 			window.addEventListener('load', () => {
 				if ('performance' in window) {
-					const perfData = performance.getEntriesByType('navigation')[0];
-					
+					// Performance monitoring code can be added here if needed
 				}
 			});
 		</script>

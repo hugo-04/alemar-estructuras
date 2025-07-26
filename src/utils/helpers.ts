@@ -2,6 +2,8 @@
  * Utilidades auxiliares para el proyecto ALEMAR Estructuras
  */
 
+import type { Service } from "@/data/services";
+
 /**
  * Convierte un string en slug para URLs
  * @param text - Texto a convertir
@@ -45,7 +47,7 @@ export function isValidUrl(url: string): boolean {
  * @param services - Array de servicios
  * @returns Categoría del servicio
  */
-export function getServiceCategory(slug: string, services: any[]): string | null {
+export function getServiceCategory(slug: string, services: Service[]): string | null {
   const service = services.find(s => s.slug === slug);
   return service?.category || null;
-} 
+}

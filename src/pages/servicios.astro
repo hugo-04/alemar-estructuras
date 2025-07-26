@@ -13,32 +13,14 @@ const mostClickedServices = services.filter(service => service.isMostClicked);
 
 // Agrupa los servicios por categoría y subcategoría
 const servicesByCategory = services.reduce((acc, service) => {
-  if (!acc[service.category]) acc[service.category] = {};
+  if (!acc[service.category]) {acc[service.category] = {};}
   const subcat = service.subcategory || 'General';
-  if (!acc[service.category][subcat]) acc[service.category][subcat] = [];
+  if (!acc[service.category][subcat]) {acc[service.category][subcat] = [];}
   acc[service.category][subcat].push(service);
   return acc;
 }, {} as Record<string, Record<string, typeof services>>);
 
-// Define el orden de las categorías y subcategorías
-const categoryStructure = {
-  "Techos Metálicos": {
-    "Domiciliarios": ["Sol y Sombra", "Techos Comerciales"],
-    "Industriales": ["Techos Rectos o Planos", "Techos Parabólicos", "Techos a Dos Aguas", "Naves Industriales"]
-  },
-  "Construcción en Seco": {
-    "general": ["Construcción en Seco"]
-  },
-  "Estructuras Especiales": {
-    "Mezanine y entrepisos metálicos": ["Mezanine y Entre pisos Metálicos"],
-    "Estructuras con acabado color madera": ["Estructuras con Acabado Color Madera"],
-    "Carpintería Metálica": ["Carpintería Metálica"],
-    "Trabajos en acero inoxidable": ["Trabajos en Acero Inoxidable"]
-  },
-  "Mantenimiento": {
-    "general": ["Mantenimiento de Estructuras Metálicas"]
-  }
-};
+
 ---
 
 <BaseLayout title="Nuestros Servicios - ALEMAR Estructuras">
@@ -67,7 +49,7 @@ const categoryStructure = {
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
       {
-        mostClickedServices.map((service, idx) => (
+        mostClickedServices.map((service) => (
           <div class="transition-all duration-300 hover:shadow-2xl hover:scale-105 rounded-2xl">
             <ServicePreviewCard service={service} />
           </div>

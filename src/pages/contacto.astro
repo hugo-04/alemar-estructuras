@@ -123,45 +123,35 @@ import IconWrapper from '@/components/ui/IconWrapper.astro';
           iframe.allowFullscreen = true;
           iframe.loading = 'lazy';
           iframe.referrerPolicy = 'no-referrer-when-downgrade';
-          
           // Agregar estilos para mejorar la interactividad
           iframe.style.cursor = 'grab';
           iframe.style.transition = 'all 0.3s ease';
-          
           // Agregar eventos para mejorar la experiencia de usuario
           iframe.addEventListener('load', function() {
             // El mapa está listo para interactuar
             iframe.style.cursor = 'grab';
           });
-          
           // Agregar hover effect
           iframe.addEventListener('mouseenter', function() {
             iframe.style.transform = 'scale(1.02)';
             iframe.style.boxShadow = '0 10px 25px rgba(0,0,0,0.15)';
           });
-          
           iframe.addEventListener('mouseleave', function() {
             iframe.style.transform = 'scale(1)';
             iframe.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
           });
-          
           mapElement.appendChild(iframe);
         }
       }
-
       // Inicializar el mapa cuando el DOM esté listo
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initContactMap);
       } else {
         initContactMap();
       }
-
       // Reinicializar el mapa cuando se navega entre páginas (para Astro)
       document.addEventListener('astro:page-load', initContactMap);
     </script>
-      </div>
-    </div>
-
     <!-- Pop-up de éxito -->
     <SuccessPopup id="success-popup" message="¡Gracias por su envío! Nos comunicaremos con usted a la brevedad para cotizar el servicio que desea." />
 

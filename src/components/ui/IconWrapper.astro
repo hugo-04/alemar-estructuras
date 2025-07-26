@@ -14,13 +14,13 @@ interface Props {
   [key: string]: any;
 }
 
-const { 
-  name, 
-  class: className = '', 
+const {
+  name,
+  class: className = '',
   size = 'md',
   color = 'light',
   hoverColor,
-  ...props 
+  ...props
 } = Astro.props;
 
 // Mapeo de tamaños a clases de Tailwind
@@ -53,4 +53,4 @@ const hoverClasses = hoverColor ? ` hover:${colorClasses[hoverColor]}` : '';
 const finalClasses = `${baseClasses}${hoverClasses} ${className}`.trim();
 ---
 
-<Icon name={name} class={finalClasses} {...props} /> 
+<Icon name={name} class={finalClasses} {...props} />

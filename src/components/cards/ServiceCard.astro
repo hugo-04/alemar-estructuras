@@ -19,7 +19,7 @@ interface Service {
 interface Props extends Service {} // Define las propiedades del componente extendiendo la interfaz Service.
 
 // Desestructura las propiedades del servicio.
-const { title, description, whatsappLink, imageUrl, slug } = Astro.props as Props;
+const { title, whatsappLink, imageUrl, slug } = Astro.props as Props;
 
 // El slug del servicio se usa directamente para el enlace de "Más Información".
 const serviceSlug = slug;
@@ -28,35 +28,35 @@ const serviceSlug = slug;
 <div class="bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-lg sm:shadow-xl lg:shadow-2xl p-3 sm:p-4 md:p-6 lg:p-8 transition-all duration-300 hover:shadow-2xl sm:hover:shadow-3xl hover:scale-105 border border-light flex flex-col h-full">
   <!-- Imagen del servicio -->
   <div class="relative mb-3 sm:mb-4 md:mb-6 lg:mb-8">
-    <Image 
-      src={imageUrl} 
-      alt={title} 
+    <Image
+      src={imageUrl}
+      alt={title}
       width={400}
       height={224}
       class="w-full h-32 sm:h-40 md:h-48 lg:h-56 object-cover rounded-lg sm:rounded-xl shadow-md"
       loading="lazy"
     />
   </div>
-  
+
   <!-- Contenido de la tarjeta -->
   <div class="flex-1 flex flex-col">
     <h3 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-accent mb-2 sm:mb-3 lg:mb-4 leading-tight">
       {title}
     </h3>
     <!-- Descripción eliminada para mostrar solo el nombre -->
-    
+
     <!-- Botones de acción -->
     <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 mt-auto">
-      <a 
-        href={`/servicios/${serviceSlug}`} 
+      <a
+        href={`/servicios/${serviceSlug}`}
         class="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-all duration-300 text-xs sm:text-sm md:text-base lg:text-lg font-bold shadow-md"
         aria-label={`Más información sobre ${title}`}
       >
         Más Información
       </a>
-      <a 
-        href={whatsappLink} 
-        target="_blank" 
+      <a
+        href={whatsappLink}
+        target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center bg-secondary hover:bg-secondary-hover text-white px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-all duration-300 text-xs sm:text-sm md:text-base lg:text-lg font-bold shadow-md"
         aria-label={`Cotizar ${title} por WhatsApp`}

@@ -4,7 +4,7 @@ export function useCarousel({ length, autoplay = true, interval = 18000 }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (!autoplay) return;
+    if (!autoplay) {return;}
     let timeout;
     function nextSlide() {
       setActiveIndex((prev) => (prev + 1) % length);
@@ -15,4 +15,4 @@ export function useCarousel({ length, autoplay = true, interval = 18000 }) {
   }, [autoplay, interval, length]);
 
   return [activeIndex, setActiveIndex];
-} 
+}

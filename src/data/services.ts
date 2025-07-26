@@ -16,7 +16,7 @@ export interface Service {
 // Asegúrate de que el 'slug' sea único y que las 'imageUrls' apunten a imágenes válidas en /public/images.
 export const services: Service[] = [
   // --- CATEGORÍA: TECHOS METÁLICOS ---
-  
+
   // RESIDENCIALES
   {
     title: "Sol y Sombra",
@@ -63,7 +63,7 @@ export const services: Service[] = [
     subcategory: "Residenciales",
     active: true
   },
-  
+
   // COMERCIALES
   {
     title: "Techos Planos Comerciales",
@@ -99,7 +99,7 @@ export const services: Service[] = [
     subcategory: "Comerciales",
     active: false
   },
-  
+
   // INDUSTRIALES
   {
     title: "Techos Rectos/Planos Industriales",
@@ -152,7 +152,7 @@ export const services: Service[] = [
     isMostClicked: true,
     active: true
   },
-  
+
   // --- CATEGORÍA: CONSTRUCCIÓN EN SECO ---
   {
     title: "Estructura Metálica + Drywall",
@@ -188,7 +188,7 @@ export const services: Service[] = [
     subcategory: "Acabados",
     active: false
   },
-  
+
   // --- CATEGORÍA: ESTRUCTURAS VERTICALES ---
   {
     title: "Mezanines Metálicos",
@@ -224,7 +224,7 @@ export const services: Service[] = [
     subcategory: "Soporte",
     active: false
   },
-  
+
   // --- CATEGORÍA: ACABADOS ESPECIALIZADOS ---
   {
     title: "Estructuras Color Madera",
@@ -259,7 +259,7 @@ export const services: Service[] = [
     subcategory: "Pinturas",
     active: false
   },
-  
+
   // --- CATEGORÍA: ACERO INOXIDABLE ---
   {
     title: "Pasamanos y Barandas",
@@ -305,7 +305,7 @@ export const services: Service[] = [
     subcategory: "Decorativo",
     active: false
   },
-  
+
   // --- CATEGORÍA: CARPINTERÍA METÁLICA ---
   {
     title: "Puertas Metálicas",
@@ -385,7 +385,7 @@ export const services: Service[] = [
     subcategory: "Cerramientos",
     active: false
   },
-  
+
   // --- CATEGORÍA: MANTENIMIENTO Y SERVICIOS ---
   {
     title: "Mantenimiento Preventivo",

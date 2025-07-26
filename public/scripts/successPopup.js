@@ -46,6 +46,10 @@
         }
       });
     } catch (error) {
+      newFunction(error);
+    }
+
+    function newFunction(error) {
       console.error('Error al inicializar popups de éxito:', error);
     }
   }
@@ -65,4 +69,4 @@
 
   // Inicializar
   init();
-})(); 
+})();

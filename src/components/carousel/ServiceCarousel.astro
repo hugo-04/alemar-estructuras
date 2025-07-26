@@ -12,7 +12,7 @@ const { images, id, autoplay = true, interval = 3000 } = Astro.props;
 const uniqueId = id ?? `carousel-${Math.random().toString(36).slice(2, 10)}`;
 ---
 
-<ServiceCarouselClient 
+<ServiceCarouselClient
   client:only="preact"
   images={images as any}
   id={uniqueId}

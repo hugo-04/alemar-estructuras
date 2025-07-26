@@ -19,13 +19,13 @@ const { showMap } = Astro.props;
         </span>
       </div>
     </div>
-    
+
     <!-- Mapa con diseño circular/ovalado -->
     <div class="relative">
       <div id="footer-map" class="w-full h-48 sm:h-56 md:h-64 rounded-[50px] sm:rounded-[60px] overflow-hidden shadow-2xl border-4 border-white transform rotate-1 hover:rotate-0 transition-all duration-500 hover:scale-105">
         <!-- El mapa se cargará aquí -->
       </div>
-      
+
       <!-- Controles de zoom flotantes -->
       <div class="absolute top-4 right-4 flex flex-col gap-2">
         <button id="zoom-in" class="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#1e3a5f] hover:text-white transition-all duration-300 cursor-pointer">
@@ -35,7 +35,7 @@ const { showMap } = Astro.props;
           <IconWrapper name="mdi:minus" size="sm" color="secondary" />
         </button>
       </div>
-      
+
       <!-- Indicador de ubicación -->
       <div class="absolute bottom-4 left-4 bg-white rounded-full px-3 py-1 shadow-lg flex items-center gap-2">
         <IconWrapper name="mdi:map-marker" size="sm" color="secondary" />

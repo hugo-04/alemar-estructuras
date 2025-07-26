@@ -3,7 +3,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     const clientBackground = document.querySelector('.client-background');
     const clientBackgroundImage = document.querySelector('.client-background-image');
-    if (!clientBackground || !clientBackgroundImage) return;
+    if (!clientBackground || !clientBackgroundImage) {return;}
 
     let ticking = false;
     let lastScrollY = 0;
@@ -36,4 +36,4 @@
     }
     window.addEventListener('scroll', requestTick, { passive: true });
   });
-})(); 
+})();

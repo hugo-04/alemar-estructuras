@@ -16,7 +16,7 @@ const featuredProjects = projects.filter(project => project.featured);
         Nuestros <span class="text-warning">Proyectos Destacados</span>
       </h1>
       <p class="text-xl text-text-secondary max-w-4xl mx-auto leading-relaxed">
-        Descubre nuestros proyectos más relevantes en techos metálicos, estructuras industriales y proyectos especializados. 
+        Descubre nuestros proyectos más relevantes en techos metálicos, estructuras industriales y proyectos especializados.
         Cada proyecto cuenta con la satisfacción de nuestros clientes.
       </p>
     </section>
@@ -39,8 +39,8 @@ const featuredProjects = projects.filter(project => project.featured);
             featuredProjects.map((project) => (
               <div class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden max-w-md mx-auto">
                 <div class="relative aspect-[4/3] w-full">
-                  <Image 
-                    src={project.imageUrl} 
+                  <Image
+                    src={project.imageUrl}
                     alt={project.title}
                     width={600}
                     height={450}
@@ -88,19 +88,19 @@ const featuredProjects = projects.filter(project => project.featured);
           ¿Tienes un proyecto en mente?
         </h2>
         <p class="text-text-secondary mb-6 max-w-2xl mx-auto">
-          Nuestro equipo está listo para ayudarte a materializar tu proyecto. 
+          Nuestro equipo está listo para ayudarte a materializar tu proyecto.
           Contáctanos para una consulta gratuita y cotización personalizada.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="/contacto" 
+          <a
+            href="/contacto"
             class="btn-primary inline-flex items-center"
           >
             <IconWrapper name="mdi:phone" size="sm" color="light" class="mr-2" />
             Solicitar Cotización
           </a>
-          <a 
-            href="/servicios-populares" 
+          <a
+            href="/servicios-populares"
             class="btn-secondary inline-flex items-center"
           >
             <IconWrapper name="mdi:hammer-wrench" size="sm" color="light" class="mr-2" />
