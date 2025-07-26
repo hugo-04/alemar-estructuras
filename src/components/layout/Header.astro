@@ -209,23 +209,23 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
 
         <!-- Servicios con dropdown de categorías -->
         <div class="space-y-3">
-          <div class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group">
+          <button
+            id="services-toggle"
+            class="w-full flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group cursor-pointer"
+            aria-expanded="false"
+            aria-controls="services-menu"
+          >
             <div class="flex items-center space-x-3">
               <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
                 <IconWrapper name="mdi:tools" size="sm" color="white" />
               </div>
               <span class="text-base font-semibold">Servicios</span>
             </div>
-            <button
-              id="services-toggle"
-              class="flex items-center space-x-2"
-              aria-expanded="false"
-              aria-controls="services-menu"
-            >
+            <div class="flex items-center space-x-2">
               <span class="text-sm text-white/90">Ver más</span>
               <IconWrapper name="mdi:chevron-down" size="sm" color="white" class="chevron-icon transition-transform duration-300" />
-            </button>
-          </div>
+            </div>
+          </button>
           <div id="services-menu" class="hidden pl-4 mt-2 space-y-3">
             <div class="relative">
               <div class="grid grid-cols-1 gap-3 services-scroll">
@@ -256,23 +256,23 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
 
         <!-- Proyectos con dropdown de categorías -->
         <div class="space-y-3">
-          <div class="flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group">
+          <button
+            id="projects-toggle"
+            class="w-full flex items-center justify-between p-3 bg-secondary hover:bg-secondary-hover rounded-xl text-white transition-all duration-300 group cursor-pointer"
+            aria-expanded="false"
+            aria-controls="projects-menu"
+          >
             <div class="flex items-center space-x-3">
               <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-colors duration-300">
                 <IconWrapper name="mdi:folder-multiple" size="sm" color="white" />
               </div>
               <span class="text-base font-semibold">Proyectos</span>
             </div>
-            <button
-              id="projects-toggle"
-              class="flex items-center space-x-2"
-              aria-expanded="false"
-              aria-controls="projects-menu"
-            >
+            <div class="flex items-center space-x-2">
               <span class="text-sm text-white/90">Ver más</span>
               <IconWrapper name="mdi:chevron-down" size="sm" color="white" class="chevron-icon transition-transform duration-300" />
-            </button>
-          </div>
+            </div>
+          </button>
           <div id="projects-menu" class="hidden pl-4 mt-2 space-y-3">
             <div class="relative">
               <div class="grid grid-cols-1 gap-3 projects-scroll">
@@ -341,6 +341,33 @@ const projectCategoryKeys: string[] = Object.keys(projectCategories);
   >
   </div>
 </header>
+
+<style>
+  /* Animación del chevron para los dropdowns */
+  .chevron-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  button[aria-expanded="true"] .chevron-icon {
+    transform: rotate(180deg);
+  }
+  
+  /* Mejora de la transición del menú desplegable */
+  #services-menu, #projects-menu {
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  #services-menu.hidden, #projects-menu.hidden {
+    max-height: 0;
+    opacity: 0;
+  }
+  
+  #services-menu:not(.hidden), #projects-menu:not(.hidden) {
+    max-height: 400px;
+    opacity: 1;
+  }
+</style>
 
 <script>
   function initializeMobileMenu() {

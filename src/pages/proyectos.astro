@@ -47,8 +47,8 @@ const featuredProjects = projects.filter(project => project.featured);
                     class="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div class="absolute top-4 left-4">
-                    <span class="bg-warning text-white px-2 py-0.5 text-xs sm:px-3 sm:py-1 sm:text-sm rounded-full font-medium">
+                  <div class="absolute top-2 left-2 xs:top-3 xs:left-3 sm:top-4 sm:left-4">
+                    <span class="bg-warning text-white px-2 py-1 text-xs xs:px-3 xs:py-1 xs:text-xs sm:px-3 sm:py-1 sm:text-sm md:px-4 md:py-1.5 md:text-sm rounded-full font-medium shadow-lg backdrop-blur-sm whitespace-nowrap max-w-[120px] xs:max-w-[140px] sm:max-w-[160px] md:max-w-none truncate">
                       {projectCategories[project.category as keyof typeof projectCategories]?.name || project.category}
                     </span>
                   </div>

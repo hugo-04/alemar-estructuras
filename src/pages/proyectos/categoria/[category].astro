@@ -68,8 +68,10 @@ const originalCategoryName = categoryProjects[0]?.category || categoryName;
                   loading="lazy"
                 />
                 {project.featured && (
-                  <div class="absolute top-4 right-4 bg-warning text-primary px-2 py-0.5 text-xs sm:px-3 sm:py-1 sm:text-sm rounded-full font-bold">
-                    Destacado
+                  <div class="absolute top-2 right-2 xs:top-3 xs:right-3 sm:top-4 sm:right-4">
+                    <span class="bg-warning text-white px-2 py-1 text-xs xs:px-3 xs:py-1 xs:text-xs sm:px-3 sm:py-1 sm:text-sm md:px-4 md:py-1.5 md:text-sm rounded-full font-bold shadow-lg backdrop-blur-sm whitespace-nowrap">
+                      Destacado
+                    </span>
                   </div>
                 )}
               </div>
