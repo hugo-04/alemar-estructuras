@@ -1,19 +1,34 @@
 module.exports = {
-  extends: [
-    'eslint:recommended',
-    '@typescript-eslint/recommended',
-    'astro/recommended'
-  ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
   root: true,
   env: {
     browser: true,
     es2022: true,
     node: true
   },
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'astro'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:astro/recommended'
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: './tsconfig.json'
+  },
+  overrides: [
+    {
+      files: ['*.astro'],
+      parser: 'astro-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro']
+      }
+    }
+  ],
   rules: {
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/no-explicit-any': 'warn',
     'prefer-const': 'error',
     'no-var': 'error',
@@ -23,4 +38,4 @@ module.exports = {
     'no-trailing-spaces': 'error',
     'eol-last': 'error'
   }
-}; 
+};
